@@ -15,11 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mytaskapp.ui.theme.OurBlue
-import com.example.mytaskapp.ui.theme.OurYellow
+
 
 
 @Composable
@@ -33,7 +34,7 @@ fun PillModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(3.dp, OurBlue)
+        border = BorderStroke(4.dp, OurBlue)
     ) {
         Column(
             modifier = Modifier
@@ -44,27 +45,31 @@ fun PillModuleExample() {
             Text(
                 text = "PILLS",
                 fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = Color.Black
+                color = OurBlue
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "next pill: ",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurBlue
             )
             Text(
                 text = "Ibalgin in 2 hours",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurBlue
             )
             Text(
-                text = "Pills today: 1",
+                text = "pills today: 1",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurBlue
             )
         }
     }

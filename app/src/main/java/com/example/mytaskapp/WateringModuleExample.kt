@@ -16,10 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mytaskapp.ui.theme.OurGreen
+import com.example.mytaskapp.ui.theme.OurGreenLight
 
 
 @Composable
@@ -33,7 +35,7 @@ fun WateringModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(3.dp, OurGreen)
+        border = BorderStroke(4.dp, OurGreen)
     ) {
         Column(
             modifier = Modifier
@@ -44,27 +46,32 @@ fun WateringModuleExample() {
             Text(
                 text = "WATERING",
                 fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = Color.Black
+                color = OurGreen
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "next watering: ",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurGreen
             )
             Text(
                 text = "today : 5 plants ",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurGreen
             )
             Text(
                 text = "tommorrow: 3 plants",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurGreen
             )
         }
     }

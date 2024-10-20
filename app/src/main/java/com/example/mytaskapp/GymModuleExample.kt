@@ -15,11 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mytaskapp.ui.theme.OurBlue
 import com.example.mytaskapp.ui.theme.OurRed
+import com.example.mytaskapp.ui.theme.OurRedLight
 import com.example.mytaskapp.ui.theme.OurYellow
 
 
@@ -34,7 +36,7 @@ fun GymModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(3.dp, OurRed)
+        border = BorderStroke(4.dp, OurRed)
     ) {
         Column(
             modifier = Modifier
@@ -45,27 +47,31 @@ fun GymModuleExample() {
             Text(
                 text = "GYM TRACKER",
                 fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = Color.Black
+                color = OurRed
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "next gym session: today",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurRed
             )
             Text(
                 text = "program:",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurRed
             )
             Text(
                 text = "legs",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurRed
             )
         }
     }

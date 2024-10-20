@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,7 +33,7 @@ fun PackingModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(3.dp, OurYellow)
+        border = BorderStroke(4.dp, OurYellow)
     ) {
         Column(
             modifier = Modifier
@@ -43,27 +44,31 @@ fun PackingModuleExample() {
             Text(
                 text = "PACKING",
                 fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = Color.Black
+                color = OurYellow
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "next trip: ",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurYellow
             )
             Text(
                 text = "Chata Levice in 10 days ",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurYellow
             )
             Text(
                 text = "packed: 70%",
                 fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = Color.DarkGray
+                color = OurYellow
             )
         }
     }
