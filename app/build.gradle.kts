@@ -1,14 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrainsKotlinSerialization)
+
 }
 
 android {
-    namespace = "com.example.mytaskapp"
+    namespace = "com.example.navigation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mytaskapp"
+        applicationId = "com.example.navigation"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -58,7 +60,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3 )
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +68,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }

@@ -1,4 +1,4 @@
-package com.example.mytaskapp
+package com.example.mytaskapp.Screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,12 +20,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mytaskapp.GymModuleExample
+import com.example.mytaskapp.Modules.PackingModuleExample
+import com.example.mytaskapp.Modules.PillModuleExample
+import com.example.mytaskapp.Modules.WateringModuleExample
+
+
+@Composable
+fun AddModule() {
+    var modules = mutableListOf(PillModuleExample(), PackingModuleExample(), GymModuleExample(), WateringModuleExample())
+
+
+}
+
 
 
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onGoToNextScreen: () -> Unit
+) {
     Column(
         modifier = Modifier
                     .padding(16.dp)
@@ -54,6 +70,11 @@ fun HomeScreen() {
             )
 
         }
+        Button(onClick = {onGoToNextScreen()
+        }) {
+            Text(text = "Packing")
+        }
+
         Text(
             text = "tap any module for details",
             fontSize = 18.sp,
@@ -61,12 +82,12 @@ fun HomeScreen() {
             fontWeight = FontWeight.Bold,
         )
 
+        AddModule()
 
-        PackingModuleExample()
-        WateringModuleExample()
-        PillModuleExample()
-        GymModuleExample()
+
+
     }
+
 
 }
 

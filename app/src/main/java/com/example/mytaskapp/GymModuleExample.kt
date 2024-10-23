@@ -19,10 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.ui.theme.OurBlue
 import com.example.mytaskapp.ui.theme.OurRed
-import com.example.mytaskapp.ui.theme.OurRedLight
-import com.example.mytaskapp.ui.theme.OurYellow
 
 
 @Composable

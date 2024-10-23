@@ -1,4 +1,4 @@
-package com.example.mytaskapp
+package com.example.mytaskapp.Modules
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
