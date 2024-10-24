@@ -1,4 +1,4 @@
-package com.example.mytaskapp.Modules
+package com.example.navigation.Modules
 
 
 import androidx.compose.foundation.BorderStroke
@@ -20,11 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.ui.theme.OurGreen
+import com.example.navigation.ui.theme.OurYellow
 
 
 @Composable
-fun WateringModuleExample() {
+fun PackingModuleExample() {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -34,7 +34,7 @@ fun WateringModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurGreen)
+        border = BorderStroke(4.dp, OurYellow)
     ) {
         Column(
             modifier = Modifier
@@ -43,34 +43,33 @@ fun WateringModuleExample() {
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = "WATERING",
+                text = "PACKING",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurGreen
+                color = OurYellow
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "next watering: ",
+                text = "next trip: ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurGreen
+                color = OurYellow
             )
             Text(
-                text = "today : 5 plants ",
+                text = "Chata Levice in 10 days ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-
                 textAlign = TextAlign.Left,
-                color = OurGreen
+                color = OurYellow
             )
             Text(
-                text = "tommorrow: 3 plants",
+                text = "packed: 70%",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurGreen
+                color = OurYellow
             )
         }
     }

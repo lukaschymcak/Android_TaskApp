@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyTaskApp"
+rootProject.name = "Navigation"
 include(":app")
  

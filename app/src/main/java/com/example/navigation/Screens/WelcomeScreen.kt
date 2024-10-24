@@ -1,4 +1,4 @@
-package com.example.mytaskapp.Screens
+package com.example.navigation.Screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +16,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,9 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.R
 
-@Composable
-fun WelcomeScreen(modifier: Modifier = Modifier) {
 
+
+@Composable
+fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
+    var name by remember { mutableStateOf("") }
     Column (
 
         modifier = modifier
@@ -38,7 +44,6 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
         Alignment.CenterHorizontally
 
     ){
-        //row to align image to the top
 
         Image(
             painter = painterResource(id = R.drawable.logojpg),
@@ -61,19 +66,21 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 
         )
         TextField(
-            value = "Enter your name",
 
-            onValueChange = { },
+            value = name,
+
+            onValueChange = { newName -> name = newName },
             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
             modifier = Modifier.padding(16.dp),
             shape = RoundedCornerShape(15.dp),
         )
 
         Spacer(modifier = Modifier.height(128.dp))
-
-        Button(onClick = (
-                { }
-                ), modifier = Modifier
+        Button(
+            onClick = {
+                onGoToNextScreen()
+            }
+        , modifier = Modifier
             .padding(10.dp)
             .width(150.dp)
             .height(55.dp),

@@ -1,4 +1,4 @@
-package com.example.mytaskapp.Modules
+package com.example.navigation.Modules
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -19,11 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.ui.theme.OurYellow
+import com.example.navigation.ui.theme.OurRed
 
 
 @Composable
-fun PackingModuleExample() {
+fun GymModuleExample() {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -33,7 +33,7 @@ fun PackingModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurYellow)
+        border = BorderStroke(4.dp, OurRed)
     ) {
         Column(
             modifier = Modifier
@@ -42,33 +42,33 @@ fun PackingModuleExample() {
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = "PACKING",
+                text = "GYM TRACKER",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurYellow
+                color = OurRed
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "next trip: ",
+                text = "next gym session: today",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurRed
             )
             Text(
-                text = "Chata Levice in 10 days ",
+                text = "program:",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurRed
             )
             Text(
-                text = "packed: 70%",
+                text = "legs",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurRed
             )
         }
     }

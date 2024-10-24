@@ -1,4 +1,5 @@
-package com.example.mytaskapp.Modules
+package com.example.navigation.Modules
+
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -19,12 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.ui.theme.OurBlue
-
+import com.example.navigation.ui.theme.OurGreen
 
 
 @Composable
-fun PillModuleExample() {
+fun WateringModuleExample() {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -34,7 +34,7 @@ fun PillModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurBlue)
+        border = BorderStroke(4.dp, OurGreen)
     ) {
         Column(
             modifier = Modifier
@@ -43,33 +43,34 @@ fun PillModuleExample() {
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = "PILLS",
+                text = "WATERING",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurBlue
+                color = OurGreen
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "next pill: ",
+                text = "next watering: ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurBlue
+                color = OurGreen
             )
             Text(
-                text = "Ibalgin in 2 hours",
+                text = "today : 5 plants ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
+
                 textAlign = TextAlign.Left,
-                color = OurBlue
+                color = OurGreen
             )
             Text(
-                text = "pills today: 1",
+                text = "tommorrow: 3 plants",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurBlue
+                color = OurGreen
             )
         }
     }

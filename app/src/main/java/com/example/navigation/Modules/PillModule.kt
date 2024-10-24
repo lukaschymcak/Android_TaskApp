@@ -1,4 +1,5 @@
-package com.example.mytaskapp
+package com.example.navigation.Modules
+
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -19,11 +20,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.ui.theme.OurRed
+import com.example.navigation.ui.theme.OurBlue
+
 
 
 @Composable
-fun GymModuleExample() {
+fun PillModuleExample() {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -33,7 +35,7 @@ fun GymModuleExample() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurRed)
+        border = BorderStroke(4.dp, OurBlue)
     ) {
         Column(
             modifier = Modifier
@@ -42,33 +44,33 @@ fun GymModuleExample() {
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = "GYM TRACKER",
+                text = "PILLS",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurRed
+                color = OurBlue
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "next gym session: today",
+                text = "next pill: ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurRed
+                color = OurBlue
             )
             Text(
-                text = "program:",
+                text = "Ibalgin in 2 hours",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurRed
+                color = OurBlue
             )
             Text(
-                text = "legs",
+                text = "pills today: 1",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurRed
+                color = OurBlue
             )
         }
     }

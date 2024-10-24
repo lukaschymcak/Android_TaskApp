@@ -1,4 +1,4 @@
-package com.example.mytaskapp.Screens
+package com.example.navigation.Screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,20 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mytaskapp.GymModuleExample
-import com.example.mytaskapp.Modules.PackingModuleExample
-import com.example.mytaskapp.Modules.PillModuleExample
-import com.example.mytaskapp.Modules.WateringModuleExample
-
+import com.example.navigation.Modules.*
 
 @Composable
 fun AddModule() {
     var modules = mutableListOf(PillModuleExample(), PackingModuleExample(), GymModuleExample(), WateringModuleExample())
-
-
-}
-
-
+            modules.remove(PillModuleExample())}
 
 
 
@@ -43,12 +35,11 @@ fun HomeScreen(
 ) {
     Column(
         modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize(),
-                Arrangement.Top,
-                Alignment.CenterHorizontally
+            .padding(16.dp)
+            .fillMaxSize(),
+        Arrangement.Top,
+        Alignment.CenterHorizontally
     ) {
-
         Row {
             Icon(
                 imageVector = Icons.Default.Settings,
@@ -57,7 +48,7 @@ fun HomeScreen(
             )
 
             Text(
-                text = "hello, lukas",
+                text = "hello, " + HomeScreenState.getName(),
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
@@ -70,10 +61,6 @@ fun HomeScreen(
             )
 
         }
-        Button(onClick = {onGoToNextScreen()
-        }) {
-            Text(text = "Packing")
-        }
 
         Text(
             text = "tap any module for details",
@@ -81,6 +68,14 @@ fun HomeScreen(
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
         )
+
+        Button(
+            onClick = {
+                onGoToNextScreen()
+            }
+        ) {
+            Text(text = "Go To Screen 2", fontSize = 18.sp)
+        }
 
         AddModule()
 
@@ -90,5 +85,3 @@ fun HomeScreen(
 
 
 }
-
-
