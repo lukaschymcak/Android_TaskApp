@@ -4,13 +4,13 @@ sealed interface Screen {
 
 
     @kotlinx.serialization.Serializable
-    data class HomeScreen(val name: Int): Screen
+    data object HomeScreen: Screen
 
     @kotlinx.serialization.Serializable
     data object PackingScreen: Screen
 
     @kotlinx.serialization.Serializable
-    data object TripScreen: Screen
+    data object TripAddScreen: Screen
 
     @kotlinx.serialization.Serializable
     data object WelcomeScreen: Screen

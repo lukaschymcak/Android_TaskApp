@@ -5,23 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
 import androidx.navigation.toRoute
 import com.example.navigation.Screens.HomeScreen
 import com.example.navigation.Screens.PackingScreen
-import com.example.navigation.Screens.TripScreen
+import com.example.navigation.Screens.TripAddScreen
 import com.example.navigation.Screens.WelcomeScreen
-import com.example.navigation.viewModel.UserViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +29,11 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
+                    val startDestination = if (HomeScreenState.getWasShown()) {
+                        Screen.HomeScreen
+                    } else {
+                        Screen.WelcomeScreen
+                    }
                     Navigation(
                         modifier = Modifier.padding(innerPadding)
                     )
@@ -43,11 +45,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Navigation(modifier:Modifier = Modifier){
+
     val navController = rememberNavController()
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = Screen.WelcomeScreen,
+        startDestination = Screen.PackingScreen,
         enterTransition = { slideInHorizontally { it } },
         exitTransition = { slideOutHorizontally { -it } },
         popEnterTransition = { slideInHorizontally { -it } },
@@ -56,7 +59,8 @@ fun Navigation(modifier:Modifier = Modifier){
         composable<Screen.WelcomeScreen> {
             WelcomeScreen(
                 onGoToNextScreen = {
-                    navController.navigate(Screen.HomeScreen(8))
+                    HomeScreenState.setWasShown(true)
+                    navController.navigate(Screen.HomeScreen)
                 }
             )
         }
@@ -64,7 +68,6 @@ fun Navigation(modifier:Modifier = Modifier){
             val homeScreen: Screen.HomeScreen = backStackEntry.toRoute()
 
             HomeScreen(
-                //name = homeScreen.name,
                 onGoToNextScreen = {
                     navController.navigate(Screen.PackingScreen)
                 }
@@ -72,16 +75,18 @@ fun Navigation(modifier:Modifier = Modifier){
         }
         composable<Screen.PackingScreen> {
             PackingScreen(
-                id = 1,
                 onGoToNextScreen = {
                     navController.popBackStack()
-                    navController.navigate(Screen.TripScreen)
+                    navController.navigate(Screen.TripAddScreen)
+                },
+                onGoBack = {
+                    navController.popBackStack()
                 }
             )
 
         }
-        composable<Screen.TripScreen> {
-            TripScreen(
+        composable<Screen.TripAddScreen> {
+            TripAddScreen(
                 onGoBack = {
                     navController.popBackStack()
                 }

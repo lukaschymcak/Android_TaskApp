@@ -28,13 +28,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.HomeScreenState
 import com.example.navigation.R
 
 
 
 @Composable
 fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
-    var name by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf(HomeScreenState.getName()) }
     Column (
 
         modifier = modifier

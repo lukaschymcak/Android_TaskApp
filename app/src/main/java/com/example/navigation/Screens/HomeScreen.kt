@@ -15,17 +15,23 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.HomeScreenState
 import com.example.navigation.Modules.*
+
 
 @Composable
 fun AddModule() {
     var modules = mutableListOf(PillModuleExample(), PackingModuleExample(), GymModuleExample(), WateringModuleExample())
-            modules.remove(PillModuleExample())}
+    modules.remove(PillModuleExample())}
 
 
 
@@ -33,6 +39,7 @@ fun AddModule() {
 fun HomeScreen(
     onGoToNextScreen: () -> Unit
 ) {
+    var name by remember { mutableStateOf(HomeScreenState.getName()) }
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -48,7 +55,7 @@ fun HomeScreen(
             )
 
             Text(
-                text = "hello, " + HomeScreenState.getName(),
+                text = "hello, $name",
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
@@ -72,9 +79,10 @@ fun HomeScreen(
         Button(
             onClick = {
                 onGoToNextScreen()
+                HomeScreenState.setWasShown(true)
             }
         ) {
-            Text(text = "Go To Screen 2", fontSize = 18.sp)
+            Text(text = "Packing", fontSize = 18.sp)
         }
 
         AddModule()
