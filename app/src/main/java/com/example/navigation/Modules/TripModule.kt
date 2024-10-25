@@ -4,9 +4,11 @@ package com.example.navigation.Modules
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.ui.theme.OurGreen
+import com.example.navigation.ui.theme.OurRed
 
 
 @Composable
@@ -35,44 +37,48 @@ fun TripModule() {
             .padding(16.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurGreen)
+        border = BorderStroke(4.dp, OurRed)
     ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = "WATERING",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Start,
-                color = OurGreen
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "next watering: ",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left,
-                color = OurGreen
-            )
-            Text(
-                text = "today : 5 plants ",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Row {
+                    Column {
+                        Text(
+                            text = "TRIP NAME",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Start,
+                            color = OurRed
+                        )
+                        Text(
+                            text = "in 5 days",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Start,
+                            color = OurRed
+                        )
+                    }
+                    Text(
+                        text = "70%",
+                        fontSize = 35.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OurRed,
+                        modifier = Modifier.offset(x = 120.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "(dd.mm.yyyy - dd.mm.yyyy)",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Left,
+                    color = OurRed
+                )
 
-                textAlign = TextAlign.Left,
-                color = OurGreen
-            )
-            Text(
-                text = "tommorrow: 3 plants",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left,
-                color = OurGreen
-            )
+            }
         }
     }
-}

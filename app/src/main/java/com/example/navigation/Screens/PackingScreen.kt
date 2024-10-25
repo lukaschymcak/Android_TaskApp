@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.Modules.TripModule
 import com.example.navigation.ui.theme.OurRed
 
 
@@ -74,6 +75,8 @@ fun PackingScreen(
         Spacer(modifier = Modifier.height(8.dp))
         HorizontalDivider(color = OurRed, thickness = 3.dp)
         Spacer(modifier = Modifier.height(24.dp))
+        TripModule()
+
 
         AddTripBottomSheet()
     }
