@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.HomeScreenState
 import com.example.navigation.Modules.*
+import androidx.compose.ui.platform.LocalContext
+
 
 
 @Composable
@@ -39,13 +41,16 @@ fun AddModule() {
 fun HomeScreen(
     onGoToNextScreen: () -> Unit
 ) {
-    var name by remember { mutableStateOf(HomeScreenState.getName()) }
+    val context = LocalContext.current
+
+    var name by remember { mutableStateOf(HomeScreenState.getName(context)) }
+
     Column(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxSize(),
-        Arrangement.Top,
-        Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
             Icon(
@@ -55,22 +60,22 @@ fun HomeScreen(
             )
 
             Text(
-                text = "hello, $name",
+                text = "Hello, $name",
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.paddingFromBaseline(top = 35.dp)
             )
+
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = "Add",
                 modifier = Modifier.padding(16.dp).offset(x = 70.dp),
             )
-
         }
 
         Text(
-            text = "tap any module for details",
+            text = "Tap any module for details",
             fontSize = 18.sp,
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
@@ -86,10 +91,5 @@ fun HomeScreen(
         }
 
         AddModule()
-
-
-
     }
-
-
 }

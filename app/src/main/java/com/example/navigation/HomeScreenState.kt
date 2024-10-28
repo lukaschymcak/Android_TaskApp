@@ -1,24 +1,29 @@
 package com.example.navigation
 
-class HomeScreenState {
+import android.content.Context
 
-    companion object {
-        private var name: String = ""
-        private var wasShown: Boolean = false
+object HomeScreenState {
+    private var name: String? = null
 
-        fun getWasShown(): Boolean {
-            return wasShown
+    fun getName(context: Context): String {
+        if (name == null) {
+            name = PreferencesHelper.getName(context) ?: ""
         }
-        fun setWasShown(newWasShown: Boolean) {
-            wasShown = newWasShown
-        }
+        return name ?: ""
+    }
 
-        fun getName(): String {
-            return name
-        }
+    fun setName(context: Context, newName: String) {
+        name = newName
+        PreferencesHelper.setName(context, newName)
+    }
 
-        fun setName(newName: String) {
-            name = newName
-        }
+    private var wasShown: Boolean = false
+
+    fun getWasShown(): Boolean {
+        return wasShown
+    }
+
+    fun setWasShown(isShown: Boolean) {
+        wasShown = isShown
     }
 }

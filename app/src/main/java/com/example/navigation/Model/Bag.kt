@@ -1,8 +1,8 @@
 package com.example.navigation.Model
 
 class Bag(
-    val bagName: String,
-    var items: MutableList<Item>
+    private val bagName: String,
+    private var items: MutableList<Item>
 ) {
     fun getBagName(): String {
         return bagName
