@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -40,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
+import com.example.navigation.models.Packing
 import com.example.navigation.ui.theme.OurBlue
 import com.example.navigation.ui.theme.OurGreen
 import com.example.navigation.ui.theme.OurPurple
@@ -52,8 +52,8 @@ fun HomeScreen(
     onGoToNextScreen: () -> Unit
 ) {
     val context = LocalContext.current
-
     val name by remember { mutableStateOf(HomeScreenState.getName(context)) }
+    var packingModules by remember { mutableStateOf(listOf<Packing>()) }
 
     Column(
         modifier = Modifier
@@ -63,7 +63,6 @@ fun HomeScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row {
-
             Text(
                 text = "Hello, $name",
                 fontSize = 25.sp,
@@ -74,7 +73,7 @@ fun HomeScreen(
 
             Icon(
                 imageVector = Icons.Default.Settings,
-                contentDescription = "Add",
+                contentDescription = "Settings",
                 modifier = Modifier.padding(16.dp)
                     .offset(x = 90.dp)
             )
@@ -87,8 +86,28 @@ fun HomeScreen(
             fontWeight = FontWeight.Bold,
         )
         Spacer(modifier = Modifier.height(24.dp))
-        AddNewModuleHalfScreen()
+
+        if (packingModules.isNotEmpty()) {
+            PackingModuleExample(OurRed)
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AddNewModuleHalfScreen(
+            onAddPackingModule = {
+                if (packingModules.isEmpty()) {
+                    val mockTrip = Packing(
+                        color = "OurRed",
+                        percentage = 70,
+                        arrayTrip = listOf()
+                    )
+                    packingModules = listOf(mockTrip)
+                }
+            }
+        )
+
         Spacer(modifier = Modifier.height(600.dp))
+
         OutlinedButton(
             onClick = {
                 onGoToNextScreen()
@@ -97,17 +116,19 @@ fun HomeScreen(
         ) {
             Text(text = "Packing navigation", fontSize = 18.sp)
         }
-
     }
 }
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddNewModuleHalfScreen() {
+fun AddNewModuleHalfScreen(onAddPackingModule: () -> Unit) {
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = false,
     )
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -142,9 +163,9 @@ fun AddNewModuleHalfScreen() {
                                 .align(Alignment.CenterHorizontally),
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
-
                         )
-                        ModuleOption("PACKING MODULE", OurRed)
+
+                        ModuleOption("PACKING MODULE", OurRed, onAddPackingModule)
                         ModuleOption("WATERING REMINDER", OurGreen)
                         ModuleOption("GYM TRACKER", OurYellow)
                         ModuleOption("PILL REMINDER", OurBlue)
@@ -157,8 +178,7 @@ fun AddNewModuleHalfScreen() {
                                 .align(Alignment.CenterHorizontally),
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
-
-                            )
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                         Row {
                             ColorOption(OurRed)
@@ -166,21 +186,36 @@ fun AddNewModuleHalfScreen() {
                             ColorOption(OurYellow)
                             ColorOption(OurBlue)
                             ColorOption(OurPurple)
+                        }
 
-                        }
-                        Spacer(modifier = Modifier.height(8.dp))
-                        OutlinedButton(
-                            onClick = {
-                            }
-                        ) {
-                            Text(text = "Add", fontSize = 18.sp)
-                        }
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
             }
         }
     }
 }
+
+@Composable
+fun ModuleOption(moduleName: String, color: Color, onAddPackingModule: () -> Unit) {
+    OutlinedButton(
+        onClick = {
+            if (moduleName == "PACKING MODULE") {
+                onAddPackingModule()
+            }
+        },
+        modifier = Modifier
+            .padding(8.dp)
+            .border(2.dp, color, RoundedCornerShape(25.dp))
+    ) {
+        Text(
+            moduleName,
+            fontSize = 20.sp,
+            color = color,
+        )
+    }
+}
+
 
 @Composable
 fun ModuleOption(moduleName: String, color: Color) {
