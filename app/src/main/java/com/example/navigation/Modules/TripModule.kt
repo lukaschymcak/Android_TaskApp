@@ -1,4 +1,4 @@
-package com.example.navigation.Modules
+package com.example.navigation.modules
 
 
 

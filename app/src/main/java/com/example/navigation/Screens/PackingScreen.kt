@@ -1,4 +1,4 @@
-package com.example.navigation.Screens
+package com.example.navigation.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,7 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.Modules.TripModule
+import com.example.navigation.modules.TripModule
 import com.example.navigation.ui.theme.OurRed
 
 
