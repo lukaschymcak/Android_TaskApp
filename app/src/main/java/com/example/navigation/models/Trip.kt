@@ -4,10 +4,10 @@ class Trip(
     private val name: String,
     private val startDate: String,
     private val endDate: String,
-    private var arrayBag: List<Bag>,
-    private var allItems: Int,
-    private var allCheckedItems: Int,
-    private var tripPercentage: Int
+    private var arrayBag: List<Bag>? = null,
+    private var allItems: Int = 0,
+    private var allCheckedItems: Int = 0,
+    private var tripPercentage: Int = 0
 ) {
     fun getName(): String {
         return name
@@ -18,7 +18,7 @@ class Trip(
     fun getEndDate(): String {
         return endDate
     }
-    fun getArrayBag(): List<Bag> {
+    fun getArrayBag(): List<Bag>? {
         return arrayBag
     }
     fun getAllItems(): Int {
@@ -43,10 +43,10 @@ class Trip(
         arrayBag = bags
     }
     fun addBag(bag: Bag) {
-        arrayBag.plus(bag)
+        arrayBag?.plus(bag)
     }
     fun removeBag(bag: Bag) {
-        arrayBag.minus(bag)
+        arrayBag?.minus(bag)
     }
 
 }

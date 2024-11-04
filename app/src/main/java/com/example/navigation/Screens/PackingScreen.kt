@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -32,17 +33,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.modules.TripModule
+import com.example.navigation.HomeScreenState
+import com.example.navigation.models.Trip
+import com.example.navigation.Modules.TripModule
 import com.example.navigation.ui.theme.OurRed
+
 
 
 @Composable
 fun PackingScreen(
     onGoBack: () -> Unit, onGoToNextScreen: () -> Unit
 ) {
+    val tripList = remember { mutableStateOf(HomeScreenState.getTripArray().toMutableList()) }
+
+    val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -61,7 +69,7 @@ fun PackingScreen(
             )
 
             Text(
-                text = "PACKING",
+                text = "TRIPS",
                 color = OurRed,
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
@@ -75,9 +83,37 @@ fun PackingScreen(
         Spacer(modifier = Modifier.height(8.dp))
         HorizontalDivider(color = OurRed, thickness = 3.dp)
         Spacer(modifier = Modifier.height(24.dp))
-        TripModule()
 
-
+        tripList.value.forEach { trip ->
+            TripModule(
+                name = trip.getName(),
+                dateFrom = trip.getStartDate(),
+                dateTo = trip.getEndDate(),
+                percentage = 0,
+                onDelete = {
+                    tripList.value = tripList.value.filter { it != trip }.toMutableList()
+                    HomeScreenState.removeTrip(trip)
+                }
+            )
+        }
+//
+//
+//        val tripArray = HomeScreenState.getTripArray()
+//        tripArray.forEach { trip ->
+//            TripModule(
+//                name = trip.getName(),
+//                dateFrom = trip.getStartDate(),
+//                dateTo = trip.getEndDate(),
+//                percentage = 0
+//            )
+//        }
+        TripModule(
+            name = "Test",
+            dateFrom = "2022-01-01",
+            dateTo = "2022-01-10",
+            percentage = 0,
+            onDelete = {}
+        )
         AddTripBottomSheet()
     }
 }
@@ -88,10 +124,16 @@ fun PackingScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddTripBottomSheet() {
+    val context = LocalContext.current
+    val tripName = remember { mutableStateOf("") }
+    val tripFrom = remember { mutableStateOf("") }
+    val tripTo = remember { mutableStateOf("") }
+
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = false,
     )
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -117,7 +159,6 @@ fun AddTripBottomSheet() {
                         modifier = Modifier.fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
-
                         Text(
                             "TRIP DETAILS",
                             modifier = Modifier
@@ -126,35 +167,47 @@ fun AddTripBottomSheet() {
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                         )
+
                         OutlinedTextField(
-                            value = "Enter name",
-                            onValueChange = { },
+                            value = tripName.value,
+                            onValueChange = {
+                                tripName.value = it
+                            },
                             label = { Text("Name") },
                             shape = RoundedCornerShape(16.dp)
                         )
-
-                        Spacer(modifier = Modifier.height(16.dp))
-
-
-                        OutlinedTextField(
-                            value = "Enter arrival date",
-                            onValueChange = { },
-                            label = { Text("From") },
-                            shape = RoundedCornerShape(16.dp)
-
-                        )
-
                         Spacer(modifier = Modifier.height(16.dp))
 
                         OutlinedTextField(
-                            value = "Enter arrival date",
-                            onValueChange = { },
-                            label = { Text("To") },
+                            value = tripFrom.value,
+                            onValueChange = {
+                                tripFrom.value = it
+                            },
+                            label = { Text("Date from") },
                             shape = RoundedCornerShape(16.dp)
                         )
                         Spacer(modifier = Modifier.height(16.dp))
+
+                        OutlinedTextField(
+                            value = tripTo.value,
+                            onValueChange = {
+                                tripTo.value = it
+                            },
+                            label = { Text("Date to") },
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+
                         OutlinedButton(
                             onClick = {
+                                HomeScreenState.addTrip(
+                                    Trip(
+                                        tripName.value,
+                                        tripFrom.value,
+                                        tripTo.value
+                                    )
+                                )
+                                showBottomSheet = false
                             }
                         ) {
                             Text(text = "Add", fontSize = 18.sp)
@@ -166,6 +219,9 @@ fun AddTripBottomSheet() {
         }
     }
 }
+
+
+
 
 
 

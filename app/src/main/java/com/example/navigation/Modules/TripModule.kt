@@ -1,8 +1,10 @@
-package com.example.navigation.modules
+package com.example.navigation.Modules
 
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,8 +14,12 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,11 +29,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.HomeScreenState
 import com.example.navigation.ui.theme.OurRed
 
 
 @Composable
-fun TripModule() {
+fun TripModule(
+    name: String, dateFrom: String, dateTo: String, percentage: Int, onDelete: () -> Unit
+) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -48,14 +57,14 @@ fun TripModule() {
                 Row {
                     Column {
                         Text(
-                            text = "TRIP NAME",
+                            text = name,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Start,
                             color = OurRed
                         )
                         Text(
-                            text = "in 5 days",
+                            text = "in x days",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Start,
@@ -63,21 +72,35 @@ fun TripModule() {
                         )
                     }
                     Text(
-                        text = "70%",
+                        text = "$percentage%",
                         fontSize = 35.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurRed,
-                        modifier = Modifier.offset(x = 120.dp)
+                        modifier = Modifier.offset(x = 180.dp)
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = "(dd.mm.yyyy - dd.mm.yyyy)",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Left,
-                    color = OurRed
-                )
+                Row (modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    Text(
+                        text = "($dateFrom - $dateTo)",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Left,
+                        color = OurRed
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Remove",
+                        modifier = Modifier.clickable {
+                            onDelete()
+                        }
+
+
+                    )
+                }
+
 
             }
         }

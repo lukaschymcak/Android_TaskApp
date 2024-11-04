@@ -2,9 +2,7 @@ package com.example.navigation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-
 import androidx.compose.foundation.layout.Arrangement
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -85,7 +83,16 @@ fun HomeScreen(
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
         )
+        OutlinedButton(
+            onClick = {
+                onGoToNextScreen()
+                HomeScreenState.setWasShown(true)
+            }
+        ) {
+            Text(text = "Packing navigation", fontSize = 18.sp)
+        }
         Spacer(modifier = Modifier.height(24.dp))
+
 
         if (packingModules.isNotEmpty()) {
             PackingModuleExample(OurRed)
@@ -101,6 +108,7 @@ fun HomeScreen(
                         percentage = 70,
                         arrayTrip = listOf()
                     )
+
                     packingModules = listOf(mockTrip)
                 }
             }

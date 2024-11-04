@@ -1,9 +1,11 @@
 package com.example.navigation
 
 import android.content.Context
+import com.example.navigation.models.Trip
 
 object HomeScreenState {
     private var name: String? = null
+    private var tripArray: MutableList<Trip> = mutableListOf()
 
     fun getName(context: Context): String {
         if (name == null) {
@@ -26,4 +28,15 @@ object HomeScreenState {
     fun setWasShown(isShown: Boolean) {
         wasShown = isShown
     }
+
+    fun getTripArray(): MutableList<Trip> {
+        return tripArray
+    }
+    fun addTrip(trip: Trip) {
+        tripArray.add(trip)
+    }
+    fun removeTrip(trip: Trip) {
+        tripArray.remove(trip)
+    }
+
 }

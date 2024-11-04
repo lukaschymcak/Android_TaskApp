@@ -1,4 +1,4 @@
-package com.example.navigation.modules
+package com.example.navigation.Modules
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
