@@ -13,18 +13,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
-import com.example.navigation.screens.HomeScreen
-import com.example.navigation.screens.PackingScreen
-import com.example.navigation.screens.TripAddScreen
-import com.example.navigation.screens.WelcomeScreen
+import com.example.navigation.Screens.HomeScreen
+import com.example.navigation.Screens.PackingScreen
+import com.example.navigation.Screens.TripAddScreen
+import com.example.navigation.Screens.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        //WindowInsets.statusBarsIgnoringVisibility(window, true)
         setContent {
             NavigationTheme {
                 Scaffold(

@@ -1,4 +1,4 @@
-package com.example.navigation.screens
+package com.example.navigation.Screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

@@ -1,6 +1,5 @@
-package com.example.navigation.screens
+package com.example.navigation.Screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,8 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.example.navigation.models.Packing
 import com.example.navigation.ui.theme.OurBlue
 import com.example.navigation.ui.theme.OurGreen
-import com.example.navigation.ui.theme.OurPurple
-import com.example.navigation.ui.theme.OurRed
+import com.example.navigation.ui.theme.OurPackingBlue
 import com.example.navigation.ui.theme.OurYellow
 
 
@@ -95,7 +93,7 @@ fun HomeScreen(
 
 
         if (packingModules.isNotEmpty()) {
-            PackingModuleExample(OurRed)
+            PackingModuleExample(OurPackingBlue)
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -104,7 +102,7 @@ fun HomeScreen(
             onAddPackingModule = {
                 if (packingModules.isEmpty()) {
                     val mockTrip = Packing(
-                        color = "OurRed",
+                        color = "OurPackingBlue",
                         percentage = 70,
                         arrayTrip = listOf()
                     )
@@ -154,7 +152,7 @@ fun AddNewModuleHalfScreen(onAddPackingModule: () -> Unit) {
 
             if (showBottomSheet) {
                 ModalBottomSheet(
-                    modifier = Modifier.height(650.dp),
+//                    modifier = Modifier.height(650.dp),
                     sheetState = sheetState,
                     onDismissRequest = { showBottomSheet = false }
                 ) {
@@ -173,28 +171,10 @@ fun AddNewModuleHalfScreen(onAddPackingModule: () -> Unit) {
                             fontWeight = FontWeight.Bold,
                         )
 
-                        ModuleOption("PACKING MODULE", OurRed, onAddPackingModule)
+                        ModuleOption("PACKING MODULE", OurPackingBlue, onAddPackingModule)
                         ModuleOption("WATERING REMINDER", OurGreen)
                         ModuleOption("GYM TRACKER", OurYellow)
                         ModuleOption("PILL REMINDER", OurBlue)
-
-                        Spacer(modifier = Modifier.height(16.dp))
-                        Text(
-                            "CHOOSE A COLOR",
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .align(Alignment.CenterHorizontally),
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Row {
-                            ColorOption(OurRed)
-                            ColorOption(OurGreen)
-                            ColorOption(OurYellow)
-                            ColorOption(OurBlue)
-                            ColorOption(OurPurple)
-                        }
 
                         Spacer(modifier = Modifier.height(16.dp))
                     }
@@ -236,14 +216,5 @@ fun ModuleOption(moduleName: String, color: Color) {
         fontSize = 20.sp,
         color = color,
     )
-}
-
-@Composable
-fun ColorOption(color: Color){
-    Text("      ",
-        modifier = Modifier
-            .padding(6.dp)
-            .border(20.dp, color, RoundedCornerShape(50.dp))
-            .padding(16.dp).background(color))
 }
 

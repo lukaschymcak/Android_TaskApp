@@ -21,3 +21,5 @@ val OurGreenLight = Color(0xFFA6E7CC)
 val OurRedLight = Color(0xFFF3B5A5)
 val OurBlueLight = Color(0xFFD3E6F8)
 val OurPurpleLight = Color(0xFFF2DAF1)
+
+val OurPackingBlue = Color(0xFF1A759F)
