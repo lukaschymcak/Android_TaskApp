@@ -20,7 +20,10 @@ import androidx.navigation.compose.*
 import com.example.navigation.Screens.HomeScreen
 import com.example.navigation.Screens.PackingScreen
 import com.example.navigation.Screens.TripAddScreen
+import com.example.navigation.Screens.TripScreen
 import com.example.navigation.Screens.WelcomeScreen
+import com.example.navigation.models.Bag
+import com.example.navigation.models.Trip
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +83,7 @@ fun Navigation(modifier: Modifier = Modifier, startDestination: String) {
         composable(Screen.PackingScreen.route) {
             PackingScreen(
                 onGoToNextScreen = {
-                    navController.navigate(Screen.TripAddScreen.route)
+                    navController.navigate(Screen.TripScreen.route)
                 },
                 onGoBack = {
                     navController.popBackStack()
@@ -88,16 +91,16 @@ fun Navigation(modifier: Modifier = Modifier, startDestination: String) {
             )
         }
 
-        composable(Screen.TripAddScreen.route) {
-            TripAddScreen(
+        composable(Screen.TripScreen.route) {
+            TripScreen(
                 onGoBack = {
                     navController.popBackStack()
+
                 }
             )
         }
     }
 }
-
 
 object PreferencesHelper {
     private const val PREFS_NAME = "my_prefs"

@@ -26,7 +26,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -57,8 +56,7 @@ import com.example.navigation.HomeScreenState
 import com.example.navigation.models.Trip
 import com.example.navigation.Modules.TripModule
 import com.example.navigation.ui.theme.OurPackingBlue
-import com.example.navigation.ui.theme.OurRed
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+
 
 
 @SuppressLint("MutableCollectionMutableState")
@@ -72,11 +70,15 @@ fun PackingScreen(
     Column(
 
         modifier = Modifier
-            .fillMaxSize().fillMaxWidth().fillMaxHeight().background(Color.Transparent).verticalScroll(scrollState),
+            .fillMaxSize()
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .background(Color.Transparent)
+            .verticalScroll(scrollState),
         Arrangement.Top,
         Alignment.CenterHorizontally,
 
-    ) {
+        ) {
         Row {
             Icon(
                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -89,7 +91,7 @@ fun PackingScreen(
             )
 
             Text(
-                text = "TRIPS",
+                text = "PACKING",
                 color = OurPackingBlue,
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
@@ -104,14 +106,15 @@ fun PackingScreen(
 
         Card(
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = OurPackingBlue)
+            colors = CardDefaults.cardColors(containerColor = OurPackingBlue),
+            modifier = Modifier.padding(10.dp)
         ) {
             Spacer(modifier = Modifier.height(24.dp))
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Text(
                     text = "MY TRIPS:",
                     color = Color.White,
@@ -122,7 +125,15 @@ fun PackingScreen(
 
 
             }
-            HorizontalDivider(color = Color.White, thickness = 2.dp, modifier = Modifier.width(380.dp).offset(15.dp))
+            Spacer(modifier = Modifier.height(8.dp))
+
+            HorizontalDivider(
+                color = Color.White,
+                thickness = 2.dp,
+                modifier = Modifier
+                    .width(355.dp)
+                    .offset(15.dp)
+            )
 
             if (tripList.value.isEmpty()) {
                 Text(
@@ -136,16 +147,24 @@ fun PackingScreen(
                 )
             } else {
                 tripList.value.forEach { trip ->
-                    TripModule(
-                        name = trip.getName(),
-                        dateFrom = trip.getStartDate(),
-                        dateTo = trip.getEndDate(),
-                        percentage = 0,
-                        onDelete = {
-                            tripList.value = tripList.value.filter { it != trip }.toMutableList()
-                            HomeScreenState.removeTrip(trip)
-                        }
-                    )
+                    Card(
+                        modifier = Modifier.clickable { onGoToNextScreen() },
+                        colors = CardDefaults.cardColors(
+                            containerColor = OurPackingBlue,
+                        ),
+                    ) {
+                        TripModule(
+                            name = trip.getName(),
+                            dateFrom = trip.getStartDate(),
+                            dateTo = trip.getEndDate(),
+                            percentage = 0,
+                            onDelete = {
+                                tripList.value =
+                                    tripList.value.filter { it != trip }.toMutableList()
+                                HomeScreenState.removeTrip(trip)
+                            }
+                        )
+                    }
                 }
             }
 
@@ -301,13 +320,6 @@ fun AddTripBottomSheet() {
         }
     }
 }
-
-//modifier = Modifier
-//.width(280.dp)
-//.height(55.dp)
-//.border(1.dp, SolidColor(Color.DarkGray), RoundedCornerShape(16.dp))
-//.clickable { toDatePickerDialog.show() }
-//.padding(16.dp)
 
 
 

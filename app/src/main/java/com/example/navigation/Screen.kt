@@ -14,6 +14,11 @@ sealed interface Screen {
 
     @kotlinx.serialization.Serializable
     data object WelcomeScreen: Screen
+
+    @kotlinx.serialization.Serializable
+    data object TripScreen: Screen
+
+
 }
 val Screen.route: String
     get() = when (this) {
@@ -21,4 +26,5 @@ val Screen.route: String
         Screen.PackingScreen -> "packing_screen"
         Screen.TripAddScreen -> "trip_add_screen"
         Screen.WelcomeScreen -> "welcome_screen"
+        Screen.TripScreen -> "trip_screen"
     }
