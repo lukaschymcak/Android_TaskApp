@@ -1,6 +1,7 @@
 package com.example.navigation.Screens
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,11 +13,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -33,9 +39,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.HomeScreenState
+import com.example.navigation.states.HomeScreenState
 import com.example.navigation.Modules.BagModule
-import com.example.navigation.Modules.TripModule
+import com.example.navigation.models.Bag
+import com.example.navigation.models.Item
 import com.example.navigation.models.Trip
 import com.example.navigation.ui.theme.OurPackingBlue
 
@@ -48,18 +55,25 @@ fun TripScreen(
     val scrollState = rememberScrollState()
     val bagList = remember { mutableStateOf(HomeScreenState.getBagArray().toMutableList()) }
 
-    Column(
+    HomeScreenState.addBag(
+        Bag(
+            "Bag1",
+            mutableListOf(
+//                Item("Item1", false),
+//                Item("Item2", false),
+//                Item("Item3", false),
+            )
+        )
+    )
 
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .fillMaxWidth()
-            .fillMaxHeight()
             .background(Color.Transparent)
             .verticalScroll(scrollState),
-        Arrangement.Top,
-        Alignment.CenterHorizontally,
-
-        ) {
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
         Row {
             Icon(
                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -81,22 +95,27 @@ fun TripScreen(
                     .paddingFromBaseline(top = 35.dp)
                     .offset(x = (-30).dp),
             )
-
         }
+
         HorizontalDivider(
             modifier = Modifier.width(355.dp),
             thickness = 2.dp,
             color = OurPackingBlue
         )
+
         Text(
             text = "${trip.getStartDate()} - ${trip.getEndDate()}",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Left,
             color = OurPackingBlue,
             modifier = Modifier.padding(8.dp)
         )
-        Card {
+
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = OurPackingBlue),
+            modifier = Modifier.padding(10.dp)
+        ) {
             Column(
                 modifier = Modifier
                     .padding(16.dp)
@@ -106,37 +125,56 @@ fun TripScreen(
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
-
                 ) {
                     Text(
-                        text = "Bags",
+                        text = "BAGS",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                    )
+                }
+
+                if (bagList.value.isEmpty()) {
+                    Text(
+                        text = "No bags yet, add a bag :)",
+                        color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Left,
-                        color = OurPackingBlue
                     )
-                    if (bagList.value.isEmpty()) {
-                        Text(
-                            text = "No trips yet, add a trip :)",
-                            color = Color.White,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier
-                                .padding(24.dp)
-                        )
-                    } else {
-                        bagList.value.forEach { trip ->
-                            Card(
-                                colors = CardDefaults.cardColors(
-                                    containerColor = OurPackingBlue,
-                                ),
-                            ) {
-                                BagModule()
+                } else {
+                    bagList.value.forEach { bag ->
+                        BagModule(
+                            bag = bag,
+                            onItemCheckedChange = { item ->
+                                item.toggleChecked()
+                            },
+                            onAddItem = { newItemName ->
+                                bag.addItem(Item(newItemName, false))
+                                bagList.value = bagList.value.toMutableList()
                             }
-                        }
+                        )
                     }
                 }
             }
+        }
+
+        Button(
+            onClick = {
+                val newBag = Bag("New Bag", mutableListOf())
+                HomeScreenState.addBag(newBag)
+                bagList.value = HomeScreenState.getBagArray().toMutableList()
+            },
+            modifier = Modifier.padding(8.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = OurPackingBlue),
+            border = BorderStroke(1.dp, OurPackingBlue),
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "Add Bag",
+                tint = Color.White,
+                modifier = Modifier.size(20.dp)
+            )
+            Text(text = "Add Bag", color = Color.White)
         }
     }
 }

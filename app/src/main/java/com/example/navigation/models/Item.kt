@@ -2,23 +2,16 @@ package com.example.navigation.models
 
 class Item(
     private val itemName: String,
-    private var isChecked: Boolean,
-
+    private var isChecked: Boolean = false
 ) {
-    fun getItemName(): String {
-        return itemName
-    }
-    fun getIsChecked(): Boolean {
-        return isChecked
-    }
+    fun getItemName(): String = itemName
+    fun getIsChecked(): Boolean = isChecked
+
     fun toggleChecked() {
-        isChecked = if (isChecked) {
-            false
-        } else {
-            true
-        }
+        isChecked = !isChecked
     }
-    fun toggleCheckedImg(): Int {
+
+    fun getCheckboxDrawable(): Int {
         return if (isChecked) {
             android.R.drawable.checkbox_on_background
         } else {

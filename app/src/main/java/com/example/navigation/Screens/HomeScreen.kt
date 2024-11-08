@@ -34,7 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.HomeScreenState
+import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
 import com.example.navigation.models.Packing
 import com.example.navigation.ui.theme.OurBlue

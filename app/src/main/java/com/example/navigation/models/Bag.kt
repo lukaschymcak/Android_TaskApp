@@ -10,4 +10,7 @@ class Bag(
     fun getItems(): MutableList<Item> {
         return items
     }
+    fun addItem(item: Item) {
+        items.add(item)
+    }
 }

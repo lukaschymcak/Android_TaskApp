@@ -52,7 +52,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.HomeScreenState
+import com.example.navigation.states.HomeScreenState
 import com.example.navigation.models.Trip
 import com.example.navigation.Modules.TripModule
 import com.example.navigation.ui.theme.OurPackingBlue
