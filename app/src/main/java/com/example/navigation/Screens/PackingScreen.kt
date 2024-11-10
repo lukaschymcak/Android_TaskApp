@@ -40,6 +40,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -62,13 +63,19 @@ import com.example.navigation.ui.theme.OurPackingBlue
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun PackingScreen(
-    onGoBack: () -> Unit, onGoToNextScreen: () -> Unit
+    onGoBack: () -> Unit,
+    onGoToNextScreen: () -> Unit
 ) {
-    val tripList = remember { mutableStateOf(HomeScreenState.getTripArray().toMutableList()) }
+    val tripList = remember { mutableStateListOf<Trip>().apply { addAll(HomeScreenState.getTripArray()) } }
+
+
+    fun refreshTripList() {
+        tripList.clear()
+        tripList.addAll(HomeScreenState.getTripArray())
+    }
 
     val scrollState = rememberScrollState()
     Column(
-
         modifier = Modifier
             .fillMaxSize()
             .fillMaxWidth()
@@ -77,8 +84,7 @@ fun PackingScreen(
             .verticalScroll(scrollState),
         Arrangement.Top,
         Alignment.CenterHorizontally,
-
-        ) {
+    ) {
         Row {
             Icon(
                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -89,7 +95,6 @@ fun PackingScreen(
                     .clickable { onGoBack() },
                 tint = OurPackingBlue
             )
-
             Text(
                 text = "PACKING",
                 color = OurPackingBlue,
@@ -100,7 +105,6 @@ fun PackingScreen(
                     .paddingFromBaseline(top = 35.dp)
                     .offset(x = (-30).dp),
             )
-
         }
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -122,8 +126,6 @@ fun PackingScreen(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.offset(20.dp),
                 )
-
-
             }
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -135,7 +137,7 @@ fun PackingScreen(
                     .offset(15.dp)
             )
 
-            if (tripList.value.isEmpty()) {
+            if (tripList.isEmpty()) {
                 Text(
                     text = "No trips yet, add a trip :)",
                     color = Color.White,
@@ -146,7 +148,7 @@ fun PackingScreen(
                         .align(Alignment.CenterHorizontally)
                 )
             } else {
-                tripList.value.forEach { trip ->
+                tripList.forEach { trip ->
                     Card(
                         modifier = Modifier.clickable { onGoToNextScreen() },
                         colors = CardDefaults.cardColors(
@@ -159,42 +161,35 @@ fun PackingScreen(
                             dateTo = trip.getEndDate(),
                             percentage = 0,
                             onDelete = {
-                                tripList.value =
-                                    tripList.value.filter { it != trip }.toMutableList()
+                                tripList.remove(trip)
                                 HomeScreenState.removeTrip(trip)
+                                refreshTripList()
                             }
                         )
                     }
                 }
             }
 
-//            TripModule(
-//                name = "Test",
-//                dateFrom = "2022-01-01",
-//                dateTo = "2022-01-10",
-//                percentage = 0,
-//                onDelete = {}
-//            )
             Spacer(modifier = Modifier.height(24.dp))
         }
         Spacer(modifier = Modifier.height(24.dp))
 
-        AddTripBottomSheet()
+        AddTripBottomSheet {
+            refreshTripList()
+        }
     }
 }
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddTripBottomSheet() {
+fun AddTripBottomSheet(onTripAdded: () -> Unit) {
     val tripName = remember { mutableStateOf("") }
     val tripFrom = remember { mutableStateOf("") }
     val tripTo = remember { mutableStateOf("") }
 
     var showBottomSheet by remember { mutableStateOf(false) }
-    val sheetState = rememberModalBottomSheetState(
-        skipPartiallyExpanded = false,
-    )
+    val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = false)
 
     val context = LocalContext.current
     val calendar = Calendar.getInstance()
@@ -226,15 +221,9 @@ fun AddTripBottomSheet() {
         OutlinedButton(
             colors = ButtonDefaults.outlinedButtonColors(contentColor = OurPackingBlue),
             border = BorderStroke(2.dp, OurPackingBlue),
-            onClick = {
-                showBottomSheet = true
-            }
+            onClick = { showBottomSheet = true }
         ) {
-            Icon(
-                imageVector = Icons.Default.Add,
-                contentDescription = "Add",
-                tint = OurPackingBlue,
-            )
+            Icon(imageVector = Icons.Default.Add, contentDescription = "Add", tint = OurPackingBlue)
             Text(text = "Add trip", fontSize = 18.sp, color = OurPackingBlue)
 
             if (showBottomSheet) {
@@ -301,14 +290,10 @@ fun AddTripBottomSheet() {
                         OutlinedButton(
                             onClick = {
                                 HomeScreenState.addTrip(
-                                    Trip(
-                                        tripName.value,
-                                        tripFrom.value,
-                                        tripTo.value
-                                    )
+                                    Trip(tripName.value, tripFrom.value, tripTo.value)
                                 )
+                                onTripAdded()
                                 showBottomSheet = false
-
                             }
                         ) {
                             Text(text = "Add", fontSize = 18.sp)
@@ -320,7 +305,6 @@ fun AddTripBottomSheet() {
         }
     }
 }
-
 
 
 

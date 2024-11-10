@@ -11,11 +11,7 @@ class Item(
         isChecked = !isChecked
     }
 
-    fun getCheckboxDrawable(): Int {
-        return if (isChecked) {
-            android.R.drawable.checkbox_on_background
-        } else {
-            android.R.drawable.checkbox_off_background
-        }
+    fun setIsChecked(value: Boolean) {
+        isChecked = value
     }
 }
