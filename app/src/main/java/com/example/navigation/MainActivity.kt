@@ -19,11 +19,8 @@ import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
 import com.example.navigation.Screens.HomeScreen
 import com.example.navigation.Screens.PackingScreen
-import com.example.navigation.Screens.TripAddScreen
 import com.example.navigation.Screens.TripScreen
 import com.example.navigation.Screens.WelcomeScreen
-import com.example.navigation.models.Bag
-import com.example.navigation.models.Trip
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,26 +2,26 @@ package com.example.navigation
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.mutableStateOf
-import com.example.navigation.models.Bag
-import com.example.navigation.models.Item
+import com.example.navigation.models.BagModel
+import com.example.navigation.models.ItemModel
 
 object TripScreenState {
     @SuppressLint("MutableCollectionMutableState")
-    private val bagList = mutableStateOf(mutableListOf<Bag>())
+    private val bagModelList = mutableStateOf(mutableListOf<BagModel>())
 
 
 
-    fun getBags(): List<Bag> = bagList.value
+    fun getBags(): List<BagModel> = bagModelList.value
 
-    fun addBag(bag: Bag) {
-        bagList.value.add(bag)
+    fun addBag(bagModel: BagModel) {
+        bagModelList.value.add(bagModel)
     }
 
-    fun removeBag(bag: Bag) {
-        bagList.value.remove(bag)
+    fun removeBag(bagModel: BagModel) {
+        bagModelList.value.remove(bagModel)
     }
 
-    fun addItemToBag(bagName: String, item: Item) {
-        bagList.value.find { it.getBagName() == bagName }?.addItem(item)
+    fun addItemToBag(bagName: String, itemModel: ItemModel) {
+        bagModelList.value.find { it.getBagName() == bagName }?.addItem(itemModel)
     }
 }

@@ -40,9 +40,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import com.example.navigation.Modules.BagModule
-import com.example.navigation.models.Bag
-import com.example.navigation.models.Item
-import com.example.navigation.models.Trip
+import com.example.navigation.models.BagModel
+import com.example.navigation.models.ItemModel
+import com.example.navigation.models.TripModel
 import com.example.navigation.ui.theme.OurPackingBlue
 
 @SuppressLint("MutableCollectionMutableState")
@@ -50,10 +50,10 @@ import com.example.navigation.ui.theme.OurPackingBlue
 fun TripScreen(
     onGoBack: () -> Unit,
 ) {
-    val trip = Trip("Paris", "2022-01-01", "2022-01-10")
+    val tripModel = TripModel("Paris", "2022-01-01", "2022-01-10")
     val scrollState = rememberScrollState()
     val bagList = remember { mutableStateOf(HomeScreenState.getBagArray().toMutableList()) }
-    val newBagName = remember { mutableStateOf("") }  // State to store the new bag name
+    val newBagName = remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -75,7 +75,7 @@ fun TripScreen(
             )
 
             Text(
-                text = trip.getName(),
+                text = tripModel.getName(),
                 color = OurPackingBlue,
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
@@ -93,7 +93,7 @@ fun TripScreen(
         )
 
         Text(
-            text = "${trip.getStartDate()} - ${trip.getEndDate()}",
+            text = "${tripModel.getStartDate()} - ${tripModel.getEndDate()}",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = OurPackingBlue,
@@ -133,12 +133,12 @@ fun TripScreen(
                 } else {
                     bagList.value.forEach { bag ->
                         BagModule(
-                            bag = bag,
+                            bagModel = bag,
                             onItemCheckedChange = { item ->
                                 item.toggleChecked()
                             },
                             onAddItem = { newItemName ->
-                                bag.addItem(Item(newItemName, false))
+                                bag.addItem(ItemModel(newItemName, false))
                                 bagList.value = bagList.value.toMutableList()
                             }
                         )
@@ -161,8 +161,8 @@ fun TripScreen(
             Button(
                 onClick = {
                     if (newBagName.value.isNotBlank()) {
-                        val newBag = Bag(newBagName.value, mutableListOf())
-                        HomeScreenState.addBag(newBag)
+                        val newBagModel = BagModel(newBagName.value, mutableListOf())
+                        HomeScreenState.addBag(newBagModel)
                         bagList.value = HomeScreenState.getBagArray().toMutableList()
                         newBagName.value = ""
                     }

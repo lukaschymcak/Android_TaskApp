@@ -2,15 +2,15 @@ package com.example.navigation.states
 
 import android.content.Context
 import com.example.navigation.PreferencesHelper
-import com.example.navigation.models.Bag
-import com.example.navigation.models.Item
-import com.example.navigation.models.Trip
+import com.example.navigation.models.BagModel
+import com.example.navigation.models.ItemModel
+import com.example.navigation.models.TripModel
 
 object HomeScreenState {
     private var name: String? = null
-    private var tripArray: MutableList<Trip> = mutableListOf()
-    private var bagArray: MutableList<Bag> = mutableListOf()
-    private var itemArray: MutableList<Item> = mutableListOf()
+    private var tripModelArray: MutableList<TripModel> = mutableListOf()
+    private var bagModelArray: MutableList<BagModel> = mutableListOf()
+    private var itemModelArray: MutableList<ItemModel> = mutableListOf()
 
 
     fun getName(context: Context): String {
@@ -35,32 +35,32 @@ object HomeScreenState {
         wasShown = isShown
     }
 
-    fun getTripArray(): MutableList<Trip> {
-        return tripArray
+    fun getTripArray(): MutableList<TripModel> {
+        return tripModelArray
     }
-    fun addTrip(trip: Trip) {
-        tripArray.add(trip)
+    fun addTrip(tripModel: TripModel) {
+        tripModelArray.add(tripModel)
     }
-    fun removeTrip(trip: Trip) {
-        tripArray.remove(trip)
+    fun removeTrip(tripModel: TripModel) {
+        tripModelArray.remove(tripModel)
     }
-    fun getBagArray(): MutableList<Bag> {
-        return bagArray
+    fun getBagArray(): MutableList<BagModel> {
+        return bagModelArray
     }
-    fun addBag(bag: Bag) {
-        bagArray.add(bag)
+    fun addBag(bagModel: BagModel) {
+        bagModelArray.add(bagModel)
     }
-    fun removeBag(bag: Bag) {
-        bagArray.remove(bag)
+    fun removeBag(bagModel: BagModel) {
+        bagModelArray.remove(bagModel)
     }
-    fun getItemArray(): MutableList<Item> {
-        return itemArray
+    fun getItemArray(): MutableList<ItemModel> {
+        return itemModelArray
     }
-    fun addItem(item: Item) {
-        itemArray.add(item)
+    fun addItem(itemModel: ItemModel) {
+        itemModelArray.add(itemModel)
     }
-    fun removeItem(item: Item) {
-        itemArray.remove(item)
+    fun removeItem(itemModel: ItemModel) {
+        itemModelArray.remove(itemModel)
     }
 
 }

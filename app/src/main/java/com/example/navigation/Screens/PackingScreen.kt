@@ -54,7 +54,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
-import com.example.navigation.models.Trip
+import com.example.navigation.models.TripModel
 import com.example.navigation.Modules.TripModule
 import com.example.navigation.ui.theme.OurPackingBlue
 
@@ -66,12 +66,12 @@ fun PackingScreen(
     onGoBack: () -> Unit,
     onGoToNextScreen: () -> Unit
 ) {
-    val tripList = remember { mutableStateListOf<Trip>().apply { addAll(HomeScreenState.getTripArray()) } }
+    val tripModelList = remember { mutableStateListOf<TripModel>().apply { addAll(HomeScreenState.getTripArray()) } }
 
 
     fun refreshTripList() {
-        tripList.clear()
-        tripList.addAll(HomeScreenState.getTripArray())
+        tripModelList.clear()
+        tripModelList.addAll(HomeScreenState.getTripArray())
     }
 
     val scrollState = rememberScrollState()
@@ -137,7 +137,7 @@ fun PackingScreen(
                     .offset(15.dp)
             )
 
-            if (tripList.isEmpty()) {
+            if (tripModelList.isEmpty()) {
                 Text(
                     text = "No trips yet, add a trip :)",
                     color = Color.White,
@@ -148,7 +148,7 @@ fun PackingScreen(
                         .align(Alignment.CenterHorizontally)
                 )
             } else {
-                tripList.forEach { trip ->
+                tripModelList.forEach { trip ->
                     Card(
                         modifier = Modifier.clickable { onGoToNextScreen() },
                         colors = CardDefaults.cardColors(
@@ -161,7 +161,7 @@ fun PackingScreen(
                             dateTo = trip.getEndDate(),
                             percentage = 0,
                             onDelete = {
-                                tripList.remove(trip)
+                                tripModelList.remove(trip)
                                 HomeScreenState.removeTrip(trip)
                                 refreshTripList()
                             }
@@ -290,7 +290,7 @@ fun AddTripBottomSheet(onTripAdded: () -> Unit) {
                         OutlinedButton(
                             onClick = {
                                 HomeScreenState.addTrip(
-                                    Trip(tripName.value, tripFrom.value, tripTo.value)
+                                    TripModel(tripName.value, tripFrom.value, tripTo.value)
                                 )
                                 onTripAdded()
                                 showBottomSheet = false
