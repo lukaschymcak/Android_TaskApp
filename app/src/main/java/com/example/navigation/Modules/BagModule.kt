@@ -53,7 +53,7 @@ fun BagModule(
             modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = bagModel.getBagName(),
+                text = bagModel.bagName,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = OurPackingBlue
@@ -61,7 +61,7 @@ fun BagModule(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            bagModel.getItems().forEach { item ->
+            bagModel.itemModels.forEach { item ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()

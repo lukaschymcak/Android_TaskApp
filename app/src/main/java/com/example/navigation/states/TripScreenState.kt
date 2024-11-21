@@ -22,6 +22,6 @@ object TripScreenState {
     }
 
     fun addItemToBag(bagName: String, itemModel: ItemModel) {
-        bagModelList.value.find { it.getBagName() == bagName }?.addItem(itemModel)
+        bagModelList.value.find { it.bagName == bagName }?.addItem(itemModel)
     }
 }

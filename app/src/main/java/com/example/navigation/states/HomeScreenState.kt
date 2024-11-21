@@ -1,10 +1,11 @@
 package com.example.navigation.states
 
+
+import TripModel
 import android.content.Context
 import com.example.navigation.PreferencesHelper
 import com.example.navigation.models.BagModel
 import com.example.navigation.models.ItemModel
-import com.example.navigation.models.TripModel
 
 object HomeScreenState {
     private var name: String? = null

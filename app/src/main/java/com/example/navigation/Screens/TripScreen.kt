@@ -1,5 +1,6 @@
 package com.example.navigation.Screens
 
+import TripModel
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -30,30 +31,42 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.states.HomeScreenState
+import com.example.navigation.DataStoreManager
 import com.example.navigation.Modules.BagModule
 import com.example.navigation.models.BagModel
 import com.example.navigation.models.ItemModel
-import com.example.navigation.models.TripModel
 import com.example.navigation.ui.theme.OurPackingBlue
+import kotlinx.coroutines.launch
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun TripScreen(
     onGoBack: () -> Unit,
+    dataStoreManager: DataStoreManager
 ) {
     val tripModel = TripModel("Paris", "2022-01-01", "2022-01-10")
     val scrollState = rememberScrollState()
-    val bagList = remember { mutableStateOf(HomeScreenState.getBagArray().toMutableList()) }
+    val bagList = remember { mutableStateOf<List<BagModel>>(emptyList()) }
     val newBagName = remember { mutableStateOf("") }
+    val coroutineScope = rememberCoroutineScope()
+
+    // Load bags from DataStore
+    LaunchedEffect(Unit) {
+        dataStoreManager.getTrips().collect { trips ->
+            val currentTrip = trips.find { it.name == tripModel.name }
+            bagList.value = currentTrip?.arrayBagModel ?: emptyList()
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -75,7 +88,7 @@ fun TripScreen(
             )
 
             Text(
-                text = tripModel.getName(),
+                text = tripModel.name,
                 color = OurPackingBlue,
                 fontSize = 25.sp,
                 style = MaterialTheme.typography.bodyLarge,
@@ -93,7 +106,7 @@ fun TripScreen(
         )
 
         Text(
-            text = "${tripModel.getStartDate()} - ${tripModel.getEndDate()}",
+            text = "${tripModel.startDate} - ${tripModel.endDate}",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = OurPackingBlue,
@@ -135,11 +148,24 @@ fun TripScreen(
                         BagModule(
                             bagModel = bag,
                             onItemCheckedChange = { item ->
-                                item.toggleChecked()
+                                item.setIsChecked(!item.getIsChecked())
+                                val updatedBag = bag.copy(itemModels = bag.itemModels)
+                                val updatedBagList = bagList.value.toMutableList().apply {
+                                    val index = indexOfFirst { it.bagName == bag.bagName }
+                                    if (index != -1) this[index] = updatedBag
+                                }
+                                val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
+                                coroutineScope.launch {
+                                    dataStoreManager.saveTrips(listOf(updatedTrip))
+                                }
                             },
                             onAddItem = { newItemName ->
-                                bag.addItem(ItemModel(newItemName, false))
-                                bagList.value = bagList.value.toMutableList()
+                                val newItem = ItemModel(newItemName, false)
+                                bag.addItem(newItem)
+                                val updatedTrip = tripModel.copy(arrayBagModel = bagList.value.toMutableList())
+                                coroutineScope.launch {
+                                    dataStoreManager.saveTrips(listOf(updatedTrip))
+                                }
                             }
                         )
                     }
@@ -155,15 +181,22 @@ fun TripScreen(
                 value = newBagName.value,
                 onValueChange = { newBagName.value = it },
                 label = { Text("Bag name") },
-                modifier = Modifier.weight(1f).padding(8.dp),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(8.dp),
                 shape = RoundedCornerShape(15.dp),
             )
             Button(
                 onClick = {
                     if (newBagName.value.isNotBlank()) {
                         val newBagModel = BagModel(newBagName.value, mutableListOf())
-                        HomeScreenState.addBag(newBagModel)
-                        bagList.value = HomeScreenState.getBagArray().toMutableList()
+                        val updatedBagList = bagList.value.toMutableList().apply {
+                            add(newBagModel)
+                        }
+                        val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
+                        coroutineScope.launch {
+                            dataStoreManager.saveTrips(listOf(updatedTrip))
+                        }
                         newBagName.value = ""
                     }
                 },

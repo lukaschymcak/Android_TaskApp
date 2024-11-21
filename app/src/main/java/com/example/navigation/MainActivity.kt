@@ -27,7 +27,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        //WindowInsets.statusBarsIgnoringVisibility(window, true)
+
+        val dataStoreManager = DataStoreManager(applicationContext)
+
         setContent {
             NavigationTheme {
                 Scaffold(
@@ -40,7 +42,8 @@ class MainActivity : ComponentActivity() {
                     }
                     Navigation(
                         modifier = Modifier.padding(innerPadding),
-                        startDestination = startDestination
+                        startDestination = startDestination,
+                        dataStoreManager = dataStoreManager
                     )
                 }
             }
@@ -49,7 +52,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Navigation(modifier: Modifier = Modifier, startDestination: String) {
+fun Navigation(
+    modifier: Modifier = Modifier,
+    startDestination: String,
+    dataStoreManager: DataStoreManager
+) {
     val navController = rememberNavController()
     NavHost(
         modifier = modifier,
@@ -84,7 +91,8 @@ fun Navigation(modifier: Modifier = Modifier, startDestination: String) {
                 },
                 onGoBack = {
                     navController.popBackStack()
-                }
+                },
+                dataStoreManager = dataStoreManager
             )
         }
 
@@ -92,12 +100,13 @@ fun Navigation(modifier: Modifier = Modifier, startDestination: String) {
             TripScreen(
                 onGoBack = {
                     navController.popBackStack()
-
-                }
+                },
+                dataStoreManager = dataStoreManager
             )
         }
     }
 }
+
 
 object PreferencesHelper {
     private const val PREFS_NAME = "my_prefs"
