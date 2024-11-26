@@ -1,6 +1,9 @@
 package com.example.navigation.Modules
 
 
+import TripModel
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -33,12 +37,12 @@ import com.example.navigation.models.ItemModel
 import com.example.navigation.ui.theme.OurPackingBlue
 
 
-
 @Composable
 fun BagModule(
     bagModel: BagModel,
     onItemCheckedChange: (ItemModel) -> Unit,
-    onAddItem: (String) -> Unit
+    onAddItem: (String) -> Unit,
+    onDeleteBag: (BagModel) -> Unit
 ) {
     val newItemName = remember { mutableStateOf("") }
 
@@ -52,12 +56,24 @@ fun BagModule(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(
-                text = bagModel.bagName,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = OurPackingBlue
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = bagModel.bagName,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = OurPackingBlue
+                )
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete bag",
+                    tint = OurPackingBlue,
+                    modifier = Modifier.size(20.dp)
+                        .clickable { onDeleteBag(bagModel) }
+                )
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -89,7 +105,9 @@ fun BagModule(
                     value = newItemName.value,
                     onValueChange = { newItemName.value = it },
                     label = { Text("Item name") },
-                    modifier = Modifier.weight(1f).padding(end = 8.dp),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp),
                     shape = RoundedCornerShape(15.dp),
                 )
                 Button(

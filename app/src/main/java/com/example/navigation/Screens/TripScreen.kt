@@ -52,15 +52,27 @@ import kotlinx.coroutines.launch
 @Composable
 fun TripScreen(
     onGoBack: () -> Unit,
+    tripModel: TripModel,
     dataStoreManager: DataStoreManager
 ) {
-    val tripModel = TripModel("Paris", "2022-01-01", "2022-01-10")
     val scrollState = rememberScrollState()
     val bagList = remember { mutableStateOf<List<BagModel>>(emptyList()) }
     val newBagName = remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
 
-    // Load bags from DataStore
+
+    val onDeleteBag: (BagModel) -> Unit = { bagToDelete ->
+        val updatedBags = bagList.value.filter { it != bagToDelete }
+        val updatedTrip = tripModel.copy(arrayBagModel = updatedBags)
+
+        coroutineScope.launch {
+            dataStoreManager.saveTrips(listOf(updatedTrip))
+            bagList.value = updatedBags
+        }
+    }
+
+
+
     LaunchedEffect(Unit) {
         dataStoreManager.getTrips().collect { trips ->
             val currentTrip = trips.find { it.name == tripModel.name }
@@ -162,11 +174,13 @@ fun TripScreen(
                             onAddItem = { newItemName ->
                                 val newItem = ItemModel(newItemName, false)
                                 bag.addItem(newItem)
-                                val updatedTrip = tripModel.copy(arrayBagModel = bagList.value.toMutableList())
+                                val updatedTrip =
+                                    tripModel.copy(arrayBagModel = bagList.value.toMutableList())
                                 coroutineScope.launch {
                                     dataStoreManager.saveTrips(listOf(updatedTrip))
                                 }
-                            }
+                            },
+                            onDeleteBag = onDeleteBag
                         )
                     }
                 }

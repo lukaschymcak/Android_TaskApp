@@ -1,7 +1,3 @@
-package com.example.navigation.Modules
-
-
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,96 +31,72 @@ fun TripModule(
     name: String, dateFrom: String, dateTo: String, percentage: Int, onDelete: () -> Unit
 ) {
 
-        Card(
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White,
-            ),
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White,
+        ),
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        border = BorderStroke(4.dp, Color.White)
+    ) {
+        Column(
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            border = BorderStroke(4.dp, Color.White)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.Start
         ) {
-            Column(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.Start
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-
-                ) {
-                    Text(
-                        text = "$dateFrom - $dateTo",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Left,
-                        color = OurPackingBlue
-                    )
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Remove",
-                        tint = OurPackingBlue,
-                        modifier = Modifier.clickable {
-                            onDelete()
-                        }
-                    )
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = name,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Start,
-                        color = OurPackingBlue
-                    )
-//                        Text(
-//                            text = "in x days",
-//                            fontSize = 20.sp,
-//                            fontWeight = FontWeight.Bold,
-//                            textAlign = TextAlign.Start,
-//                            color = Color.White
-//                        )
-
-                    Text(
-                        text = "$percentage%",
-                        fontSize = 35.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = OurPackingBlue,
-                        //modifier = Modifier.offset(x = 180.dp)
-                    )
-                }
+                Text(
+                    text = "$dateFrom - $dateTo",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Left,
+                    color = OurPackingBlue
+                )
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Remove",
+                    tint = OurPackingBlue,
+                    modifier = Modifier.clickable {
+                        onDelete()
+                    }
+                )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(24.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-//                    Text(
-//                        text = "$dateFrom - $dateTo",
-//                        fontSize = 20.sp,
-//                        fontWeight = FontWeight.Bold,
-//                        textAlign = TextAlign.Left,
-//                        color = Color.White
-//                    )
-//                    Icon(
-//                        imageVector = Icons.Default.Delete,
-//                        contentDescription = "Remove",
-//                        tint = Color.White,
-//                        modifier = Modifier.clickable {
-//                            onDelete()
-//                        }
-//                    )
+                Text(
+                    text = name,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Start,
+                    color = OurPackingBlue
+                )
+
+                Text(
+                    text = "$percentage%",
+                    fontSize = 35.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = OurPackingBlue,
+                )
             }
         }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+        }
     }
-
-
+}

@@ -1,13 +1,10 @@
-package com.example.navigation.modules
-
-
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -24,7 +21,7 @@ import com.example.navigation.ui.theme.OurYellow
 
 
 @Composable
-fun PackingModuleExample() {
+fun PackingModule(onClick: () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
@@ -33,7 +30,10 @@ fun PackingModuleExample() {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
-            .wrapContentHeight(),
+            //.wrapContentHeight()
+            .height(160.dp)
+            .clickable { onClick() },
+
         border = BorderStroke(4.dp, OurYellow)
     ) {
         Column(

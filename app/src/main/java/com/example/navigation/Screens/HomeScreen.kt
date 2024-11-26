@@ -1,5 +1,3 @@
-package com.example.navigation.Screens
-
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
+import com.example.navigation.Modules.GymModuleExample
+import com.example.navigation.Modules.WateringModuleExample
 import com.example.navigation.models.Packing
 import com.example.navigation.ui.theme.OurBlue
 import com.example.navigation.ui.theme.OurGreen
@@ -66,7 +66,6 @@ fun HomeScreen(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.paddingFromBaseline(top = 35.dp).offset(x = (25).dp),
             )
-
             Icon(
                 imageVector = Icons.Default.Settings,
                 contentDescription = "Settings",
@@ -81,20 +80,13 @@ fun HomeScreen(
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
         )
-        OutlinedButton(
-            onClick = {
-                onGoToNextScreen()
-                HomeScreenState.setWasShown(true)
-            }
-        ) {
-            Text(text = "Packing navigation", fontSize = 18.sp)
-        }
         Spacer(modifier = Modifier.height(24.dp))
 
-
-        if (packingModules.isNotEmpty()) {
-            PackingModuleExample(OurPackingBlue)
-        }
+        PackingModule(
+            onClick = onGoToNextScreen
+        )
+        WateringModuleExample()
+        GymModuleExample()
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -106,22 +98,10 @@ fun HomeScreen(
                         percentage = 70,
                         arrayTrip = listOf()
                     )
-
                     packingModules = listOf(mockTrip)
                 }
             }
         )
-
-        Spacer(modifier = Modifier.height(600.dp))
-
-        OutlinedButton(
-            onClick = {
-                onGoToNextScreen()
-                HomeScreenState.setWasShown(true)
-            }
-        ) {
-            Text(text = "Packing navigation", fontSize = 18.sp)
-        }
     }
 }
 
@@ -152,7 +132,6 @@ fun AddNewModuleHalfScreen(onAddPackingModule: () -> Unit) {
 
             if (showBottomSheet) {
                 ModalBottomSheet(
-//                    modifier = Modifier.height(650.dp),
                     sheetState = sheetState,
                     onDismissRequest = { showBottomSheet = false }
                 ) {
@@ -204,7 +183,6 @@ fun ModuleOption(moduleName: String, color: Color, onAddPackingModule: () -> Uni
     }
 }
 
-
 @Composable
 fun ModuleOption(moduleName: String, color: Color) {
     Text(
@@ -217,4 +195,3 @@ fun ModuleOption(moduleName: String, color: Color) {
         color = color,
     )
 }
-

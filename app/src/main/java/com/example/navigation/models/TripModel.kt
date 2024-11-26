@@ -3,6 +3,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TripModel(
+    //val id : String,
     val name: String,
     val startDate: String,
     val endDate: String,
@@ -15,4 +16,10 @@ data class TripModel(
         arrayBagModel.clear()
         arrayBagModel.addAll(newBags)
     }
+    fun deleteBag(bagModel: BagModel) {
+        arrayBagModel.remove(bagModel)
+    }
+
+
+
 }

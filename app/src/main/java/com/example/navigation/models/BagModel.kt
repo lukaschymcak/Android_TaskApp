@@ -11,5 +11,11 @@ data class BagModel(
     fun addItem(itemModel: ItemModel) {
         itemModels = itemModels + itemModel
     }
+
+    fun deleteBag() {
+        itemModels = emptyList()
+    }
+
+
 }
 

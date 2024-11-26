@@ -1,5 +1,8 @@
 package com.example.navigation
 
+import HomeScreen
+import PackingScreen
+import TripModel
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -13,12 +16,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
-import com.example.navigation.Screens.HomeScreen
-import com.example.navigation.Screens.PackingScreen
 import com.example.navigation.Screens.TripScreen
 import com.example.navigation.Screens.WelcomeScreen
 
@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val dataStoreManager = DataStoreManager(applicationContext)
 
@@ -80,7 +79,8 @@ fun Navigation(
             HomeScreen(
                 onGoToNextScreen = {
                     navController.navigate(Screen.PackingScreen.route)
-                }
+                },
+                //dataStoreManager = dataStoreManager
             )
         }
 
@@ -101,8 +101,10 @@ fun Navigation(
                 onGoBack = {
                     navController.popBackStack()
                 },
-                dataStoreManager = dataStoreManager
-            )
+                dataStoreManager = dataStoreManager,
+                tripModel = TripModel( "Trip 1", "2022-10-10", "2022-10-20")
+
+                )
         }
     }
 }
