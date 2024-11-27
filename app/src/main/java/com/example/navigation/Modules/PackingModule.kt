@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.ui.theme.OurPackingBlue
 import com.example.navigation.ui.theme.OurYellow
 
 
@@ -30,11 +31,10 @@ fun PackingModule(onClick: () -> Unit) {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth()
-            //.wrapContentHeight()
             .height(160.dp)
             .clickable { onClick() },
 
-        border = BorderStroke(4.dp, OurYellow)
+        border = BorderStroke(4.dp, OurPackingBlue)
     ) {
         Column(
             modifier = Modifier
@@ -47,7 +47,7 @@ fun PackingModule(onClick: () -> Unit) {
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurYellow
+                color = OurPackingBlue
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -55,21 +55,21 @@ fun PackingModule(onClick: () -> Unit) {
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurPackingBlue
             )
             Text(
                 text = "Chata Levice in 10 days ",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurPackingBlue
             )
             Text(
                 text = "packed: 70%",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurYellow
+                color = OurPackingBlue
             )
         }
     }

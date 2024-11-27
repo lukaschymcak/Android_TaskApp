@@ -104,7 +104,9 @@ fun PackingScreen(
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.align(Alignment.CenterHorizontally).fillMaxWidth()
+                        modifier = Modifier
+                            .align(Alignment.CenterHorizontally)
+                            .fillMaxWidth()
                     )
                 } else {
                     tripList.forEach { trip ->
@@ -119,7 +121,9 @@ fun PackingScreen(
                         ) {
                             Column(modifier = Modifier.padding(8.dp)) {
                                 Row(
-                                    modifier = Modifier.fillMaxWidth().padding(8.dp),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp),
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Text(
@@ -132,7 +136,8 @@ fun PackingScreen(
                                         imageVector = Icons.Default.Delete,
                                         contentDescription = "Remove",
                                         tint = OurPackingBlue,
-                                        modifier = Modifier.padding(8.dp)
+                                        modifier = Modifier
+                                            .padding(8.dp)
                                             .clickable {
                                                 coroutineScope.launch {
                                                     val updatedTrips = tripList.toMutableList()
@@ -151,13 +156,7 @@ fun PackingScreen(
                                 )
                             }
                         }
-
-                        Text(
-                            text = "(${trip.startDate} - ${trip.endDate})",
-                            color = OurPackingBlue,
-                            fontSize = 21.sp,
-                            modifier = Modifier.padding(16.dp)
-                        )
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
 
@@ -166,15 +165,14 @@ fun PackingScreen(
 
 
 
-        Spacer(modifier = Modifier.height(16.dp))
+        //Spacer(modifier = Modifier.height(16.dp))
 
         AddTripBottomSheet(
             dataStoreManager = dataStoreManager,
             onTripAdded = { refreshTripList() }
         )
     }
-    }
-
+}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -222,7 +220,9 @@ fun AddTripBottomSheet(
         if (showBottomSheet) {
             ModalBottomSheet(onDismissRequest = { showBottomSheet = false }) {
                 Column(
-                    modifier = Modifier.padding(16.dp).fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
