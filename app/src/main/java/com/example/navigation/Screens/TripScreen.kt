@@ -50,11 +50,16 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
+
 fun TripScreen(
     onGoBack: () -> Unit,
-    tripModel: TripModel,
+    tripModel: TripModel?,
     dataStoreManager: DataStoreManager
 ) {
+    if (tripModel == null) {
+        onGoBack()
+        return
+    }
     val scrollState = rememberScrollState()
     val bagList = remember { mutableStateOf<List<BagModel>>(emptyList()) }
     val newBagName = remember { mutableStateOf("") }
@@ -62,7 +67,7 @@ fun TripScreen(
 
 
     val onDeleteBag: (BagModel) -> Unit = { bagToDelete ->
-        val updatedBags = bagList.value.filter { it != bagToDelete }
+        val updatedBags = bagList.value.filter { it != bagToDelete }.toMutableList()
         val updatedTrip = tripModel.copy(arrayBagModel = updatedBags)
 
         coroutineScope.launch {
@@ -70,7 +75,6 @@ fun TripScreen(
             bagList.value = updatedBags
         }
     }
-
 
 
     LaunchedEffect(Unit) {

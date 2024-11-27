@@ -15,12 +15,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 import com.example.navigation.Screens.TripScreen
 import com.example.navigation.Screens.WelcomeScreen
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +66,16 @@ fun Navigation(
     dataStoreManager: DataStoreManager
 ) {
     val navController = rememberNavController()
+    var tripList by remember { mutableStateOf<List<TripModel>>(emptyList()) }
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            dataStoreManager.getTrips().collect { trips ->
+                tripList = trips
+            }
+        }
+    }
     NavHost(
         modifier = modifier,
         navController = navController,
@@ -80,7 +99,6 @@ fun Navigation(
                 onGoToNextScreen = {
                     navController.navigate(Screen.PackingScreen.route)
                 },
-                //dataStoreManager = dataStoreManager
             )
         }
 
@@ -92,20 +110,25 @@ fun Navigation(
                 onGoBack = {
                     navController.popBackStack()
                 },
+                dataStoreManager = dataStoreManager,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = "${Screen.TripScreen.route}/{tripName}",
+            arguments = listOf(navArgument("tripName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val tripName = backStackEntry.arguments?.getString("tripName") ?: ""
+            val trip = tripList.firstOrNull { it.name == tripName }
+
+            TripScreen(
+                onGoBack = { navController.popBackStack() },
+                tripModel = trip ?: TripModel("", "", ""),
                 dataStoreManager = dataStoreManager
             )
         }
 
-        composable(Screen.TripScreen.route) {
-            TripScreen(
-                onGoBack = {
-                    navController.popBackStack()
-                },
-                dataStoreManager = dataStoreManager,
-                tripModel = TripModel( "Trip 1", "2022-10-10", "2022-10-20")
-
-                )
-        }
     }
 }
 

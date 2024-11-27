@@ -18,7 +18,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.navigation.DataStoreManager
+import com.example.navigation.Screen
+import com.example.navigation.route
 import com.example.navigation.ui.theme.OurPackingBlue
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
@@ -26,8 +29,9 @@ import kotlinx.coroutines.launch
 @Composable
 fun PackingScreen(
     onGoBack: () -> Unit,
-    onGoToNextScreen: () -> Unit,
-    dataStoreManager: DataStoreManager
+    onGoToNextScreen: (String) -> Unit,
+    dataStoreManager: DataStoreManager,
+    navController: NavController
 ) {
     val coroutineScope = rememberCoroutineScope()
     var tripList by remember { mutableStateOf<List<TripModel>>(emptyList()) }
@@ -108,7 +112,9 @@ fun PackingScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 8.dp)
-                                .clickable { onGoToNextScreen() },
+                                .clickable {
+                                    navController.navigate("${Screen.TripScreen.route}/${trip.name}")
+                                },
                             colors = CardDefaults.cardColors(containerColor = Color.White)
                         ) {
                             Column(modifier = Modifier.padding(8.dp)) {
@@ -137,10 +143,6 @@ fun PackingScreen(
                                             }
                                     )
                                 }
-                            }
-                        }
-
-
                                 Text(
                                     text = "(${trip.startDate} - ${trip.endDate})",
                                     color = OurPackingBlue,
@@ -148,11 +150,20 @@ fun PackingScreen(
                                     modifier = Modifier.padding(16.dp)
                                 )
                             }
-                            }
+                        }
 
+                        Text(
+                            text = "(${trip.startDate} - ${trip.endDate})",
+                            color = OurPackingBlue,
+                            fontSize = 21.sp,
+                            modifier = Modifier.padding(16.dp)
+                        )
                     }
                 }
+
             }
+        }
+
 
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -161,6 +172,7 @@ fun PackingScreen(
             dataStoreManager = dataStoreManager,
             onTripAdded = { refreshTripList() }
         )
+    }
     }
 
 
