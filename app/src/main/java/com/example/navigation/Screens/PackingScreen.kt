@@ -136,7 +136,7 @@ fun PackingScreen(
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier.padding(8.dp),
 
-                                    )
+                                        )
                                     Icon(
                                         imageVector = Icons.Default.Delete,
                                         contentDescription = "Remove",
@@ -169,10 +169,10 @@ fun PackingScreen(
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                     }
-                }}}
+                }
+            }
+        }
 
-
-                //Spacer(modifier = Modifier.height(16.dp))
 
         AddTripBottomSheet(
             dataStoreManager = dataStoreManager,
@@ -267,12 +267,13 @@ fun AddTripBottomSheet(
         }
     }
 }
-    fun calculatePackingPercentage(trip: TripModel): Int {
-        val totalItems = trip.arrayBagModel.sumOf { it.itemModels.size }
-        val checkedItems = trip.arrayBagModel.sumOf { bag ->
-            bag.itemModels.count { it.isChecked }
-        }
 
-        return if (totalItems == 0) 0 else (checkedItems * 100) / totalItems
+fun calculatePackingPercentage(trip: TripModel): Int {
+    val totalItems = trip.arrayBagModel.sumOf { it.itemModels.size }
+    val checkedItems = trip.arrayBagModel.sumOf { bag ->
+        bag.itemModels.count { it.isChecked }
     }
+
+    return if (totalItems == 0) 0 else (checkedItems * 100) / totalItems
+}
 

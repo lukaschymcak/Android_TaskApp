@@ -1,7 +1,5 @@
 package com.example.navigation.Modules
 
-
-import TripModel
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,8 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.outlined.Delete
-import androidx.compose.material.icons.twotone.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -49,7 +45,7 @@ fun BagModule(
     val newItemName = remember { mutableStateOf("") }
     val checkedCount = bagModel.itemModels.count { it.getIsChecked() }
     val totalCount = bagModel.itemModels.size
-    val percentage = if (totalCount > 0) (checkedCount * 100) / totalCount else 0
+    //val percentage = if (totalCount > 0) (checkedCount * 100) / totalCount else 0
 
     Card(
         shape = RoundedCornerShape(12.dp),
