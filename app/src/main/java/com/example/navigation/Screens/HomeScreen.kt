@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -27,7 +28,8 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
 import com.example.navigation.DataStoreManager
-import com.example.navigation.Modules.GymModuleExample
+import com.example.navigation.Modules.ShoppingModuleExample
+import com.example.navigation.Modules.RecipeModuleExample
 import com.example.navigation.Modules.WateringModuleExample
 import kotlinx.coroutines.flow.firstOrNull
 
@@ -40,7 +42,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val name by remember { mutableStateOf(HomeScreenState.getName(context)) }
     var closestTrip by remember { mutableStateOf<TripModel?>(null) }
-    var packingPercentage by remember { mutableStateOf(0) }
+    var packingPercentage by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
         val trips = dataStoreManager.getTrips().firstOrNull() ?: emptyList()
@@ -82,17 +84,24 @@ fun HomeScreen(
         )
         Spacer(modifier = Modifier.height(24.dp))
 
-        PackingModule(
-            onClick = onGoToNextScreen,
-            tripName = closestTrip?.name,
-            packingPercentage = packingPercentage
-        )
-        WateringModuleExample()
-        GymModuleExample()
+
+            PackingModule(
+                onClick = onGoToNextScreen,
+                tripName = closestTrip?.name,
+                packingPercentage = packingPercentage
+            )
+        Spacer(modifier = Modifier.height(8.dp))
+            WateringModuleExample()
+        Spacer(modifier = Modifier.height(8.dp))
+        ShoppingModuleExample()
+        Spacer(modifier = Modifier.height(8.dp))
+        RecipeModuleExample()
+        }
+
 
         Spacer(modifier = Modifier.height(24.dp))
     }
-}
+
 
 fun calculatePackingPercentage(trip: TripModel?): Int {
     if (trip == null) return 0

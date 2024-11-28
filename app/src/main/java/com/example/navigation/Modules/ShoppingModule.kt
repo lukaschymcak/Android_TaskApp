@@ -1,6 +1,5 @@
 package com.example.navigation.Modules
 
-
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,31 +10,35 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.ui.theme.OurBlue
-
+import com.example.navigation.ui.theme.OurBeige
+import com.example.navigation.ui.theme.OurRed
 
 
 @Composable
-fun PillModuleExample() {
-    Card(
+fun ShoppingModuleExample() {
+    ElevatedCard(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 5.dp
+        ),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent,
+            containerColor = OurRed,
         ),
         modifier = Modifier
-            .padding(16.dp)
+            .padding(0.dp)
             .fillMaxWidth()
-            .wrapContentHeight(),
-        border = BorderStroke(4.dp, OurBlue)
+            .wrapContentHeight()
+            .height(140.dp),
+        //border = BorderStroke(4.dp, OurRed)
     ) {
         Column(
             modifier = Modifier
@@ -44,33 +47,26 @@ fun PillModuleExample() {
             horizontalAlignment = Alignment.Start
         ) {
             Text(
-                text = "PILLS",
+                text = "SHOPPING LIST",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Start,
-                color = OurBlue
+                color = OurBeige
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "next pill: ",
+                text = "Shopping list: 8 items",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+                //fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurBlue
+                color = OurBeige
             )
             Text(
-                text = "Ibalgin in 2 hours",
+                text = "3 items left to buy",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+                //fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Left,
-                color = OurBlue
-            )
-            Text(
-                text = "pills today: 1",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left,
-                color = OurBlue
+                color = OurBeige
             )
         }
     }

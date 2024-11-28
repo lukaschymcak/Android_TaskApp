@@ -12,10 +12,12 @@ val Pink40 = Color(0xFF7D5260)
 
 val OurYellow = Color(0xFFF5AB54)
 val OurGreen = Color(0xFF1A9562)
+
 val OurRed = Color(0xFFEE5A36)
 val OurBlue = Color(0xFF9FC4E8)
 val OurPurple = Color(0xFFCFA4CC)
 val OurOrange = Color(0xFFffa500)
+val OurBeige = Color(0xfffefae0)
 
 val OurYellowLight = Color(0xFFF9DAB5)
 val OurGreenLight = Color(0xFFA6E7CC)
@@ -24,3 +26,6 @@ val OurBlueLight = Color(0xFFD3E6F8)
 val OurPurpleLight = Color(0xFFF2DAF1)
 
 val OurPackingBlue = Color(0xFF1A759F)
+val OurWateringGreen = Color(0xff697442)
+
+val OurGrey = Color(0xFFe3dbdb)
