@@ -15,6 +15,7 @@ val OurGreen = Color(0xFF1A9562)
 val OurRed = Color(0xFFEE5A36)
 val OurBlue = Color(0xFF9FC4E8)
 val OurPurple = Color(0xFFCFA4CC)
+val OurOrange = Color(0xFFffa500)
 
 val OurYellowLight = Color(0xFFF9DAB5)
 val OurGreenLight = Color(0xFFA6E7CC)

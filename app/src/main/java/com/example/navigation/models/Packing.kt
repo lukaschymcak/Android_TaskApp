@@ -22,6 +22,4 @@ class Packing (private val color: String, private var percentage: Int, private v
     fun removeItem(itemModel: ItemModel) {
         arrayTrip.minus(itemModel)
     }
-
-
 }

@@ -99,6 +99,7 @@ fun Navigation(
                 onGoToNextScreen = {
                     navController.navigate(Screen.PackingScreen.route)
                 },
+                dataStoreManager = dataStoreManager,
             )
         }
 

@@ -50,7 +50,6 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("MutableCollectionMutableState")
 @Composable
-
 fun TripScreen(
     onGoBack: () -> Unit,
     tripModel: TripModel?,
@@ -60,14 +59,14 @@ fun TripScreen(
         onGoBack()
         return
     }
+
     val scrollState = rememberScrollState()
     val bagList = remember { mutableStateOf<List<BagModel>>(emptyList()) }
     val newBagName = remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
 
-
     val onDeleteBag: (BagModel) -> Unit = { bagToDelete ->
-        val updatedBags = bagList.value.filter { it != bagToDelete }.toMutableList()
+        val updatedBags = bagList.value.filter { it != bagToDelete }
         val updatedTrip = tripModel.copy(arrayBagModel = updatedBags)
 
         coroutineScope.launch {
@@ -76,6 +75,22 @@ fun TripScreen(
         }
     }
 
+    val onItemCheckedChange: (ItemModel) -> Unit = { updatedItem ->
+        val updatedBagList = bagList.value.map { bag ->
+            if (bag.itemModels.contains(updatedItem)) {
+                bag.copy(itemModels = bag.itemModels.map { item ->
+                    if (item == updatedItem) item.copy(isChecked = updatedItem.getIsChecked()) else item
+                }.toMutableList())
+            } else {
+                bag
+            }
+        }
+        val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
+        coroutineScope.launch {
+            dataStoreManager.saveTrips(listOf(updatedTrip))
+            bagList.value = updatedBagList
+        }
+    }
 
     LaunchedEffect(Unit) {
         dataStoreManager.getTrips().collect { trips ->
@@ -173,15 +188,17 @@ fun TripScreen(
                                 val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
                                 coroutineScope.launch {
                                     dataStoreManager.saveTrips(listOf(updatedTrip))
+                                    bagList.value = updatedBagList
                                 }
                             },
                             onAddItem = { newItemName ->
                                 val newItem = ItemModel(newItemName, false)
                                 bag.addItem(newItem)
-                                val updatedTrip =
-                                    tripModel.copy(arrayBagModel = bagList.value.toMutableList())
+                                val updatedBagList = bagList.value.toMutableList()
+                                val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
                                 coroutineScope.launch {
                                     dataStoreManager.saveTrips(listOf(updatedTrip))
+                                    bagList.value = updatedBagList
                                 }
                             },
                             onDeleteBag = onDeleteBag
@@ -214,6 +231,7 @@ fun TripScreen(
                         val updatedTrip = tripModel.copy(arrayBagModel = updatedBagList)
                         coroutineScope.launch {
                             dataStoreManager.saveTrips(listOf(updatedTrip))
+                            bagList.value = updatedBagList
                         }
                         newBagName.value = ""
                     }
@@ -233,3 +251,4 @@ fun TripScreen(
         }
     }
 }
+

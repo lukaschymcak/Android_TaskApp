@@ -110,6 +110,9 @@ fun PackingScreen(
                     )
                 } else {
                     tripList.forEach { trip ->
+                        val packingPercentage =
+                            calculatePackingPercentage(trip)
+
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -129,8 +132,10 @@ fun PackingScreen(
                                     Text(
                                         text = trip.name,
                                         color = OurPackingBlue,
-                                        fontSize = 21.sp,
-                                        modifier = Modifier.padding(8.dp)
+                                        fontSize = 26.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(8.dp),
+
                                     )
                                     Icon(
                                         imageVector = Icons.Default.Delete,
@@ -154,18 +159,20 @@ fun PackingScreen(
                                     fontSize = 21.sp,
                                     modifier = Modifier.padding(16.dp)
                                 )
+                                Text(
+                                    text = "Packing: $packingPercentage%",
+                                    color = OurPackingBlue,
+                                    fontSize = 18.sp,
+                                    modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                                )
                             }
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                     }
-                }
-
-            }
-        }
+                }}}
 
 
-
-        //Spacer(modifier = Modifier.height(16.dp))
+                //Spacer(modifier = Modifier.height(16.dp))
 
         AddTripBottomSheet(
             dataStoreManager = dataStoreManager,
@@ -260,3 +267,12 @@ fun AddTripBottomSheet(
         }
     }
 }
+    fun calculatePackingPercentage(trip: TripModel): Int {
+        val totalItems = trip.arrayBagModel.sumOf { it.itemModels.size }
+        val checkedItems = trip.arrayBagModel.sumOf { bag ->
+            bag.itemModels.count { it.isChecked }
+        }
+
+        return if (totalItems == 0) 0 else (checkedItems * 100) / totalItems
+    }
+

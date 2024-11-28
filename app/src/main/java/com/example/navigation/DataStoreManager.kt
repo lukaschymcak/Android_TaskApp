@@ -39,10 +39,15 @@ class DataStoreManager(private val context: Context) {
     @SuppressLint("NewApi")
     fun getTrips() = context.preferenceDataStore.data.map { preferences ->
         val jsonString = preferences[TRIPS_KEY] ?: "[]"
-        Json.decodeFromString<List<TripModel>>(jsonString).sortedBy { trip ->
-            LocalDate.parse(trip.startDate, dateFormatter)
-        }
+        Json.decodeFromString<List<TripModel>>(jsonString)
+            .filter { trip ->
+                LocalDate.parse(trip.startDate, dateFormatter) >= LocalDate.now()
+            }
+            .sortedBy { trip ->
+                LocalDate.parse(trip.startDate, dateFormatter)
+            }
     }
+
 
 
 }

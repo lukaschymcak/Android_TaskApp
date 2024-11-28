@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-class ItemModel(
+data class ItemModel(
     private val itemName: String,
-    private var isChecked: Boolean = false
+    var isChecked: Boolean = false
 ) {
     fun getItemName(): String = itemName
     fun getIsChecked(): Boolean = isChecked
@@ -18,4 +18,5 @@ class ItemModel(
     fun setIsChecked(value: Boolean) {
         isChecked = value
     }
+
 }

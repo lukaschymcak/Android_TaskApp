@@ -45,6 +45,9 @@ fun BagModule(
     onDeleteBag: (BagModel) -> Unit
 ) {
     val newItemName = remember { mutableStateOf("") }
+    val checkedCount = bagModel.itemModels.count { it.getIsChecked() }
+    val totalCount = bagModel.itemModels.size
+    val percentage = if (totalCount > 0) (checkedCount * 100) / totalCount else 0
 
     Card(
         shape = RoundedCornerShape(12.dp),
@@ -53,15 +56,13 @@ fun BagModule(
             .padding(8.dp)
             .fillMaxWidth()
     ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
+        Column(modifier = Modifier.padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = bagModel.bagName,
+                    text = bagModel.bagName + " - $checkedCount/$totalCount",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = OurPackingBlue
@@ -70,7 +71,8 @@ fun BagModule(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete bag",
                     tint = OurPackingBlue,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier
+                        .size(20.dp)
                         .clickable { onDeleteBag(bagModel) }
                 )
             }
@@ -85,7 +87,6 @@ fun BagModule(
                     Checkbox(
                         checked = item.getIsChecked(),
                         onCheckedChange = {
-                            item.setIsChecked(it)
                             onItemCheckedChange(item)
                         }
                     )
@@ -98,9 +99,7 @@ fun BagModule(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 OutlinedTextField(
                     value = newItemName.value,
                     onValueChange = { newItemName.value = it },
@@ -122,7 +121,7 @@ fun BagModule(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
-                        contentDescription = "Add Bag",
+                        contentDescription = "Add Item",
                         tint = Color.White,
                         modifier = Modifier.size(20.dp)
                     )
