@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.navigation.ui.theme.NavigationTheme
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
+import com.example.navigation.Screens.SettingsScreen
 import com.example.navigation.Screens.TripScreen
 import com.example.navigation.Screens.WelcomeScreen
 import kotlinx.coroutines.launch
@@ -100,6 +101,9 @@ fun Navigation(
                     navController.navigate(Screen.PackingScreen.route)
                 },
                 dataStoreManager = dataStoreManager,
+                onGoToSettings = {
+                    navController.navigate(Screen.SettingsScreen.route)
+                }
             )
         }
 
@@ -129,6 +133,12 @@ fun Navigation(
                 dataStoreManager = dataStoreManager
             )
         }
+        composable(Screen.SettingsScreen.route) {
+            SettingsScreen(
+                onGoBack = { navController.popBackStack() }
+            )
+        }
+
 
     }
 }

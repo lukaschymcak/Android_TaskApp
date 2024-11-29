@@ -1,4 +1,4 @@
-//package com.example.navigation.Model
+package com.example.navigation.Model.packing//package com.example.navigation.Model
 //
 //class Packing (private val color: String, private var percentage: Int, private var arrayTrip: List<Item>) {
 //    fun getColor(): String {

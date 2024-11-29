@@ -1,4 +1,4 @@
-//package com.example.navigation.Model
+package com.example.navigation.Model.packing//package com.example.navigation.Model
 //
 //class Trip(
 //    private val name: String,
