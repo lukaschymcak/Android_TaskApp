@@ -35,7 +35,8 @@ import com.example.navigation.ui.theme.OurPackingBlue
 
 
 @Composable
-fun WateringModuleExample() {
+fun WateringModuleExample(onGoBack: () -> Unit
+) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -49,13 +50,15 @@ fun WateringModuleExample() {
             .padding(0.dp)
             .fillMaxWidth()
             .height(150.dp)
+            .clickable { onGoBack()
+            }
     ) {
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .padding(16.dp),
@@ -89,6 +92,7 @@ fun WateringModuleExample() {
                     .fillMaxHeight()
                     .width(110.dp)
                     .padding(16.dp)
+                    .clickable { }
             )
         }
     }

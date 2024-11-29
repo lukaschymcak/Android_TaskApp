@@ -173,7 +173,6 @@ fun PackingScreen(
             }
         }
 
-
         AddTripBottomSheet(
             dataStoreManager = dataStoreManager,
             onTripAdded = { refreshTripList() }

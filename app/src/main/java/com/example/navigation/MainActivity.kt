@@ -29,6 +29,7 @@ import androidx.navigation.compose.*
 import androidx.navigation.navArgument
 import com.example.navigation.Screens.SettingsScreen
 import com.example.navigation.Screens.TripScreen
+import com.example.navigation.Screens.WateringScreen
 import com.example.navigation.Screens.WelcomeScreen
 import kotlinx.coroutines.launch
 
@@ -84,7 +85,8 @@ fun Navigation(
         enterTransition = { slideInHorizontally { it } },
         exitTransition = { slideOutHorizontally { -it } },
         popEnterTransition = { slideInHorizontally { -it } },
-        popExitTransition = { slideOutHorizontally { it } }
+        popExitTransition = { slideOutHorizontally { it } },
+
     ) {
         composable(Screen.WelcomeScreen.route) {
             WelcomeScreen(
@@ -103,6 +105,9 @@ fun Navigation(
                 dataStoreManager = dataStoreManager,
                 onGoToSettings = {
                     navController.navigate(Screen.SettingsScreen.route)
+                },
+                onGoToWatering = {
+                    navController.navigate(Screen.WateringScreen.route)
                 }
             )
         }
@@ -135,6 +140,11 @@ fun Navigation(
         }
         composable(Screen.SettingsScreen.route) {
             SettingsScreen(
+                onGoBack = { navController.popBackStack() }
+            )
+        }
+        composable(Screen.WateringScreen.route) {
+            WateringScreen(
                 onGoBack = { navController.popBackStack() }
             )
         }

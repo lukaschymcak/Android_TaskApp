@@ -1,4 +1,3 @@
-
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +40,8 @@ import kotlinx.coroutines.flow.firstOrNull
 fun HomeScreen(
     onGoToNextScreen: () -> Unit,
     dataStoreManager: DataStoreManager,
-    onGoToSettings: () -> Unit
+    onGoToSettings: () -> Unit,
+    onGoToWatering: () -> Unit,
 ) {
     val context = LocalContext.current
     val name by remember { mutableStateOf(HomeScreenState.getName(context)) }
@@ -85,7 +85,8 @@ fun HomeScreen(
                 contentDescription = "Settings",
                 modifier = Modifier
                     .clickable {
-                        onGoToSettings()}
+                        onGoToSettings()
+                    }
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
@@ -97,7 +98,7 @@ fun HomeScreen(
             packingPercentage = packingPercentage
         )
         Spacer(modifier = Modifier.height(8.dp))
-        WateringModuleExample()
+        WateringModuleExample(onClick = onGoToWatering)
         Spacer(modifier = Modifier.height(8.dp))
         ShoppingModuleExample()
         Spacer(modifier = Modifier.height(8.dp))

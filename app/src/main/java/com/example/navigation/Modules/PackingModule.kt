@@ -48,12 +48,12 @@ fun PackingModule(
             .height(150.dp)
             .clickable { onClick() }
     ) {
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .padding(16.dp),
@@ -91,15 +91,15 @@ fun PackingModule(
                     )
                 }
             }
-                Image(
-                    painter = painterResource(id = R.drawable.briefcase_2636186),
-                    contentDescription = "Suitcase",
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .width(110.dp)
-                        .padding(16.dp)
-                )
-            }
+            Image(
+                painter = painterResource(id = R.drawable.briefcase_2636186),
+                contentDescription = "Suitcase",
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .width(110.dp)
+                    .padding(16.dp)
+            )
         }
     }
+}
 

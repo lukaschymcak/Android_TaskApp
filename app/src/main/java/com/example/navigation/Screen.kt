@@ -9,7 +9,6 @@ sealed interface Screen {
     @kotlinx.serialization.Serializable
     data object PackingScreen: Screen
 
-
     @kotlinx.serialization.Serializable
     data object WelcomeScreen: Screen
 
@@ -18,6 +17,9 @@ sealed interface Screen {
 
     @kotlinx.serialization.Serializable
     data object SettingsScreen: Screen
+
+    @kotlinx.serialization.Serializable
+    data object WateringScreen: Screen
 
 
 
@@ -29,4 +31,5 @@ val Screen.route: String
         Screen.WelcomeScreen -> "welcome_screen"
         Screen.TripScreen -> "trip_screen"
         Screen.SettingsScreen -> "settings_screen"
+        Screen.WateringScreen -> "watering_screen"
     }

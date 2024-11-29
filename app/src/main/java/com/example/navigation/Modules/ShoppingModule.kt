@@ -47,12 +47,12 @@ fun ShoppingModuleExample() {
             .fillMaxWidth()
             .height(150.dp)
     ) {
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .padding(16.dp),

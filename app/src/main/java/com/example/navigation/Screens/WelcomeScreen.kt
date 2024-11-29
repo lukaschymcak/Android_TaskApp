@@ -81,7 +81,12 @@ fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
                 onGoToNextScreen()
             }
         ) {
-            Text("Enter", fontSize = 20.sp, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+            Text(
+                "Enter",
+                fontSize = 20.sp,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
