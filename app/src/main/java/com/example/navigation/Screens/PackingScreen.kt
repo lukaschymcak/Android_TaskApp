@@ -271,11 +271,12 @@ fun AddTripBottomSheet(
 }
 
 fun calculatePackingPercentage(trip: TripModel): Int {
+
     val totalItems = trip.arrayBagModel.sumOf { it.itemModels.size }
     val checkedItems = trip.arrayBagModel.sumOf { bag ->
         bag.itemModels.count { it.isChecked }
     }
 
-    return if (totalItems == 0) 0 else (checkedItems * 100) / totalItems
+    return if (totalItems == 0) 100 else (checkedItems * 100) / totalItems
 }
 

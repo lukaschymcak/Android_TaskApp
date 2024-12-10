@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +23,8 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.OurGreen
 
 @Composable
-fun WateringScreen(onGoBack: () -> Unit) {
+fun WateringScreen(onGoBack: () -> Unit,
+                   onGoToAddPlant: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -55,5 +57,15 @@ fun WateringScreen(onGoBack: () -> Unit) {
 
 
         }
+        OutlinedButton(
+            onClick = { onGoToAddPlant() },
+            modifier = Modifier.padding(16.dp),
+            colors = androidx.compose.material3.ButtonDefaults.outlinedButtonColors(
+                contentColor = OurGreen
+            )
+        ) {
+            Text(text = "Add plant")
+        }
+
     }
 }

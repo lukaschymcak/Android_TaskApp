@@ -45,7 +45,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.logojpg),
+            painter = painterResource(id = R.drawable.logpng),
             contentDescription = "Logo",
             modifier = Modifier
                 .padding(50.dp)

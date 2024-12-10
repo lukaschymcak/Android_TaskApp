@@ -4,7 +4,9 @@ import HomeScreen
 import PackingScreen
 import com.example.navigation.models.packing.TripModel
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.navigation.Screens.PlantAddScreen
 import com.example.navigation.Screens.RecipeScreen
 import com.example.navigation.Screens.SettingsScreen
 import com.example.navigation.Screens.ShoppingScreen
@@ -51,7 +54,7 @@ fun Navigation(
         enterTransition = { slideInHorizontally { it } },
         exitTransition = { slideOutHorizontally { -it } },
         popEnterTransition = { slideInHorizontally { -it } },
-        popExitTransition = { slideOutHorizontally { it } },
+        popExitTransition = { slideOutHorizontally { it } }
 
         ) {
         composable(Screen.WelcomeScreen.route) {
@@ -118,6 +121,14 @@ fun Navigation(
         }
         composable(Screen.WateringScreen.route) {
             WateringScreen(
+                onGoBack = { navController.popBackStack() },
+                onGoToAddPlant = {
+                    navController.navigate(Screen.PlantAddScreen.route)
+                }
+            )
+        }
+        composable(Screen.PlantAddScreen.route) {
+            PlantAddScreen(
                 onGoBack = { navController.popBackStack() }
             )
         }

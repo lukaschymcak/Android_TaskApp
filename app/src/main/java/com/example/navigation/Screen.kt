@@ -2,7 +2,6 @@ package com.example.navigation
 
 sealed interface Screen {
 
-
     @kotlinx.serialization.Serializable
     data object HomeScreen: Screen
 
@@ -27,6 +26,9 @@ sealed interface Screen {
     @kotlinx.serialization.Serializable
     data object RecipeScreen: Screen
 
+    @kotlinx.serialization.Serializable
+    data object PlantAddScreen: Screen
+
 
 
 
@@ -42,4 +44,5 @@ val Screen.route: String
         Screen.WateringScreen -> "watering_screen"
         Screen.ShoppingScreen -> "shopping_screen"
         Screen.RecipeScreen -> "recipe_screen"
+        Screen.PlantAddScreen -> "plant_add_screen"
     }

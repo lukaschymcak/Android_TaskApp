@@ -50,7 +50,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val name by remember { mutableStateOf(HomeScreenState.getName(context)) }
     var closestTrip by remember { mutableStateOf<TripModel?>(null) }
-    var packingPercentage by remember { mutableIntStateOf(0) }
+    var packingPercentage by remember { mutableIntStateOf(100) }
 
     LaunchedEffect(Unit) {
         val trips = dataStoreManager.getTrips().firstOrNull() ?: emptyList()
