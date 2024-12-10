@@ -1,14 +1,16 @@
 package com.example.navigation.models.watering
 
-class PlantModel(
-    var plantName: String,
-    var description: String = "",
-    var location: HouseLocation = HouseLocation.LIVING_ROOM,
-    var frequency: Int = 7,
-    var water: String = "200ml",
-    var image: String,
-    private var watered: Boolean,
+import kotlinx.serialization.Serializable
 
+@Serializable
+data class PlantModel(
+    val plantName: String,
+    val description: String = "",
+    val location: HouseLocation = HouseLocation.LIVING_ROOM,
+    val frequency: Int = 7,
+    val water: String = "200ml",
+    val image: String,
+    private var watered: Boolean
 ) {
 //    fun getPlantName(): String {
 //        return plantName

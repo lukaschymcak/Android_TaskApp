@@ -1,5 +1,8 @@
 package com.example.navigation.models.watering
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class HouseLocation {
     KIDS_ROOM,
     LIVING_ROOM,

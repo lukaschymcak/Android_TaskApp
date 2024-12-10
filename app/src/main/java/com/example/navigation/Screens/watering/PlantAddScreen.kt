@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,16 +30,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.DataStoreManager
 import com.example.navigation.models.watering.PlantModel
 import com.example.navigation.ui.theme.OurGreen
 import com.example.navigation.models.watering.PresetPlants.presetPlants
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreenLight
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 
 @SuppressLint("DiscouragedApi")
 @Composable
-fun PlantAddScreen(onGoBack: () -> Unit, onPlantAdded: (PlantModel) -> Unit){
+fun PlantAddScreen(onGoBack: () -> Unit,
+                   onPlantAdded: (PlantModel) -> Unit,
+                   dataStoreManager: DataStoreManager
+){
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     LazyColumn(
         modifier = Modifier
@@ -89,8 +98,22 @@ fun PlantAddScreen(onGoBack: () -> Unit, onPlantAdded: (PlantModel) -> Unit){
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxWidth()
-                    .clickable { onPlantAdded(plant)
-                        onGoBack() },
+                    .clickable {
+
+                        coroutineScope.launch {
+                            try {
+                                val currentPlants = dataStoreManager.getPlants()
+                                    .firstOrNull()
+                                    ?.toMutableList() ?: mutableListOf()
+                                currentPlants.add(plant)
+
+                                dataStoreManager.savePlants(currentPlants)
+                                onGoBack()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    },
                 colors = CardDefaults.cardColors(
                     containerColor = cardColor
                 )

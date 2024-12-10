@@ -124,7 +124,8 @@ fun Navigation(
             WateringScreen(
                 onGoBack = { navController.popBackStack() },
                 onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route)},
-                addedPlants = addedPlants.value
+                //addedPlants = addedPlants.value,
+                dataStoreManager = dataStoreManager
             )
         }
         composable(Screen.PlantAddScreen.route) {
@@ -132,7 +133,8 @@ fun Navigation(
                 onGoBack = { navController.popBackStack() },
                 onPlantAdded = { plant ->
                     addedPlants.value += plant
-                }
+                },
+                dataStoreManager = dataStoreManager
             )
         }
         composable(Screen.ShoppingScreen.route) {

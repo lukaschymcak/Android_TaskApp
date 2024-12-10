@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.navigation.models.watering.PlantModel
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -20,6 +21,8 @@ val Context.preferenceDataStore: DataStore<Preferences> by preferencesDataStore(
 class DataStoreManager(private val context: Context) {
     companion object {
         val TRIPS_KEY = stringPreferencesKey("trips")
+        val PLANTS_KEY = stringPreferencesKey("plants")
+
     }
 
     @SuppressLint("NewApi")
@@ -48,10 +51,28 @@ class DataStoreManager(private val context: Context) {
             }
     }
 
-    @SuppressLint("NewApi")
-    fun addPlantToWatering(){
+    private val json = Json { ignoreUnknownKeys = true }
 
+    suspend fun savePlants(plants: List<PlantModel>) {
+        val jsonString = json.encodeToString(plants)
+        context.preferenceDataStore.edit { preferences ->
+            preferences[PLANTS_KEY] = jsonString
+        }
     }
 
-
+    fun getPlants() = context.preferenceDataStore.data.map { preferences ->
+        val jsonString = preferences[PLANTS_KEY]
+        try {
+            if (!jsonString.isNullOrBlank()) {
+                json.decodeFromString<List<PlantModel>>(jsonString)
+            } else {
+                emptyList()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList<PlantModel>()
+        }
+    }
 }
+
+
