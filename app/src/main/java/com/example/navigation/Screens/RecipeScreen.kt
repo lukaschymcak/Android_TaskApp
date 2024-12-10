@@ -20,9 +20,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.OurGreen
+import com.example.navigation.ui.theme.OurYellow
 
 @Composable
-fun WateringScreen(onGoBack: () -> Unit) {
+fun RecipeScreen(onGoBack: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -39,13 +40,13 @@ fun WateringScreen(onGoBack: () -> Unit) {
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = "Back home",
                 modifier = Modifier.clickable { onGoBack() },
-                tint = OurGreen
+                tint = OurYellow
             )
             Text(
-                text = "WATERING",
+                text = "RECIPES",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-                color = OurGreen
+                color = OurYellow
             )
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,

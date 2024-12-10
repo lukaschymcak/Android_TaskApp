@@ -1,6 +1,6 @@
 package com.example.navigation
 
-import TripModel
+import com.example.navigation.models.packing.TripModel
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.datastore.core.DataStore

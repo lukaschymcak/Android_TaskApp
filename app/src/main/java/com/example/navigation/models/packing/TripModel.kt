@@ -1,4 +1,5 @@
-import com.example.navigation.models.BagModel
+package com.example.navigation.models.packing
+
 import kotlinx.serialization.Serializable
 
 @Serializable

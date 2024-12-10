@@ -1,3 +1,5 @@
+
+
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import androidx.compose.foundation.background
@@ -21,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.navigation.DataStoreManager
 import com.example.navigation.Screen
+import com.example.navigation.models.packing.TripModel
 import com.example.navigation.route
 import com.example.navigation.ui.theme.OurPackingBlue
 import kotlinx.coroutines.flow.firstOrNull

@@ -2,6 +2,7 @@ package com.example.navigation.Modules
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,7 +33,9 @@ import com.example.navigation.ui.theme.OurRed
 
 
 @Composable
-fun ShoppingModuleExample() {
+fun ShoppingModuleExample(
+    onClick: () -> Unit
+) {
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -46,6 +49,8 @@ fun ShoppingModuleExample() {
             .padding(0.dp)
             .fillMaxWidth()
             .height(150.dp)
+            .clickable { onClick()
+            }
     ) {
         Row(
             modifier = Modifier

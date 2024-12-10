@@ -1,8 +1,8 @@
-package com.example.navigation.models
+package com.example.navigation.models.packing
 
 class Packing(
     private val color: String,
-    private var percentage: Int,
+    private var percentage: Int ,
     private var arrayTrip: List<ItemModel>
 ) {
     fun getColor(): String {

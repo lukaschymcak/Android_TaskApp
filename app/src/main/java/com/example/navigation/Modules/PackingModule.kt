@@ -1,3 +1,6 @@
+package com.example.navigation.Modules
+
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -49,14 +52,14 @@ fun PackingModule(
             .clickable { onClick() }
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 modifier = Modifier
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .weight(1f),
                 horizontalAlignment = Alignment.Start
             ) {
 
@@ -64,17 +67,19 @@ fun PackingModule(
                     text = "PACKING",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Start,
+                    textAlign = TextAlign.Center,
                     color = OurBeige,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 if (tripName == null) {
-                    Text(
-                        text = "you have no trips, click to add a trip :)",
-                        fontSize = 20.sp,
-                        textAlign = TextAlign.Center,
-                        color = OurBeige
-                    )
+                    Row {
+                        Text(
+                            text = "you have no trips, click to add a trip :)",
+                            fontSize = 20.sp,
+                            textAlign = TextAlign.Left,
+                            color = OurBeige,
+                        )
+                    }
                 } else {
                     Text(
                         text = "next trip: $tripName",
@@ -82,7 +87,6 @@ fun PackingModule(
                         textAlign = TextAlign.Left,
                         color = OurBeige,
                     )
-                    //Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Packed: $packingPercentage%",
                         fontSize = 20.sp,
@@ -97,6 +101,7 @@ fun PackingModule(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(110.dp)
+                    .height(110.dp)
                     .padding(16.dp)
             )
         }

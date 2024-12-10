@@ -28,8 +28,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
-import com.example.navigation.PreferencesHelper
 import com.example.navigation.R
+import com.example.navigation.states.PreferencesHelper
 
 @Composable
 fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {

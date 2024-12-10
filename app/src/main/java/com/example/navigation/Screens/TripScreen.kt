@@ -1,6 +1,6 @@
 package com.example.navigation.Screens
 
-import TripModel
+import com.example.navigation.models.packing.TripModel
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -43,8 +43,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
 import com.example.navigation.Modules.BagModule
-import com.example.navigation.models.BagModel
-import com.example.navigation.models.ItemModel
+import com.example.navigation.models.packing.BagModel
+import com.example.navigation.models.packing.ItemModel
 import com.example.navigation.ui.theme.OurPackingBlue
 import kotlinx.coroutines.launch
 

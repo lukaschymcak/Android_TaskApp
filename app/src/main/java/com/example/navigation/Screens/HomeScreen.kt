@@ -30,9 +30,11 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
 import com.example.navigation.DataStoreManager
+import com.example.navigation.Modules.PackingModule
 import com.example.navigation.Modules.ShoppingModuleExample
 import com.example.navigation.Modules.RecipeModuleExample
 import com.example.navigation.Modules.WateringModuleExample
+import com.example.navigation.models.packing.TripModel
 import kotlinx.coroutines.flow.firstOrNull
 
 
@@ -42,6 +44,8 @@ fun HomeScreen(
     dataStoreManager: DataStoreManager,
     onGoToSettings: () -> Unit,
     onGoToWatering: () -> Unit,
+    onGoToShopping: () -> Unit,
+    onGoToRecipe: () -> Unit
 ) {
     val context = LocalContext.current
     val name by remember { mutableStateOf(HomeScreenState.getName(context)) }
@@ -100,9 +104,9 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(8.dp))
         WateringModuleExample(onClick = onGoToWatering)
         Spacer(modifier = Modifier.height(8.dp))
-        ShoppingModuleExample()
+        ShoppingModuleExample(onClick = onGoToShopping)
         Spacer(modifier = Modifier.height(8.dp))
-        RecipeModuleExample()
+        RecipeModuleExample(onClick = onGoToRecipe)
 
 
         Spacer(modifier = Modifier.height(16.dp))

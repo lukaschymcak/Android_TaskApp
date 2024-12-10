@@ -1,4 +1,4 @@
-package com.example.navigation.models
+package com.example.navigation.models.packing
 
 import kotlinx.serialization.Serializable
 
