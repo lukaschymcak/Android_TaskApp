@@ -1,4 +1,4 @@
-package com.example.navigation.Screens
+package com.example.navigation.Screens.watering
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,11 +20,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.models.watering.PlantModel
 import com.example.navigation.ui.theme.OurGreen
 
 @Composable
 fun WateringScreen(onGoBack: () -> Unit,
-                   onGoToAddPlant: () -> Unit) {
+                   onGoToAddPlant: () -> Unit,
+                   addedPlants: List<PlantModel>
+){
     Column(
         modifier = Modifier
             .padding(16.dp)
@@ -56,6 +59,30 @@ fun WateringScreen(onGoBack: () -> Unit,
             )
 
 
+        }
+        if (addedPlants.isNotEmpty()) {
+            Text(
+                text = "Added Plants:",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = OurGreen,
+                modifier = Modifier.padding(8.dp)
+            )
+            addedPlants.forEach { plant ->
+                Text(
+                    text = plant.plantName,
+                    fontSize = 16.sp,
+                    color = OurGreen,
+                    modifier = Modifier.padding(4.dp)
+                )
+            }
+        } else {
+            Text(
+                text = "No plants added.",
+                fontSize = 16.sp,
+                color = OurGreen,
+                modifier = Modifier.padding(4.dp)
+            )
         }
         OutlinedButton(
             onClick = { onGoToAddPlant() },

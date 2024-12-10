@@ -1,12 +1,10 @@
-package com.example.navigation.Screens
+package com.example.navigation.Screens.watering
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,20 +29,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.navigation.R
-import com.example.navigation.ui.theme.OurGreen
 import com.example.navigation.models.watering.PlantModel
+import com.example.navigation.ui.theme.OurGreen
 import com.example.navigation.models.watering.PresetPlants.presetPlants
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreenLight
-import com.example.navigation.ui.theme.OurGrey
-import com.example.navigation.ui.theme.OurPackingBlue
-import com.example.navigation.ui.theme.OurWateringGreen
 
 
 @SuppressLint("DiscouragedApi")
 @Composable
-fun PlantAddScreen(onGoBack: () -> Unit) {
+fun PlantAddScreen(onGoBack: () -> Unit, onPlantAdded: (PlantModel) -> Unit){
     val context = LocalContext.current
     LazyColumn(
         modifier = Modifier
@@ -94,7 +88,9 @@ fun PlantAddScreen(onGoBack: () -> Unit) {
             Card(
                 modifier = Modifier
                     .padding(8.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .clickable { onPlantAdded(plant)
+                        onGoBack() },
                 colors = CardDefaults.cardColors(
                     containerColor = cardColor
                 )

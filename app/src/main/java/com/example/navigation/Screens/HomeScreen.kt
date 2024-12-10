@@ -30,10 +30,10 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
 import com.example.navigation.DataStoreManager
-import com.example.navigation.Modules.PackingModule
+import com.example.navigation.Modules.packing.PackingModule
 import com.example.navigation.Modules.ShoppingModuleExample
 import com.example.navigation.Modules.RecipeModuleExample
-import com.example.navigation.Modules.WateringModuleExample
+import com.example.navigation.Modules.watering.WateringModuleExample
 import com.example.navigation.models.packing.TripModel
 import kotlinx.coroutines.flow.firstOrNull
 

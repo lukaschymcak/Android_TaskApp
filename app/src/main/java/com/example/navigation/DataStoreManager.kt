@@ -48,5 +48,10 @@ class DataStoreManager(private val context: Context) {
             }
     }
 
+    @SuppressLint("NewApi")
+    fun addPlantToWatering(){
+
+    }
+
 
 }

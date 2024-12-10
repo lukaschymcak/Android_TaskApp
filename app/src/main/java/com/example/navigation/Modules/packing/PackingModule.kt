@@ -1,6 +1,5 @@
-package com.example.navigation.Modules
+package com.example.navigation.Modules.packing
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

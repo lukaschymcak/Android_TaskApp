@@ -1,4 +1,4 @@
-package com.example.navigation.Screens
+package com.example.navigation.Screens.packing
 
 import com.example.navigation.models.packing.TripModel
 import android.annotation.SuppressLint
@@ -42,7 +42,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
-import com.example.navigation.Modules.BagModule
+import com.example.navigation.Modules.packing.BagModule
 import com.example.navigation.models.packing.BagModel
 import com.example.navigation.models.packing.ItemModel
 import com.example.navigation.ui.theme.OurPackingBlue

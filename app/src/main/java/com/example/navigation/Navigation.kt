@@ -1,12 +1,10 @@
 package com.example.navigation
 
 import HomeScreen
-import PackingScreen
+import com.example.navigation.Screens.packing.PackingScreen
 import com.example.navigation.models.packing.TripModel
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -20,13 +18,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.navigation.Screens.PlantAddScreen
+import com.example.navigation.Screens.watering.PlantAddScreen
 import com.example.navigation.Screens.RecipeScreen
 import com.example.navigation.Screens.SettingsScreen
 import com.example.navigation.Screens.ShoppingScreen
-import com.example.navigation.Screens.TripScreen
-import com.example.navigation.Screens.WateringScreen
+import com.example.navigation.Screens.packing.TripScreen
+import com.example.navigation.Screens.watering.WateringScreen
 import com.example.navigation.Screens.WelcomeScreen
+import com.example.navigation.models.watering.PlantModel
 import kotlinx.coroutines.launch
 
 
@@ -39,6 +38,8 @@ fun Navigation(
     val navController = rememberNavController()
     var tripList by remember { mutableStateOf<List<TripModel>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
+    val addedPlants = remember { mutableStateOf<List<PlantModel>>(emptyList()) }
+
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
@@ -122,14 +123,16 @@ fun Navigation(
         composable(Screen.WateringScreen.route) {
             WateringScreen(
                 onGoBack = { navController.popBackStack() },
-                onGoToAddPlant = {
-                    navController.navigate(Screen.PlantAddScreen.route)
-                }
+                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route)},
+                addedPlants = addedPlants.value
             )
         }
         composable(Screen.PlantAddScreen.route) {
             PlantAddScreen(
-                onGoBack = { navController.popBackStack() }
+                onGoBack = { navController.popBackStack() },
+                onPlantAdded = { plant ->
+                    addedPlants.value += plant
+                }
             )
         }
         composable(Screen.ShoppingScreen.route) {

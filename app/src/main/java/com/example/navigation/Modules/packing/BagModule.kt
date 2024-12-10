@@ -1,4 +1,4 @@
-package com.example.navigation.Modules
+package com.example.navigation.Modules.packing
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
