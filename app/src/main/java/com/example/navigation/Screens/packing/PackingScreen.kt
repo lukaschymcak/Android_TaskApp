@@ -38,6 +38,8 @@ fun PackingScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var tripList by remember { mutableStateOf<List<TripModel>>(emptyList()) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var tripToDelete by remember { mutableStateOf<TripModel?>(null) }
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
@@ -147,12 +149,8 @@ fun PackingScreen(
                                         modifier = Modifier
                                             .padding(8.dp)
                                             .clickable {
-                                                coroutineScope.launch {
-                                                    val updatedTrips = tripList.toMutableList()
-                                                    updatedTrips.remove(trip)
-                                                    dataStoreManager.saveTrips(updatedTrips)
-                                                    tripList = updatedTrips
-                                                }
+                                                tripToDelete = trip
+                                                showDeleteDialog = true
                                             }
                                     )
                                 }
@@ -181,7 +179,45 @@ fun PackingScreen(
             onTripAdded = { refreshTripList() }
         )
     }
+
+    if (showDeleteDialog && tripToDelete != null) {
+        AlertDialog(
+            onDismissRequest = {
+                showDeleteDialog = false
+                tripToDelete = null
+            },
+            title = {
+                Text(text = "Delete Trip")
+            },
+            text = {
+                Text(text = "Are you sure you want to delete the trip '${tripToDelete!!.name}'?", fontSize = 18.sp)
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    coroutineScope.launch {
+                        val updatedTrips = tripList.toMutableList()
+                        updatedTrips.remove(tripToDelete)
+                        dataStoreManager.saveTrips(updatedTrips)
+                        tripList = updatedTrips
+                        showDeleteDialog = false
+                        tripToDelete = null
+                    }
+                }) {
+                    Text("Delete", fontSize = 16.sp)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    showDeleteDialog = false
+                    tripToDelete = null
+                }) {
+                    Text("Cancel", fontSize = 16.sp)
+                }
+            }
+        )
+    }
 }
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
