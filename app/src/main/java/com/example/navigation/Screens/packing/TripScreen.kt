@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -29,12 +30,15 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -64,6 +68,9 @@ fun TripScreen(
     val bagList = remember { mutableStateOf<List<BagModel>>(emptyList()) }
     val newBagName = remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var bagToDelete by remember { mutableStateOf<BagModel?>(null) }
+
 
     val onDeleteBag: (BagModel) -> Unit = { bagToDelete ->
         val updatedBags = bagList.value.filter { it != bagToDelete }
@@ -96,6 +103,19 @@ fun TripScreen(
         dataStoreManager.getTrips().collect { trips ->
             val currentTrip = trips.find { it.name == tripModel.name }
             bagList.value = currentTrip?.arrayBagModel ?: emptyList()
+        }
+    }
+    fun deleteBag() {
+        bagToDelete?.let { bag ->
+            val updatedBags = bagList.value.filter { it != bag }
+            val updatedTrip = tripModel.copy(arrayBagModel = updatedBags)
+
+            coroutineScope.launch {
+                dataStoreManager.saveTrips(listOf(updatedTrip))
+                bagList.value = updatedBags
+                showDeleteDialog = false
+                bagToDelete = null
+            }
         }
     }
 
@@ -250,5 +270,28 @@ fun TripScreen(
             }
         }
     }
+if (showDeleteDialog && bagToDelete != null) {
+    AlertDialog(
+        onDismissRequest = {
+            showDeleteDialog = false
+            bagToDelete = null
+        },
+        title = { Text(text = "Delete Bag") },
+        text = { Text(text = "Are you sure you want to delete the bag '${bagToDelete!!.bagName}'?") },
+        confirmButton = {
+            TextButton(onClick = { deleteBag() }) {
+                Text("Delete")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = {
+                showDeleteDialog = false
+                bagToDelete = null
+            }) {
+                Text("Cancel")
+            }
+        }
+    )
+}
 }
 

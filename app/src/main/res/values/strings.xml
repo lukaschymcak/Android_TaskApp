@@ -1,3 +1,64 @@
 <resources>
-    <string name="app_name">Navigation</string>
+    <!-- HomePage -->
+    <string name="app_name">TaskApp</string>
+    <string name="welcome_message">Welcome to TaskApp</string>
+    <string name="hello_name">Hello, </string>
+    <string name="tap_module">Tap any module for details</string>
+    <string name="created_by">Created by Lukas Chymcak and Zuzana Raczova</string>
+
+    <!-- Packing module -->
+    <string name="packing_title">PACKING</string>
+    <string name="no_trips_message">you have no trips, click to add a trip :)</string>
+    <string name="next_trip">next trip: </string>
+    <string name="packed_percentage">packed: </string>
+    <string name="suitcase_description">Suitcase</string>
+
+    <!-- Watering module -->
+    <string name="watering_title">WATERING</string>
+    <string name="no_plants_message">you have no plants, click to add a plant :)</string>
+    <string name="next_watering">next watering: </string>
+    <string name="water_today">watering today: </string>
+
+    <!-- Shopping module -->
+    <string name="shopping_title">SHOPPING LIST</string>
+    <string name="no_items_message">your cart is empty, click to add an item :)</string>
+    <string name="in_shopping_list">shopping list: </string>
+    <string name="items_to_buy">items left to buy: </string>
+
+    <!-- Recipe module -->
+    <string name="recipe_title">RECIPES</string>
+    <string name="no_recipes_message">you have no recipes yet, click to add a recipe :)</string>
+    <string name="recipes_saved">you have 6 recipes saved </string>
+    <string name="last_recipe">last recipe added: </string>
+
+    <!-- Packing screen -->
+    <string name="packing_screen_title">PACKING</string>
+    <string name="my_trips_title">MY TRIPS:</string>
+    <string name="no_trips_message_screen">No trips yet, add a trip :)</string>
+    <string name="packing_percentage">Packing: </string>
+    <string name="remove_trip">Remove</string>
+    <string name="delete_trip_title">Delete Trip</string>
+    <string name="delete_trip_message">Are you sure you want to delete the trip</string>
+    <string name="delete_button">Delete</string>
+    <string name="cancel_button">Cancel</string>
+
+    <string name="add_trip_button">Add trip</string>
+    <string name="add_trip_name_label">Name</string>
+    <string name="select_date_from">Select Date From</string>
+    <string name="select_date_to">Select Date To</string>
+    <string name="add_trip_action">Add Trip</string>
+
+    <!-- Trip screen -->
+    <string name="trip_screen_title">TRIP DETAILS</string>
+    <string name="back_button_description">Arrow back</string>
+    <string name="trip_name">Trip Name</string>
+    <string name="bags_section_title">BAGS</string>
+    <string name="no_bags_message">No bags yet, add a bag :)</string>
+    <string name="bag_name_label">Bag name</string>
+    <string name="add_bag_button">Add Bag</string>
+    <string name="delete_bag_dialog_title">Delete Bag</string>
+    <string name="delete_bag_dialog_message">Are you sure you want to delete the bag </string>
+    <string name="delete_button_bag">Delete</string>
+    <string name="cancel_button_bag">Cancel</string>
+
 </resources>

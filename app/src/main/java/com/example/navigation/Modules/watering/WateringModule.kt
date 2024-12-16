@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -60,7 +61,7 @@ fun WateringModuleExample(onClick: () -> Unit
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = "WATERING",
+                    text = stringResource(id = R.string.watering_title),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Start,
@@ -68,13 +69,13 @@ fun WateringModuleExample(onClick: () -> Unit
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "next watering: today",
+                    text = stringResource(id = R.string.next_watering) + " today",
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige
                 )
                 Text(
-                    text = "today : 5 plants ",
+                    text = stringResource(id = R.string.water_today)+ " 3 ",
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige

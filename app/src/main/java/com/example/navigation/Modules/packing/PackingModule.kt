@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -63,7 +64,7 @@ fun PackingModule(
             ) {
 
                 Text(
-                    text = "PACKING",
+                    text = stringResource(id = R.string.packing_title),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -73,7 +74,7 @@ fun PackingModule(
                 if (tripName == null) {
                     Row {
                         Text(
-                            text = "you have no trips, click to add a trip :)",
+                            text = stringResource(id = R.string.no_trips_message),
                             fontSize = 20.sp,
                             textAlign = TextAlign.Left,
                             color = OurBeige,
@@ -81,13 +82,13 @@ fun PackingModule(
                     }
                 } else {
                     Text(
-                        text = "next trip: $tripName",
+                        text = stringResource(id = R.string.next_trip) + " " + tripName,
                         fontSize = 20.sp,
                         textAlign = TextAlign.Left,
                         color = OurBeige,
                     )
                     Text(
-                        text = "Packed: $packingPercentage%",
+                        text = stringResource(id = R.string.packed_percentage) + " " + packingPercentage + "%",
                         fontSize = 20.sp,
                         textAlign = TextAlign.Left,
                         color = OurBeige,

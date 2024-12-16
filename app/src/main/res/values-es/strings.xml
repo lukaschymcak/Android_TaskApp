@@ -1,0 +1,69 @@
+<resources>
+    <!-- HomePage -->
+    <string name="app_name">TaskApp</string>
+    <string name="welcome_message">Bienvenido a TaskApp</string>
+    <string name="hello_name">¡Hola, </string>
+    <string name="tap_module">Toque cualquier módulo para obtener detalles</string>
+    <string name="created_by">Creado por Lukas Chymcak and Zuzana Raczova</string>
+
+    <!-- Packing module -->
+    <string name="packing_title">EMPAQUE</string>
+    <string name="no_trips_message">no tienes viajes, haz clic para agregar uno :)</string>
+    <string name="next_trip">próximo viaje: </string>
+    <string name="packed_percentage">empacado: </string>
+    <string name="suitcase_description">maleta</string>
+
+    <!-- Watering module -->
+    <string name="watering_title">RIEGO</string>
+    <string name="no_plants_message">no tienes plantas, haz clic para agregar una planta :)</string>
+    <string name="next_watering">próximo riego: </string>
+    <string name="water_today">riego hoy: </string>
+
+    <!-- Shopping module -->
+    <string name="shopping_title">LISTA DE COMPRAS</string>
+    <string name="no_items_message">tu carrito está vacío, haz clic para agregar un artículo :)</string>
+    <string name="in_shopping_list">lista de compras: </string>
+    <string name="items_to_buy">artículos por comprar: </string>
+
+    <!-- Recipe module -->
+    <string name="recipe_title">RECETAS</string>
+    <string name="no_recipes_message">aún no tienes recetas, haz clic para agregar una receta :)</string>
+    <string name="recipes_saved">tienes 6 recetas guardadas</string>
+    <string name="last_recipe">última receta añadida: </string>
+
+    <!-- Packing screen -->
+    <string name="packing_screen_title">EMPAQUE</string>
+    <string name="my_trips_title">MIS VIAJES:</string>
+    <string name="no_trips_message_screen">Aún no hay viajes, agrega un viaje :)</string>
+    <string name="packing_percentage">Empaque: </string>
+    <string name="remove_trip">Eliminar</string>
+    <string name="delete_trip_title">Eliminar viaje</string>
+    <string name="delete_trip_message">¿Estás seguro de que quieres eliminar el viaje?</string>
+    <string name="delete_button">Eliminar</string>
+    <string name="cancel_button">Cancelar</string>
+
+    <string name="add_trip_button">Agregar viaje</string>
+    <string name="add_trip_name_label">Nombre</string>
+    <string name="select_date_from">Seleccionar fecha desde</string>
+    <string name="select_date_to">Seleccionar fecha hasta</string>
+    <string name="add_trip_action">Agregar viaje</string>
+
+    <!-- Trip screen -->
+    <string name="trip_screen_title">DETALLES DE VIAJE</string>
+    <string name="back_button_description">Flecha hacia atrás</string>
+    <string name="trip_name">Nombre del viaje</string>
+    <string name="bags_section_title">BOLSAS</string>
+    <string name="no_bags_message">Aún no hay bolsas, agrega una bolsa :)</string>
+    <string name="bag_name_label">Nombre de la bolsa</string>
+    <string name="add_bag_button">Agregar Bolsa</string>
+    <string name="delete_bag_dialog_title">Eliminar bolsa</string>
+    <string name="delete_bag_dialog_message">¿Estás seguro de que quieres eliminar la bolsa </string>
+    <string name="delete_button_bag">Eliminar</string>
+    <string name="cancel_button_bag">Cancelar</string>
+
+
+
+
+
+
+</resources>

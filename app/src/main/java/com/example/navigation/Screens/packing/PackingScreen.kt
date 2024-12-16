@@ -17,11 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.navigation.DataStoreManager
+import com.example.navigation.R
 import com.example.navigation.Screen
 import com.example.navigation.models.packing.TripModel
 import com.example.navigation.route
@@ -79,7 +81,7 @@ fun PackingScreen(
             )
             Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = "PACKING",
+                text = stringResource(id = com.example.navigation.R.string.packing_screen_title),
                 color = OurPackingBlue,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold
@@ -95,7 +97,7 @@ fun PackingScreen(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = "MY TRIPS:",
+                    text = stringResource(id = com.example.navigation.R.string.my_trips_title),
                     color = Color.White,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.Bold
@@ -105,7 +107,7 @@ fun PackingScreen(
 
                 if (tripList.isEmpty()) {
                     Text(
-                        text = "No trips yet, add a trip :)",
+                        text = stringResource(id = com.example.navigation.R.string.no_trips_message_screen),
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
@@ -144,7 +146,7 @@ fun PackingScreen(
                                         )
                                     Icon(
                                         imageVector = Icons.Default.Delete,
-                                        contentDescription = "Remove",
+                                        contentDescription = stringResource(id = com.example.navigation.R.string.remove_trip),
                                         tint = OurPackingBlue,
                                         modifier = Modifier
                                             .padding(8.dp)
@@ -161,7 +163,7 @@ fun PackingScreen(
                                     modifier = Modifier.padding(16.dp)
                                 )
                                 Text(
-                                    text = "Packing: $packingPercentage%",
+                                    text = stringResource(id = com.example.navigation.R.string.packing_percentage)+packingPercentage+"%",
                                     color = OurPackingBlue,
                                     fontSize = 18.sp,
                                     modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
@@ -173,7 +175,15 @@ fun PackingScreen(
                 }
             }
         }
-
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(id = R.string.tap_module),
+            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
+        )
+        Spacer(modifier = Modifier.height(18.dp))
         AddTripBottomSheet(
             dataStoreManager = dataStoreManager,
             onTripAdded = { refreshTripList() }
@@ -187,10 +197,10 @@ fun PackingScreen(
                 tripToDelete = null
             },
             title = {
-                Text(text = "Delete Trip")
+                Text(text = stringResource(id = com.example.navigation.R.string.delete_trip_title))
             },
             text = {
-                Text(text = "Are you sure you want to delete the trip '${tripToDelete!!.name}'?", fontSize = 18.sp)
+                Text(text = stringResource(id = com.example.navigation.R.string.delete_trip_message)+{tripToDelete!!.name}+"?", fontSize = 18.sp)
             },
             confirmButton = {
                 TextButton(onClick = {
@@ -203,7 +213,7 @@ fun PackingScreen(
                         tripToDelete = null
                     }
                 }) {
-                    Text("Delete", fontSize = 16.sp)
+                    Text(stringResource(id = com.example.navigation.R.string.delete_button), fontSize = 16.sp)
                 }
             },
             dismissButton = {
@@ -211,7 +221,7 @@ fun PackingScreen(
                     showDeleteDialog = false
                     tripToDelete = null
                 }) {
-                    Text("Cancel", fontSize = 16.sp)
+                    Text(stringResource(id = com.example.navigation.R.string.cancel_button), fontSize = 16.sp)
                 }
             }
         )
@@ -260,7 +270,7 @@ fun AddTripBottomSheet(
         colors = ButtonDefaults.outlinedButtonColors(contentColor = OurPackingBlue),
     ) {
         Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
-        Text("Add trip", fontSize = 18.sp)
+        Text(stringResource(id = R.string.add_trip_button), fontSize = 18.sp)
 
         if (showBottomSheet) {
             ModalBottomSheet(onDismissRequest = { showBottomSheet = false }) {
@@ -274,19 +284,19 @@ fun AddTripBottomSheet(
                     OutlinedTextField(
                         value = tripName.value,
                         onValueChange = { tripName.value = it },
-                        label = { Text("Name") }
+                        label = { Text(stringResource(id = R.string.add_trip_name_label)) }
                     )
 
                     Spacer(modifier = Modifier.height(8.dp))
 
                     OutlinedButton(onClick = { fromDatePickerDialog.show() }) {
-                        Text(tripFrom.value.ifEmpty { "Select Date From" })
+                        Text(tripFrom.value.ifEmpty { stringResource(id = R.string.select_date_from) })
                     }
 
                     Spacer(modifier = Modifier.height(8.dp))
 
                     OutlinedButton(onClick = { toDatePickerDialog.show() }) {
-                        Text(tripTo.value.ifEmpty { "Select Date To" })
+                        Text(tripTo.value.ifEmpty { stringResource(id = R.string.select_date_to) })
                     }
 
                     Button(onClick = {
@@ -298,7 +308,7 @@ fun AddTripBottomSheet(
                             showBottomSheet = false
                         }
                     }) {
-                        Text("Add Trip")
+                        Text(stringResource(id = R.string.add_trip_action))
                     }
                 }
             }

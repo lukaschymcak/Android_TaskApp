@@ -20,6 +20,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        resourceConfigurations.addAll(listOf("en", "sk", "es"))
     }
 
     buildTypes {
@@ -41,6 +42,7 @@ android {
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -50,6 +52,7 @@ android {
         }
     }
 }
+
 
 dependencies {
 

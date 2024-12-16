@@ -1,3 +1,4 @@
+import android.provider.Settings.Global.getString
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,11 +31,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.states.HomeScreenState
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import com.example.navigation.DataStoreManager
 import com.example.navigation.Modules.packing.PackingModule
 import com.example.navigation.Modules.ShoppingModuleExample
 import com.example.navigation.Modules.RecipeModuleExample
 import com.example.navigation.Modules.watering.WateringModuleExample
+import com.example.navigation.R
 import com.example.navigation.models.packing.TripModel
 import kotlinx.coroutines.flow.firstOrNull
 
@@ -77,8 +80,9 @@ fun HomeScreen(
                 contentDescription = "Nothing",
                 tint = Color.White,
             )
+
             Text(
-                text = "hello, $name",
+                text = stringResource(id = R.string.hello_name) + " " +name+"!",
                 fontSize = 32.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
@@ -113,7 +117,7 @@ fun HomeScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Tap any module for details",
+            text = stringResource(id = R.string.tap_module),
             fontSize = 18.sp,
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
@@ -121,7 +125,7 @@ fun HomeScreen(
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-            text = "Created by Lukas Chymcak and Zuzana Raczova",
+            text = stringResource(id = R.string.created_by),
             fontSize = 13.sp,
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,

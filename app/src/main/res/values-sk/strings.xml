@@ -1,0 +1,64 @@
+<resources>
+    <!-- HomePage -->
+    <string name="app_name">TaskApp</string>
+    <string name="welcome_message">Vitajte v TaskApp</string>
+    <string name="hello_name">Ahoj, </string>
+    <string name="tap_module">Ťukni na model pre zobrazíte podrobnosti</string>
+    <string name="created_by">Tvorcovia: Lukáš Chymčák a Zuzana Ráczová</string>
+
+    <!-- Packing module -->
+    <string name="packing_title">BALENIE</string>
+    <string name="no_trips_message">nemáte žiadny výlet, kliknite a pridajte výlet :)</string>
+    <string name="next_trip">najbližší výlet: </string>
+    <string name="packed_percentage">zbalené na: </string>
+    <string name="suitcase_description">Kufor</string>
+
+    <!-- Watering module -->
+    <string name="watering_title">WATERING</string>
+    <string name="no_plants_message">nemáte žiadne kvety, kliknite a pridajte kvet :)</string>
+    <string name="next_watering">najbližšie polievanie: </string>
+    <string name="water_today">polievanie dnes: </string>
+
+    <!-- Shopping module -->
+    <string name="shopping_title">NÁKUPNÝ ZOZNAM</string>
+    <string name="no_items_message">nákupný košík je prázdny :)</string>
+    <string name="in_shopping_list">nákupný zoznam: </string>
+    <string name="items_to_buy">ešte kúpiť položky </string>
+
+    <!-- Recipe module -->
+    <string name="recipe_title">RECEPTY</string>
+    <string name="no_recipes_message">ešte nemáte žiadne recepty, kliknite a pridajte recept :)</string>
+    <string name="recipes_saved">máte uložené 6 receptov</string>
+    <string name="last_recipe">posledný pridaný recept: </string>
+
+    <!-- Packing screen -->
+    <string name="packing_screen_title">BALENIE</string>
+    <string name="my_trips_title">MOJE CESTY:</string>
+    <string name="no_trips_message_screen">Žiadne cesty zatiaľ, pridajte cestu :)</string>
+    <string name="packing_percentage">Balenie: </string>
+    <string name="remove_trip">Odstrániť</string>
+    <string name="delete_trip_title">Zmazať cestu</string>
+    <string name="delete_trip_message">Ste si istí, že chcete zmazať cestu </string>
+    <string name="delete_button">Zmazať</string>
+    <string name="cancel_button">Zrušiť</string>
+
+    <string name="add_trip_button">Pridať cestu</string>
+    <string name="add_trip_name_label">Názov</string>
+    <string name="select_date_from">Vyberte dátum od</string>
+    <string name="select_date_to">Vyberte dátum do</string>
+    <string name="add_trip_action">Pridať cestu</string>
+
+    <!-- Trip screen -->
+    <string name="trip_screen_title">DETAIL VÝLETU</string>
+    <string name="back_button_description">Späť</string>
+    <string name="trip_name">Názov cesty</string>
+    <string name="bags_section_title">BATŕE</string>
+    <string name="no_bags_message">Zatiaľ žiadne tašky, pridajte tašku :)</string>
+    <string name="bag_name_label">Názov tašky</string>
+    <string name="add_bag_button">Pridať tašku</string>
+    <string name="delete_bag_dialog_title">Zmazať tašku</string>
+    <string name="delete_bag_dialog_message">Ste si istí, že chcete zmazať tašku</string>
+    <string name="delete_button_bag">Zmazať</string>
+    <string name="cancel_button_bag">Zrušiť</string>
+
+</resources>
