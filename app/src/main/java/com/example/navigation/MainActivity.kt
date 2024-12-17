@@ -10,6 +10,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.navigation.states.PreferencesHelper
 import com.example.navigation.ui.theme.NavigationTheme
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.runBlocking
 
 
 class MainActivity : ComponentActivity() {
@@ -18,6 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         val dataStoreManager = DataStoreManager(applicationContext)
+        applySavedLanguage(dataStoreManager)
 
         setContent {
             NavigationTheme {
@@ -36,6 +39,12 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
+        }
+    }
+    private fun applySavedLanguage(dataStoreManager: DataStoreManager) {
+        runBlocking {
+            val savedLanguage = dataStoreManager.getLanguage().firstOrNull() ?: "en"
+            updateLanguage(this@MainActivity, savedLanguage)
         }
     }
 }

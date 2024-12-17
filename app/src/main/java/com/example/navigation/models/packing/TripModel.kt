@@ -10,11 +10,12 @@ data class TripModel(
     val arrayBagModel: List<BagModel> = mutableListOf(),
     var allItems: Int = 0,
     var allCheckedItems: Int = 0,
-    var tripPercentage: Int = 0
+    var tripPercentage: Int = 100
 ) {
 
     fun setTripPercentage() {
-        tripPercentage = if (allItems == 0) 0 else (allCheckedItems * 100) / allItems
+
+        tripPercentage = if (allItems == 0) 100 else (allCheckedItems * 100) / allItems
     }
 
     fun calculatePackingPercentage(trip: TripModel): Int {

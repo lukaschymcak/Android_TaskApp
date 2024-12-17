@@ -87,6 +87,7 @@ fun PackingModule(
                         textAlign = TextAlign.Left,
                         color = OurBeige,
                     )
+
                     Text(
                         text = stringResource(id = R.string.packed_percentage) + " " + packingPercentage + "%",
                         fontSize = 20.sp,

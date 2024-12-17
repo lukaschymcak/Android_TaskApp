@@ -1,5 +1,8 @@
 package com.example.navigation.models.watering
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.example.navigation.R
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -12,29 +15,7 @@ data class PlantModel(
     val image: String,
     private var watered: Boolean
 ) {
-//    fun getPlantName(): String {
-//        return plantName
-//    }
-//
-//    fun getDescription(): String {
-//        return description
-//    }
-//
-//    fun getLocation(): HouseLocation {
-//        return location
-//    }
-//
-//    fun getFrequency(): Int {
-//        return frequency
-//    }
-//
-//    fun getWater(): String {
-//        return water
-//    }
-//
-//    fun getImage(): String {
-//        return image
-//    }
+
 
     fun getWatered(): Boolean {
         return watered
@@ -126,4 +107,18 @@ object PresetPlants {
         aloeVera,
         africanViolet
     )
+}
+@Composable
+fun getLocalizedPlantName(plantName: String): String {
+    return when (plantName) {
+        "Custom" -> stringResource(id = R.string.custom)
+        "Monstera" -> stringResource(id = R.string.monstera)
+        "Orchid" -> stringResource(id = R.string.orchid)
+        "ZZ Plant" -> stringResource(id = R.string.zz_plant)
+        "Snake Plant" -> stringResource(id = R.string.snake_plant)
+        "Spider Plant" -> stringResource(id = R.string.spider_plant)
+        "Aloe Vera" -> stringResource(id = R.string.aloe_vera)
+        "African Violet" -> stringResource(id = R.string.african_violet)
+        else -> plantName
+    }
 }

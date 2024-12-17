@@ -22,6 +22,7 @@ class DataStoreManager(private val context: Context) {
     companion object {
         val TRIPS_KEY = stringPreferencesKey("trips")
         val PLANTS_KEY = stringPreferencesKey("plants")
+        val LANGUAGE_KEY = stringPreferencesKey("language")
 
     }
 
@@ -49,6 +50,19 @@ class DataStoreManager(private val context: Context) {
             .sortedBy { trip ->
                 LocalDate.parse(trip.startDate, dateFormatter)
             }
+    }
+    suspend fun saveLanguage(languageCode: String) {
+        context.preferenceDataStore.edit { preferences ->
+            preferences[LANGUAGE_KEY] = languageCode
+        }
+    }
+
+    fun getLanguage() = context.preferenceDataStore.data.map { preferences ->
+        preferences[LANGUAGE_KEY] ?: getSystemLanguage()
+    }
+
+    private fun getSystemLanguage(): String {
+        return context.resources.configuration.locales[0].language ?: "en"
     }
 
     private val json = Json { ignoreUnknownKeys = true }

@@ -71,7 +71,8 @@ fun PackingScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -79,12 +80,16 @@ fun PackingScreen(
                 modifier = Modifier.clickable { onGoBack() },
                 tint = OurPackingBlue
             )
-            Spacer(modifier = Modifier.width(16.dp))
             Text(
-                text = stringResource(id = com.example.navigation.R.string.packing_screen_title),
+                text = stringResource(id = R.string.packing_screen_title),
                 color = OurPackingBlue,
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold
+            )
+            Icon(
+                imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                contentDescription = "NOTHING",
+                tint = Color.Transparent
             )
         }
 
@@ -97,7 +102,7 @@ fun PackingScreen(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = stringResource(id = com.example.navigation.R.string.my_trips_title),
+                    text = stringResource(id = R.string.my_trips_title),
                     color = Color.White,
                     fontSize = 25.sp,
                     fontWeight = FontWeight.Bold
@@ -107,7 +112,7 @@ fun PackingScreen(
 
                 if (tripList.isEmpty()) {
                     Text(
-                        text = stringResource(id = com.example.navigation.R.string.no_trips_message_screen),
+                        text = stringResource(id = R.string.no_trips_message_screen),
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
@@ -177,7 +182,7 @@ fun PackingScreen(
         }
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = stringResource(id = R.string.tap_module),
+            text = stringResource(id = R.string.click_to_add_bag),
             fontSize = 16.sp,
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
@@ -197,10 +202,10 @@ fun PackingScreen(
                 tripToDelete = null
             },
             title = {
-                Text(text = stringResource(id = com.example.navigation.R.string.delete_trip_title))
+                Text(text = stringResource(id = R.string.delete_trip_title))
             },
             text = {
-                Text(text = stringResource(id = com.example.navigation.R.string.delete_trip_message)+{tripToDelete!!.name}+"?", fontSize = 18.sp)
+                Text(text = stringResource(id =R.string.delete_trip_message), fontSize = 18.sp)
             },
             confirmButton = {
                 TextButton(onClick = {
@@ -213,7 +218,7 @@ fun PackingScreen(
                         tripToDelete = null
                     }
                 }) {
-                    Text(stringResource(id = com.example.navigation.R.string.delete_button), fontSize = 16.sp)
+                    Text(stringResource(id = R.string.delete_button), fontSize = 16.sp)
                 }
             },
             dismissButton = {

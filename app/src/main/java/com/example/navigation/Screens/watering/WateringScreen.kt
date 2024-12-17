@@ -30,10 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
+import com.example.navigation.R
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreen
 
@@ -63,12 +65,12 @@ fun WateringScreen(
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back home",
+                contentDescription = stringResource(R.string.back_to_home),
                 modifier = Modifier.clickable { onGoBack() },
                 tint = OurGreen
             )
             Text(
-                text = "WATERING",
+                text = stringResource(R.string.watering_title),
                 fontSize = 25.sp,
                 fontWeight = FontWeight.Bold,
                 color = OurGreen
@@ -93,7 +95,7 @@ fun WateringScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
                     Text(
-                        text = "Added Plants:",
+                        text = stringResource(R.string.added_plants),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurBeige,
@@ -147,7 +149,7 @@ fun WateringScreen(
             }
             } else {
                 Text(
-                    text = "No plants added.",
+                    text = stringResource(R.string.no_plants_added),
                     fontSize = 16.sp,
                     color = OurGreen,
                     modifier = Modifier.padding(4.dp)
@@ -161,7 +163,7 @@ fun WateringScreen(
                 contentColor = OurGreen
             )
         ) {
-            Text(text = "Add plant")
+            Text(text = stringResource(R.string.add_plant_title))
         }
     }
 }

@@ -3,8 +3,12 @@
     <string name="app_name">TaskApp</string>
     <string name="welcome_message">Bienvenido a TaskApp</string>
     <string name="hello_name">¡Hola, </string>
-    <string name="tap_module">Toque cualquier módulo para obtener detalles</string>
+    <string name="tap_module">Haz clic para obtener detalles</string>
     <string name="created_by">Creado por Lukas Chymcak and Zuzana Raczova</string>
+
+    <!-- Settings -->
+    <string name="settings_title">CONFIGURACIÓN</string>
+    <string name="settings_change_language">IDIOMA</string>
 
     <!-- Packing module -->
     <string name="packing_title">EMPAQUE</string>
@@ -41,12 +45,14 @@
     <string name="delete_trip_message">¿Estás seguro de que quieres eliminar el viaje?</string>
     <string name="delete_button">Eliminar</string>
     <string name="cancel_button">Cancelar</string>
+    <string name="click_to_add_bag">Haz clic para agregar una bolsa</string>
 
     <string name="add_trip_button">Agregar viaje</string>
     <string name="add_trip_name_label">Nombre</string>
     <string name="select_date_from">Seleccionar fecha desde</string>
     <string name="select_date_to">Seleccionar fecha hasta</string>
     <string name="add_trip_action">Agregar viaje</string>
+
 
     <!-- Trip screen -->
     <string name="trip_screen_title">DETALLES DE VIAJE</string>
@@ -61,7 +67,43 @@
     <string name="delete_button_bag">Eliminar</string>
     <string name="cancel_button_bag">Cancelar</string>
 
+    <!-- Plant add screen -->
+    <string name="back_to_watering">Volver</string>
+    <string name="add_plant">AÑADIR PLANTA</string>
+    <string name="select_from_preset_or_add_custom">¡Selecciona una planta preestablecida o añade una personalizada!</string>
+    <string name="custom">Personalizada</string>
+    <string name="plant_image">Imagen de la planta</string>
 
+    <!-- Watering screen -->
+    <string name="back_to_home">Volver a inicio</string>
+    <string name="watering">RIEGO</string>
+    <string name="added_plants">Plantas añadidas:</string>
+    <string name="no_plants_added">No se han añadido plantas.</string>
+    <string name="add_plant_title">Añadir planta</string>
+
+    <!-- Welcome screen -->
+    <string name="welcome_screen_title">¡Bienvenido!</string>
+    <string name="enter">Entrar</string>
+    <string name="logo_description">Logotipo</string>
+
+    <!-- Plant model -->
+    <string name="custom_plant">Personalizado</string>
+    <string name="monstera">Monstera</string>
+    <string name="orchid">Orquídea</string>
+    <string name="zz_plant">Planta ZZ</string>
+    <string name="snake_plant">Lengua de suegra</string>
+    <string name="spider_plant">Malamadre</string>
+    <string name="aloe_vera">Aloe Vera</string>
+    <string name="african_violet">Violeta Africana</string>
+
+    <string name="custom_description">Descripción personalizada de la planta</string>
+    <string name="monstera_description">Monstera (Monstera deliciosa) es una planta tropical popular por sus grandes hojas brillantes en forma de corazón con agujeros y cortes únicos. Crece mejor con luz indirecta brillante y es de bajo mantenimiento.</string>
+    <string name="orchid_description">Las orquídeas (Phalaenopsis) son plantas tropicales elegantes conocidas por sus flores hermosas y duraderas. Prosperan con luz indirecta brillante y requieren un riego cuidadoso y humedad.</string>
+    <string name="zz_plant_description">La planta ZZ (Zamioculcas zamiifolia) es una planta interior resistente y de bajo mantenimiento, conocida por sus hojas brillantes y de color verde oscuro.</string>
+    <string name="snake_plant_description">La planta serpiente es resistente y de bajo mantenimiento, con hojas largas y en forma de espada que presentan una variación verde y amarilla.</string>
+    <string name="spider_plant_description">La planta araña es una planta de interior resistente y adaptable, con hojas largas, arqueadas y variegadas.</string>
+    <string name="aloe_vera_description">Aloe Vera es una suculenta versátil con hojas gruesas y carnosas llenas de gel, conocida por sus beneficios medicinales y de cuidado de la piel.</string>
+    <string name="african_violet_description">La violeta africana es una planta compacta de interior con hojas suaves y flores vibrantes en colores morado, rosa o blanco.</string>
 
 
 

@@ -3,8 +3,13 @@
     <string name="app_name">TaskApp</string>
     <string name="welcome_message">Vitajte v TaskApp</string>
     <string name="hello_name">Ahoj, </string>
-    <string name="tap_module">Ťukni na model pre zobrazíte podrobnosti</string>
+    <string name="tap_module">Ťukni na model na zobrazenie podrobností</string>
     <string name="created_by">Tvorcovia: Lukáš Chymčák a Zuzana Ráczová</string>
+
+    <!-- Settings -->
+    <string name="settings_title">NASTAVENIA</string>
+    <string name="settings_change_language">JAZYK</string>
+
 
     <!-- Packing module -->
     <string name="packing_title">BALENIE</string>
@@ -14,7 +19,7 @@
     <string name="suitcase_description">Kufor</string>
 
     <!-- Watering module -->
-    <string name="watering_title">WATERING</string>
+    <string name="watering_title">POLIEVANIE</string>
     <string name="no_plants_message">nemáte žiadne kvety, kliknite a pridajte kvet :)</string>
     <string name="next_watering">najbližšie polievanie: </string>
     <string name="water_today">polievanie dnes: </string>
@@ -47,6 +52,8 @@
     <string name="select_date_from">Vyberte dátum od</string>
     <string name="select_date_to">Vyberte dátum do</string>
     <string name="add_trip_action">Pridať cestu</string>
+    <string name="click_to_add_bag">Ťukni a pridaj tašku</string>
+
 
     <!-- Trip screen -->
     <string name="trip_screen_title">DETAIL VÝLETU</string>
@@ -60,5 +67,43 @@
     <string name="delete_bag_dialog_message">Ste si istí, že chcete zmazať tašku</string>
     <string name="delete_button_bag">Zmazať</string>
     <string name="cancel_button_bag">Zrušiť</string>
+
+    <!-- Plant add screen -->
+    <string name="back_to_watering">Späť</string>
+    <string name="add_plant">PRIDAŤ RASTLINU</string>
+    <string name="select_from_preset_or_add_custom">Vyberte si z prednastavených rastlín alebo pridajte vlastnú!</string>
+    <string name="custom">Vlastná</string>
+    <string name="plant_image">Obrázok rastliny</string>
+
+    <!-- Watering screen -->
+    <string name="back_to_home">Späť</string>
+    <string name="watering">POLIEVANIE</string>
+    <string name="added_plants">Pridané rastliny:</string>
+    <string name="no_plants_added">Žiadne rastliny neboli pridané.</string>
+    <string name="add_plant_title">Pridať rastlinu</string>
+
+    <!-- Welcome screen -->
+    <string name="welcome_screen_title">Vitajte!</string>
+    <string name="enter">Vstúpiť</string>
+    <string name="logo_description">Logo</string>
+
+    <!-- Plant model -->
+    <string name="custom_plant">Vlastné</string>
+    <string name="monstera">Monstera</string>
+    <string name="orchid">Orchidea</string>
+    <string name="zz_plant">Zamiokulkas</string>
+    <string name="snake_plant">Svokrin jazyk</string>
+    <string name="spider_plant">Zelenec chochlatý</string>
+    <string name="aloe_vera">Aloe Vera</string>
+    <string name="african_violet">Africká Fialka</string>
+
+    <string name="custom_description">Vlastný popis rastliny</string>
+    <string name="monstera_description">Monstera (Monstera deliciosa) je obľúbená tropická izbová rastlina známa svojimi veľkými, lesklými, srdcovitými listami s unikátnymi otvormi a zárezmi. Rastie v jasnom nepriamom svetle a je nízkoúdržbová.</string>
+    <string name="orchid_description">Orchidee (Phalaenopsis) sú elegantné tropické rastliny známe svojimi ohromujúcimi, dlhotrvajúcimi kvetmi. Potrebujú jasné, nepriamé svetlo a starostlivú zálievku a vlhkosť.</string>
+    <string name="zz_plant_description">ZZ rastlina (Zamioculcas zamiifolia) je odolná a nenáročná izbová rastlina, známa svojimi lesklými, tmavozelenými listami.</string>
+    <string name="snake_plant_description">Hadia rastlina je odolná a nenáročná rastlina s vysokými, mečovitými listami, ktoré majú zelenú a žltú pruhovanosť.</string>
+    <string name="spider_plant_description">Pavúčia rastlina je odolná a prispôsobivá rastlina s dlhými, oblúkovitými, variegovanými listami.</string>
+    <string name="aloe_vera_description">Aloe Vera je všestranná sukulentná rastlina s hrubými, šťavnatými listami naplnenými gélom, ktorý je známy svojimi liečivými a kozmetickými účinkami.</string>
+    <string name="african_violet_description">Africká fialka je kompaktná izbová rastlina s jemnými listami a živými kvetmi v odtieňoch fialovej, ružovej alebo bielej.</string>
 
 </resources>

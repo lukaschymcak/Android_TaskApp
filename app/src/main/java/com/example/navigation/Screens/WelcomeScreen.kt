@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -55,7 +56,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
         )
 
         Text(
-            text = "Welcome!",
+            text = stringResource(R.string.welcome_screen_title),
             fontSize = 55.sp,
             style = MaterialTheme.typography.bodyLarge,
             fontWeight = FontWeight.Bold,
@@ -82,7 +83,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier, onGoToNextScreen: () -> Unit) {
             }
         ) {
             Text(
-                "Enter",
+                stringResource(R.string.enter),
                 fontSize = 20.sp,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold

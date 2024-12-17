@@ -27,10 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
+import com.example.navigation.R
 import com.example.navigation.models.watering.PlantModel
 import com.example.navigation.ui.theme.OurGreen
 import com.example.navigation.models.watering.PresetPlants.presetPlants
@@ -65,12 +67,12 @@ fun PlantAddScreen(onGoBack: () -> Unit,
         ) {
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Back to watering",
+                contentDescription = stringResource(id = R.string.back_to_watering),
                 modifier = Modifier.clickable { onGoBack() },
                 tint = OurGreen
             )
             Text(
-                text = "ADD PLANT",
+                text = stringResource(id = R.string.add_plant),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = OurGreen
@@ -83,7 +85,8 @@ fun PlantAddScreen(onGoBack: () -> Unit,
         }
             Text(
                 modifier = Modifier.padding(8.dp),
-                text = "Select from preset plants or add a custom one!",
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                text = stringResource(id = R.string.select_from_preset_or_add_custom),
                 fontSize = 15.sp,
                 color = OurGreen
             )

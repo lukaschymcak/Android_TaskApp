@@ -6,6 +6,11 @@
     <string name="tap_module">Tap any module for details</string>
     <string name="created_by">Created by Lukas Chymcak and Zuzana Raczova</string>
 
+    <!-- Settings -->
+    <string name="settings_title">SETTINGS</string>
+    <string name="settings_change_language">LANGUAGE</string>
+
+
     <!-- Packing module -->
     <string name="packing_title">PACKING</string>
     <string name="no_trips_message">you have no trips, click to add a trip :)</string>
@@ -41,6 +46,7 @@
     <string name="delete_trip_message">Are you sure you want to delete the trip</string>
     <string name="delete_button">Delete</string>
     <string name="cancel_button">Cancel</string>
+    <string name="click_to_add_bag">Click to add a bag</string>
 
     <string name="add_trip_button">Add trip</string>
     <string name="add_trip_name_label">Name</string>
@@ -60,5 +66,43 @@
     <string name="delete_bag_dialog_message">Are you sure you want to delete the bag </string>
     <string name="delete_button_bag">Delete</string>
     <string name="cancel_button_bag">Cancel</string>
+
+    <!-- Plant add screen -->
+    <string name="back_to_watering">Back to watering</string>
+    <string name="add_plant">ADD PLANT</string>
+    <string name="select_from_preset_or_add_custom">Select from preset plants or add a custom one!</string>
+    <string name="custom">Custom</string>
+    <string name="plant_image">Plant image</string>
+
+    <!-- Watering screen -->
+    <string name="back_to_home">Back home</string>
+    <string name="watering">WATERING</string>
+    <string name="added_plants">Added Plants:</string>
+    <string name="no_plants_added">No plants added.</string>
+    <string name="add_plant_title">Add plant</string>
+
+    <!-- Welcome screen -->
+    <string name="welcome_screen_title">Welcome!</string>
+    <string name="enter">Enter</string>
+    <string name="logo_description">Logo</string>
+
+    <!-- Plant model -->
+    <string name="custom_plant">Custom</string>
+    <string name="monstera">Monstera</string>
+    <string name="orchid">Orchid</string>
+    <string name="zz_plant">ZZ Plant</string>
+    <string name="snake_plant">Snake Plant</string>
+    <string name="spider_plant">Spider Plant</string>
+    <string name="aloe_vera">Aloe Vera</string>
+    <string name="african_violet">African Violet</string>
+
+    <string name="custom_description">Custom plant description</string>
+    <string name="monstera_description">Monstera (Monstera deliciosa) is a popular tropical houseplant known for its large, glossy, heart-shaped leaves with unique holes and splits. It thrives in bright, indirect light and is low-maintenance.</string>
+    <string name="orchid_description">Orchids (Phalaenopsis) are elegant tropical plants known for their stunning, long-lasting flowers. They thrive in bright, indirect light and require careful watering and humidity.</string>
+    <string name="zz_plant_description">The ZZ plant (Zamioculcas zamiifolia) is a hardy, low-maintenance indoor plant known for its glossy, dark green leaves.</string>
+    <string name="snake_plant_description">The Snake Plant is a resilient and low-maintenance plant with tall, sword-like leaves featuring green and yellow variegation.</string>
+    <string name="spider_plant_description">The Spider Plant is a hardy and adaptable houseplant with long, arching, variegated leaves.</string>
+    <string name="aloe_vera_description">Aloe Vera is a versatile succulent with thick, fleshy leaves filled with gel known for its medicinal and skincare benefits.</string>
+    <string name="african_violet_description">The African Violet is a compact houseplant with fuzzy leaves and vibrant flowers in purple, pink, or white.</string>
 
 </resources>

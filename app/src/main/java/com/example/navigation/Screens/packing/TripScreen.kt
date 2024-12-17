@@ -42,11 +42,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
 import com.example.navigation.Modules.packing.BagModule
+import com.example.navigation.R
 import com.example.navigation.models.packing.BagModel
 import com.example.navigation.models.packing.ItemModel
 import com.example.navigation.ui.theme.OurPackingBlue
@@ -180,7 +182,7 @@ fun TripScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "BAGS",
+                        text = stringResource(id = R.string.bags_section_title),
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
@@ -189,7 +191,7 @@ fun TripScreen(
 
                 if (bagList.value.isEmpty()) {
                     Text(
-                        text = "No bags yet, add a bag :)",
+                        text = stringResource(id = R.string.no_bags_message),
                         color = Color.White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
@@ -235,7 +237,7 @@ fun TripScreen(
             TextField(
                 value = newBagName.value,
                 onValueChange = { newBagName.value = it },
-                label = { Text("Bag name") },
+                label = { Text(stringResource(id = R.string.bag_name_label)) },
                 modifier = Modifier
                     .weight(1f)
                     .padding(8.dp),
@@ -266,7 +268,7 @@ fun TripScreen(
                     tint = Color.White,
                     modifier = Modifier.size(20.dp)
                 )
-                Text(text = "Add Bag", color = Color.White)
+                Text(text = stringResource(id = R.string.add_bag_button), color = Color.White)
             }
         }
     }
@@ -276,11 +278,11 @@ if (showDeleteDialog && bagToDelete != null) {
             showDeleteDialog = false
             bagToDelete = null
         },
-        title = { Text(text = "Delete Bag") },
-        text = { Text(text = "Are you sure you want to delete the bag '${bagToDelete!!.bagName}'?") },
+        title = { Text(text = stringResource(id = R.string.delete_bag_dialog_title)) },
+        text = { Text(text = stringResource(id = R.string.delete_bag_dialog_message) +{bagToDelete!!.bagName}+ "?")}, //${bagToDelete!!.bagName}'?") },
         confirmButton = {
             TextButton(onClick = { deleteBag() }) {
-                Text("Delete")
+                Text(stringResource(id = R.string.delete_button_bag))
             }
         },
         dismissButton = {
@@ -288,7 +290,7 @@ if (showDeleteDialog && bagToDelete != null) {
                 showDeleteDialog = false
                 bagToDelete = null
             }) {
-                Text("Cancel")
+                Text(stringResource(id = R.string.cancel_button_bag))
             }
         }
     )
