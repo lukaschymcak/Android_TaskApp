@@ -25,6 +25,7 @@ import com.example.navigation.Screens.ShoppingScreen
 import com.example.navigation.Screens.packing.TripScreen
 import com.example.navigation.Screens.watering.WateringScreen
 import com.example.navigation.Screens.WelcomeScreen
+import com.example.navigation.Screens.watering.PlantConfigurationScreen
 import com.example.navigation.models.watering.PlantModel
 import kotlinx.coroutines.launch
 
@@ -130,11 +131,14 @@ fun Navigation(
         }
         composable(Screen.PlantAddScreen.route) {
             PlantAddScreen(
-                onGoBack = { navController.popBackStack() },
+                onGoToWatering = { navController.navigate(Screen.WateringScreen.route) },
                 onPlantAdded = { plant ->
                     addedPlants.value += plant
                 },
-                dataStoreManager = dataStoreManager
+                dataStoreManager = dataStoreManager,
+                onGoToPlantConfiguration = {
+                    navController.navigate(Screen.PlantConfigurationScreen.route)
+                }
             )
         }
         composable(Screen.ShoppingScreen.route) {
@@ -147,7 +151,13 @@ fun Navigation(
                 onGoBack = { navController.popBackStack() }
             )
         }
+        composable(Screen.PlantConfigurationScreen.route) {
+            PlantConfigurationScreen(
+                onGoBack = { navController.popBackStack() },
+                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route) },
+            )
 
+        }
 
     }
 }

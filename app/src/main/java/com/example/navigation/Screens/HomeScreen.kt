@@ -77,8 +77,12 @@ fun HomeScreen(
         ) {
             Icon(
                 imageVector = Icons.Default.Settings,
-                contentDescription = "Nothing",
-                tint = Color.White,
+                contentDescription = "Settings",
+                modifier = Modifier.padding(4.dp)
+                    .clickable {
+                        onGoToSettings()
+                    }
+
             )
 
             Text(
@@ -92,11 +96,8 @@ fun HomeScreen(
             )
             Icon(
                 imageVector = Icons.Default.Settings,
-                contentDescription = "Settings",
-                modifier = Modifier
-                    .clickable {
-                        onGoToSettings()
-                    }
+                contentDescription = "Nothing",
+                tint = Color.White,
             )
         }
         Spacer(modifier = Modifier.height(24.dp))

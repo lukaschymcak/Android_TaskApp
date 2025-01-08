@@ -9,6 +9,10 @@
     <!-- Settings -->
     <string name="settings_title">CONFIGURACIÓN</string>
     <string name="settings_change_language">IDIOMA</string>
+    <string name="name_edit_title">NOMBRE</string>
+    <string name="change_name_inbox">editar nombre</string>
+    <string name="change_name_button">guardar</string>
+
 
     <!-- Packing module -->
     <string name="packing_title">EMPAQUE</string>
@@ -77,7 +81,7 @@
     <!-- Watering screen -->
     <string name="back_to_home">Volver a inicio</string>
     <string name="watering">RIEGO</string>
-    <string name="added_plants">Plantas añadidas:</string>
+    <string name="added_plants">PLANTAS AÑADIDAS</string>
     <string name="no_plants_added">No se han añadido plantas.</string>
     <string name="add_plant_title">Añadir planta</string>
 

@@ -9,6 +9,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.navigation.models.watering.PlantModel
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -86,6 +88,14 @@ class DataStoreManager(private val context: Context) {
             e.printStackTrace()
             emptyList<PlantModel>()
         }
+    }
+
+    suspend fun deletePlant(plantName: String) {
+        val currentPlants = getPlants().first()
+
+        val updatedPlants = currentPlants.filter { it.plantName != plantName }
+
+        savePlants(updatedPlants)
     }
 }
 

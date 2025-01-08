@@ -122,3 +122,19 @@ fun getLocalizedPlantName(plantName: String): String {
         else -> plantName
     }
 }
+
+@Composable
+fun getLocalizedPlantDescription(plantName: String): String {
+    return when (plantName) {
+        "Custom" -> stringResource(id = R.string.custom_description)
+        "Monstera" -> stringResource(id = R.string.monstera_description)
+        "Orchid" -> stringResource(id = R.string.orchid_description)
+        "ZZ Plant" -> stringResource(id = R.string.zz_plant_description)
+        "Snake Plant" -> stringResource(id = R.string.snake_plant_description)
+        "Spider Plant" -> stringResource(id = R.string.spider_plant_description)
+        "Aloe Vera" -> stringResource(id = R.string.aloe_vera_description)
+        "African Violet" -> stringResource(id = R.string.african_violet_description)
+        else -> ""
+    }
+}
+

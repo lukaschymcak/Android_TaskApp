@@ -9,6 +9,9 @@
     <!-- Settings -->
     <string name="settings_title">SETTINGS</string>
     <string name="settings_change_language">LANGUAGE</string>
+    <string name="name_edit_title">NAME</string>
+    <string name="change_name_inbox">edit name</string>
+    <string name="change_name_button">save</string>
 
 
     <!-- Packing module -->
@@ -77,7 +80,7 @@
     <!-- Watering screen -->
     <string name="back_to_home">Back home</string>
     <string name="watering">WATERING</string>
-    <string name="added_plants">Added Plants:</string>
+    <string name="added_plants">ADDED PLANTS</string>
     <string name="no_plants_added">No plants added.</string>
     <string name="add_plant_title">Add plant</string>
 

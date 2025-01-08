@@ -48,6 +48,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
 import com.example.navigation.R
+import com.example.navigation.states.HomeScreenState
+import com.example.navigation.states.PreferencesHelper
 import com.example.navigation.updateLanguage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -173,8 +175,11 @@ fun SettingsScreen(
     )
 
     val context = LocalContext.current
+
+    var name by remember { mutableStateOf(PreferencesHelper.getName(context) ?: "") }
     val dataStoreManager = remember { DataStoreManager(context) }
     val activity = context as? Activity
+
 
     val initial = context.resources.configuration.locales[0].language
     val currentLanguageCode by dataStoreManager.getLanguage().collectAsState(initial = initial)
@@ -251,23 +256,27 @@ fun SettingsScreen(
 
             Text(
                 modifier = Modifier.padding(16.dp),
-                text = "NAME",
+                text = stringResource(R.string.name_edit_title),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Normal
             )
             OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                label = { Text("Edit name") },
+                value = name,
+                onValueChange = {
+                    name = it
+                    HomeScreenState.setName(context, it)
+                    PreferencesHelper.setName(context, it)
+                },
+                label = { Text(stringResource(R.string.change_name_inbox)) },
                 modifier = Modifier.width(300.dp),
                 shape = MaterialTheme.shapes.medium,
 
             )
             OutlinedButton(
-                onClick = { /*TODO*/ },
+                onClick = { onGoBack() },
                 modifier = Modifier.padding(16.dp)
             ) {
-                Text(text = "Save")
+                Text(text = stringResource(R.string.change_name_button))
             }
 
 

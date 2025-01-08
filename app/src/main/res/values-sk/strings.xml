@@ -9,6 +9,10 @@
     <!-- Settings -->
     <string name="settings_title">NASTAVENIA</string>
     <string name="settings_change_language">JAZYK</string>
+    <string name="name_edit_title">MENO</string>
+    <string name="change_name_inbox">zmeniť meno</string>
+    <string name="change_name_button">uložiť</string>
+
 
 
     <!-- Packing module -->
@@ -71,14 +75,14 @@
     <!-- Plant add screen -->
     <string name="back_to_watering">Späť</string>
     <string name="add_plant">PRIDAŤ RASTLINU</string>
-    <string name="select_from_preset_or_add_custom">Vyberte si z prednastavených rastlín alebo pridajte vlastnú!</string>
+    <string name="select_from_preset_or_add_custom">Vyberte si z predvolených rastlín alebo pridajte vlastnú!</string>
     <string name="custom">Vlastná</string>
     <string name="plant_image">Obrázok rastliny</string>
 
     <!-- Watering screen -->
     <string name="back_to_home">Späť</string>
     <string name="watering">POLIEVANIE</string>
-    <string name="added_plants">Pridané rastliny:</string>
+    <string name="added_plants">PRIDANÉ RASTLINY</string>
     <string name="no_plants_added">Žiadne rastliny neboli pridané.</string>
     <string name="add_plant_title">Pridať rastlinu</string>
 

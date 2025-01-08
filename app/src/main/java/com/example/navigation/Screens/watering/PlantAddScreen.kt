@@ -45,7 +45,8 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("DiscouragedApi")
 @Composable
-fun PlantAddScreen(onGoBack: () -> Unit,
+fun PlantAddScreen(onGoToWatering: () -> Unit,
+                   onGoToPlantConfiguration: () -> Unit,
                    onPlantAdded: (PlantModel) -> Unit,
                    dataStoreManager: DataStoreManager
 ){
@@ -68,7 +69,7 @@ fun PlantAddScreen(onGoBack: () -> Unit,
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(id = R.string.back_to_watering),
-                modifier = Modifier.clickable { onGoBack() },
+                modifier = Modifier.clickable { onGoToWatering() },
                 tint = OurGreen
             )
             Text(
@@ -111,7 +112,7 @@ fun PlantAddScreen(onGoBack: () -> Unit,
                                 currentPlants.add(plant)
 
                                 dataStoreManager.savePlants(currentPlants)
-                                onGoBack()
+                                onGoToPlantConfiguration()
                             } catch (e: Exception) {
                                 e.printStackTrace()
                             }
