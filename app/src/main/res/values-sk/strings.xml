@@ -14,13 +14,14 @@
     <string name="change_name_button">uložiť</string>
 
 
-
     <!-- Packing module -->
     <string name="packing_title">BALENIE</string>
     <string name="no_trips_message">nemáte žiadny výlet, kliknite a pridajte výlet :)</string>
     <string name="next_trip">najbližší výlet: </string>
     <string name="packed_percentage">zbalené na: </string>
     <string name="suitcase_description">Kufor</string>
+    <string name="add_item">Položka </string>
+
 
     <!-- Watering module -->
     <string name="watering_title">POLIEVANIE</string>
@@ -79,10 +80,16 @@
     <string name="custom">Vlastná</string>
     <string name="plant_image">Obrázok rastliny</string>
 
+    <!-- Plant configuration screen -->
+    <string name="first_day">Prvý deň</string>
+    <string name="watering_frequency">Frekvencia</string>
+    <string name="plant_room">Izba</string>
+    <string name="save_button">Uložiť</string>
+
     <!-- Watering screen -->
     <string name="back_to_home">Späť</string>
     <string name="watering">POLIEVANIE</string>
-    <string name="added_plants">PRIDANÉ RASTLINY</string>
+    <string name="added_plants">MOJE RASTLINY</string>
     <string name="no_plants_added">Žiadne rastliny neboli pridané.</string>
     <string name="add_plant_title">Pridať rastlinu</string>
 

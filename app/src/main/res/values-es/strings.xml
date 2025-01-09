@@ -20,6 +20,7 @@
     <string name="next_trip">próximo viaje: </string>
     <string name="packed_percentage">empacado: </string>
     <string name="suitcase_description">maleta</string>
+    <string name="add_item">Artículo </string>
 
     <!-- Watering module -->
     <string name="watering_title">RIEGO</string>
@@ -78,10 +79,16 @@
     <string name="custom">Personalizada</string>
     <string name="plant_image">Imagen de la planta</string>
 
+    <!-- Plant configuration screen -->
+    <string name="first_day">Primer día</string>
+    <string name="watering_frequency">Frecuencia</string>
+    <string name="plant_room">Habitación</string>
+    <string name="save_button">Guardar</string>
+
     <!-- Watering screen -->
     <string name="back_to_home">Volver a inicio</string>
     <string name="watering">RIEGO</string>
-    <string name="added_plants">PLANTAS AÑADIDAS</string>
+    <string name="added_plants">MIS PLANTAS</string>
     <string name="no_plants_added">No se han añadido plantas.</string>
     <string name="add_plant_title">Añadir planta</string>
 

@@ -1,6 +1,7 @@
 package com.example.navigation
 
 import HomeScreen
+import android.net.Uri
 import com.example.navigation.Screens.packing.PackingScreen
 import com.example.navigation.models.packing.TripModel
 import androidx.compose.animation.slideInHorizontally
@@ -123,7 +124,7 @@ fun Navigation(
         }
         composable(Screen.WateringScreen.route) {
             WateringScreen(
-                onGoBack = { navController.popBackStack() },
+                onGoBack = { navController.navigate(Screen.HomeScreen.route) },
                 onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route)},
                 //addedPlants = addedPlants.value,
                 dataStoreManager = dataStoreManager
@@ -136,9 +137,20 @@ fun Navigation(
                     addedPlants.value += plant
                 },
                 dataStoreManager = dataStoreManager,
-                onGoToPlantConfiguration = {
-                    navController.navigate(Screen.PlantConfigurationScreen.route)
+                onGoToPlantConfiguration = { plantName ->
+                    navController.navigate("${Screen.PlantConfigurationScreen.route}/$plantName")
                 }
+            )
+        }
+        composable(
+            route = "${Screen.PlantConfigurationScreen.route}/{plantName}",
+            arguments = listOf(navArgument("plantName") { type = NavType.StringType })
+        ) {
+            val plantName = it.arguments?.getString("plantName") ?: "Unknown"
+            PlantConfigurationScreen(
+                onGoBack = { navController.popBackStack() },
+                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route) },
+                plantName = plantName
             )
         }
         composable(Screen.ShoppingScreen.route) {
@@ -151,13 +163,7 @@ fun Navigation(
                 onGoBack = { navController.popBackStack() }
             )
         }
-        composable(Screen.PlantConfigurationScreen.route) {
-            PlantConfigurationScreen(
-                onGoBack = { navController.popBackStack() },
-                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route) },
-            )
 
-        }
 
     }
 }

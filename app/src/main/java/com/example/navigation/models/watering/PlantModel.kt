@@ -15,8 +15,6 @@ data class PlantModel(
     val image: String,
     private var watered: Boolean
 ) {
-
-
     fun getWatered(): Boolean {
         return watered
     }

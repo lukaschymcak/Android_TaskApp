@@ -27,9 +27,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.navigation.R
 import com.example.navigation.models.packing.BagModel
 import com.example.navigation.models.packing.ItemModel
 import com.example.navigation.ui.theme.OurPackingBlue
@@ -123,7 +125,7 @@ fun BagModule(
                         tint = Color.White,
                         modifier = Modifier.size(20.dp)
                     )
-                    Text("Add Item")
+                    Text(stringResource(R.string.add_item))
                 }
             }
         }

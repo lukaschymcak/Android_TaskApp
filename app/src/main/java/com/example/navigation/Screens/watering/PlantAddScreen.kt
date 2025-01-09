@@ -39,14 +39,13 @@ import com.example.navigation.models.watering.PresetPlants.presetPlants
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreenLight
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 
 @SuppressLint("DiscouragedApi")
 @Composable
 fun PlantAddScreen(onGoToWatering: () -> Unit,
-                   onGoToPlantConfiguration: () -> Unit,
+                   onGoToPlantConfiguration: (String) -> Unit,
                    onPlantAdded: (PlantModel) -> Unit,
                    dataStoreManager: DataStoreManager
 ){
@@ -103,20 +102,20 @@ fun PlantAddScreen(onGoToWatering: () -> Unit,
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-
-                        coroutineScope.launch {
-                            try {
-                                val currentPlants = dataStoreManager.getPlants()
-                                    .firstOrNull()
-                                    ?.toMutableList() ?: mutableListOf()
-                                currentPlants.add(plant)
-
-                                dataStoreManager.savePlants(currentPlants)
-                                onGoToPlantConfiguration()
-                            } catch (e: Exception) {
-                                e.printStackTrace()
-                            }
-                        }
+                        onGoToPlantConfiguration(plant.plantName)
+//                        coroutineScope.launch {
+//                            try {
+//                                val currentPlants = dataStoreManager.getPlants()
+//                                    .firstOrNull()
+//                                    ?.toMutableList() ?: mutableListOf()
+//                                currentPlants.add(plant)
+//
+//                                dataStoreManager.savePlants(currentPlants)
+//                                onGoToPlantConfiguration()
+//                            } catch (e: Exception) {
+//                                e.printStackTrace()
+//                            }
+//                        }
                     },
                 colors = CardDefaults.cardColors(
                     containerColor = cardColor
@@ -152,3 +151,4 @@ fun PlantAddScreen(onGoToWatering: () -> Unit,
         }
     }
 }
+

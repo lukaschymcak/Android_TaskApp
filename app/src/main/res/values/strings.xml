@@ -20,12 +20,14 @@
     <string name="next_trip">next trip: </string>
     <string name="packed_percentage">packed: </string>
     <string name="suitcase_description">Suitcase</string>
+    <string name="add_item">Add item</string>
 
     <!-- Watering module -->
     <string name="watering_title">WATERING</string>
     <string name="no_plants_message">you have no plants, click to add a plant :)</string>
     <string name="next_watering">next watering: </string>
     <string name="water_today">watering today: </string>
+
 
     <!-- Shopping module -->
     <string name="shopping_title">SHOPPING LIST</string>
@@ -80,9 +82,17 @@
     <!-- Watering screen -->
     <string name="back_to_home">Back home</string>
     <string name="watering">WATERING</string>
-    <string name="added_plants">ADDED PLANTS</string>
+    <string name="added_plants">MY PLANTS</string>
     <string name="no_plants_added">No plants added.</string>
     <string name="add_plant_title">Add plant</string>
+
+    <!-- Plant configuration screen -->
+    <string name="first_day">First day</string>
+    <string name="watering_frequency">Frequency</string>
+    <string name="plant_room">Room</string>
+    <string name="save_button">Save</string>
+
+
 
     <!-- Welcome screen -->
     <string name="welcome_screen_title">Welcome!</string>
