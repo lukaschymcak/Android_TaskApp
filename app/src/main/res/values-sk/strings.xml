@@ -85,6 +85,8 @@
     <string name="watering_frequency">Frekvencia</string>
     <string name="plant_room">Izba</string>
     <string name="save_button">Uložiť</string>
+    <string name="delete_plant_button">VYMAZAŤ RASTLINU</string>
+
 
     <!-- Watering screen -->
     <string name="back_to_home">Späť</string>

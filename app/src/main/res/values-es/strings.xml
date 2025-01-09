@@ -84,6 +84,8 @@
     <string name="watering_frequency">Frecuencia</string>
     <string name="plant_room">Habitación</string>
     <string name="save_button">Guardar</string>
+    <string name="delete_plant_button">ELIMINAR PLANTA</string>
+
 
     <!-- Watering screen -->
     <string name="back_to_home">Volver a inicio</string>

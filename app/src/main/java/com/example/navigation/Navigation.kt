@@ -126,6 +126,7 @@ fun Navigation(
             WateringScreen(
                 onGoBack = { navController.navigate(Screen.HomeScreen.route) },
                 onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route)},
+                onGoToPlantConfiguration = { navController.navigate(Screen.PlantConfigurationScreen.route)},
                 //addedPlants = addedPlants.value,
                 dataStoreManager = dataStoreManager
             )
@@ -133,37 +134,27 @@ fun Navigation(
         composable(Screen.PlantAddScreen.route) {
             PlantAddScreen(
                 onGoToWatering = { navController.navigate(Screen.WateringScreen.route) },
-                onPlantAdded = { plant ->
-                    addedPlants.value += plant
-                },
                 dataStoreManager = dataStoreManager,
-                onGoToPlantConfiguration = { plantName ->
-                    navController.navigate("${Screen.PlantConfigurationScreen.route}/$plantName")
-                }
             )
         }
-        composable(
-            route = "${Screen.PlantConfigurationScreen.route}/{plantName}",
-            arguments = listOf(navArgument("plantName") { type = NavType.StringType })
-        ) {
-            val plantName = it.arguments?.getString("plantName") ?: "Unknown"
+        composable(Screen.PlantConfigurationScreen.route) {
             PlantConfigurationScreen(
                 onGoBack = { navController.popBackStack() },
-                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route) },
-                plantName = plantName
-            )
-        }
-        composable(Screen.ShoppingScreen.route) {
-            ShoppingScreen(
-                onGoBack = { navController.popBackStack() }
-            )
-        }
-        composable(Screen.RecipeScreen.route) {
-            RecipeScreen(
-                onGoBack = { navController.popBackStack() }
-            )
-        }
+                dataStoreManager = dataStoreManager
 
+            )
 
+            composable(Screen.ShoppingScreen.route) {
+                ShoppingScreen(
+                    onGoBack = { navController.popBackStack() }
+                )
+            }
+            composable(Screen.RecipeScreen.route) {
+                RecipeScreen(
+                    onGoBack = { navController.popBackStack() }
+                )
+            }
+
+        }
     }
 }

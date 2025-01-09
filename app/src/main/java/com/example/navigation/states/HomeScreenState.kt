@@ -2,10 +2,12 @@ package com.example.navigation.states
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.navigation.models.watering.PlantModel
 
 object HomeScreenState {
     private var name: String? = null
     private var wasShown: Boolean = false
+    private var selectedPlant: PlantModel? = null
 
     fun getName(context: Context): String {
         if (name == null) {
@@ -18,7 +20,14 @@ object HomeScreenState {
         name = newName
         PreferencesHelper.setName(context, newName)
     }
+    fun getSelectedPlant(context: Context): PlantModel? {
+        return selectedPlant
+    }
+    fun setSelectedPlant(context: Context, plant: PlantModel) {
+        selectedPlant = plant
+    }
 }
+
 
 object PreferencesHelper {
     private const val PREFS_NAME = "my_prefs"

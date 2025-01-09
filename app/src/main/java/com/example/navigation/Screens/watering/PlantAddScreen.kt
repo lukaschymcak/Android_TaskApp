@@ -45,8 +45,6 @@ import kotlinx.coroutines.launch
 @SuppressLint("DiscouragedApi")
 @Composable
 fun PlantAddScreen(onGoToWatering: () -> Unit,
-                   onGoToPlantConfiguration: (String) -> Unit,
-                   onPlantAdded: (PlantModel) -> Unit,
                    dataStoreManager: DataStoreManager
 ){
     val coroutineScope = rememberCoroutineScope()
@@ -102,20 +100,19 @@ fun PlantAddScreen(onGoToWatering: () -> Unit,
                     .padding(8.dp)
                     .fillMaxWidth()
                     .clickable {
-                        onGoToPlantConfiguration(plant.plantName)
-//                        coroutineScope.launch {
-//                            try {
-//                                val currentPlants = dataStoreManager.getPlants()
-//                                    .firstOrNull()
-//                                    ?.toMutableList() ?: mutableListOf()
-//                                currentPlants.add(plant)
-//
-//                                dataStoreManager.savePlants(currentPlants)
-//                                onGoToPlantConfiguration()
-//                            } catch (e: Exception) {
-//                                e.printStackTrace()
-//                            }
-//                        }
+                        coroutineScope.launch {
+                            try {
+                                val currentPlants = dataStoreManager.getPlants()
+                                    .firstOrNull()
+                                    ?.toMutableList() ?: mutableListOf()
+                                currentPlants.add(plant)
+
+                                dataStoreManager.savePlants(currentPlants)
+                                onGoToWatering()
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
                     },
                 colors = CardDefaults.cardColors(
                     containerColor = cardColor
@@ -129,7 +126,7 @@ fun PlantAddScreen(onGoToWatering: () -> Unit,
                 ){
 
                     val resourceId = remember(plant.image) {
-                        context.resources.getIdentifier(plant.image, "drawable", context.packageName)
+                        context.resources.getIdentifier(plant.image.toString(), "drawable", context.packageName)
                     }
                     Image(
                         painter = painterResource(id = resourceId),

@@ -27,6 +27,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.DataStoreManager
 import com.example.navigation.R
 import com.example.navigation.models.watering.HouseLocation
-import com.example.navigation.models.watering.getLocalizedPlantName
+import com.example.navigation.states.HomeScreenState
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreen
 import kotlinx.coroutines.launch
@@ -50,15 +51,17 @@ import kotlinx.coroutines.launch
 fun WateringScreen(
     onGoBack: () -> Unit,
     onGoToAddPlant: () -> Unit,
+    onGoToPlantConfiguration : () -> Unit,
     dataStoreManager: DataStoreManager
 ) {
+    val context = LocalContext.current
+    val selectedFlower by remember { mutableStateOf(HomeScreenState.getSelectedPlant(context)) }
     val coroutineScope = rememberCoroutineScope()
     val plantsFlow = remember { dataStoreManager.getPlants() }
     val plantsState = plantsFlow.collectAsState(initial = emptyList())
-    val context = LocalContext.current
 
     val filterLabels = remember {
-        listOf("All", "Bedroom", "Bathroom", "Kids room", "Outdoors", "Living room") }
+        listOf("Any", "Bedroom", "Bathroom", "Kids room", "Outdoors", "Living room") }
 
     var selectedIndex by remember {
         mutableIntStateOf(-1)
@@ -129,7 +132,7 @@ fun WateringScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             val filteredPlants = when (selectedIndex) {
-                0 -> plantsState.value.filter { it.location == HouseLocation.ALL }
+                0 -> plantsState.value.filter { it.location == HouseLocation.ANY_ROOM }
                 1 -> plantsState.value.filter { it.location == HouseLocation.BEDROOM }
                 2 -> plantsState.value.filter { it.location == HouseLocation.BATHROOM }
                 3 -> plantsState.value.filter { it.location == HouseLocation.KIDS_ROOM }
@@ -146,6 +149,11 @@ fun WateringScreen(
                         modifier = Modifier
                             .padding(6.dp)
                             .fillMaxWidth()
+                            .clickable {
+                                HomeScreenState.setSelectedPlant(context, plant)
+                                onGoToPlantConfiguration()
+
+                            }
                             //.align(Alignment.CenterHorizontally),
 ,
                         shape = RoundedCornerShape(16.dp),
@@ -182,38 +190,38 @@ fun WateringScreen(
                                     fontWeight = FontWeight.Bold
                                 )
                                 Text(
-                                    text = getLocalizedPlantName( plant.plantName),
+                                    text = plant.plantName,
                                     fontSize = 30.sp,
                                     color = OurBeige,
                                     modifier = Modifier.padding(8.dp),
                                     fontWeight = FontWeight.Bold
                                 )
                             }
-                            val resourceId = remember(plant.image) {
-                                context.resources.getIdentifier(
-                                    plant.image,
-                                    "drawable",
-                                    context.packageName
-                                )
-                            }
+//                            val resourceId = remember(plant.image) {
+//                                context.resources.getIdentifier(
+//                                    plant.image,
+//                                    "drawable",
+//                                    context.packageName
+//                                )
+//                            }
 
 
-                                Icon(
-                                    imageVector = Icons.Default.Delete,
-                                    contentDescription = "Delete plant",
-                                    tint = Color.White,
-                                    modifier = Modifier
-                                        .padding(8.dp)
-                                        .size(30.dp)
-                                        .clickable {
-                                            coroutineScope.launch {
-                                                dataStoreManager.deletePlant(plant.plantName)
-                                            }
-                                        }
-
-                                )
+//                                Icon(
+//                                    imageVector = Icons.Default.Delete,
+//                                    contentDescription = "Delete plant",
+//                                    tint = Color.White,
+//                                    modifier = Modifier
+//                                        .padding(8.dp)
+//                                        .size(30.dp)
+//                                        .clickable {
+//                                            coroutineScope.launch {
+//                                                dataStoreManager.deletePlant(plant.plantName)
+//                                            }
+//                                        }
+//
+//                                )
                                 Image(
-                                        painter = painterResource(id = resourceId),
+                                        painter = painterResource(id = plant.image),
                                 contentDescription = "Plant image",
                                 modifier = Modifier
                                     .size(90.dp)

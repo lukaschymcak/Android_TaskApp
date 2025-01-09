@@ -1,18 +1,21 @@
 package com.example.navigation.models.watering
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.stringResource
 import com.example.navigation.R
 import kotlinx.serialization.Serializable
 
+
 @Serializable
+
 data class PlantModel(
     val plantName: String,
     val description: String = "",
-    val location: HouseLocation = HouseLocation.LIVING_ROOM,
+    val location: HouseLocation = HouseLocation.ANY_ROOM,
     val frequency: Int = 7,
     val water: String = "200ml",
-    val image: String,
+    val image: Int,
     private var watered: Boolean
 ) {
     fun getWatered(): Boolean {
@@ -28,7 +31,7 @@ data class PlantModel(
 object PresetPlants {
     private var custom = PlantModel(
         plantName = "Custom",
-        image = "edit_pencil",
+        image = R.drawable.edit_pencil,
         watered = false
     )
 
@@ -37,7 +40,7 @@ object PresetPlants {
         description = "Monstera (Monstera deliciosa) is a popular tropical houseplant known for its large, glossy, heart-shaped leaves with unique holes and splits. It thrives in bright, indirect light and is low-maintenance.",
         frequency = 3,
         water = "300ml",
-        image = "monstera",
+        image = R.drawable.monstera,
         watered = false
     )
 
@@ -46,7 +49,7 @@ object PresetPlants {
         description = "Orchids (Phalaenopsis) are elegant tropical plants known for their stunning, long-lasting flowers. They thrive in bright, indirect light and require careful watering and humidity.",
         frequency = 7,
         water = "100ml",
-        image = "orchid",
+        image = R.drawable.orchid,
         watered = false
     )
 
@@ -55,7 +58,7 @@ object PresetPlants {
         description = "The ZZ plant (Zamioculcas zamiifolia) is a hardy, low-maintenance indoor plant known for its glossy, dark green leaves.",
         frequency = 14,
         water = "250ml",
-        image = "zz_plant",
+        image = R.drawable.zz_plant,
         watered = false
     )
 
@@ -64,7 +67,7 @@ object PresetPlants {
         description = "The Snake Plant is a resilient and low-maintenance plant with tall, sword-like leaves featuring green and yellow variegation.",
         frequency = 21,
         water = "300ml",
-        image = "snake_plant",
+        image = R.drawable.snake_plant,
         watered = false
     )
 
@@ -73,7 +76,7 @@ object PresetPlants {
         description = "The Spider Plant is a hardy and adaptable houseplant with long, arching, variegated leaves.",
         frequency = 7,
         water = "300ml",
-        image = "spider_plant",
+        image = R.drawable.spider_plant,
         watered = false
     )
 
@@ -82,7 +85,7 @@ object PresetPlants {
         description = "Aloe Vera is a versatile succulent with thick, fleshy leaves filled with gel known for its medicinal and skincare benefits.",
         frequency = 14,
         water = "200ml",
-        image = "aloe_vera",
+        image = R.drawable.aloe_vera,
         watered = false
     )
 
@@ -91,7 +94,7 @@ object PresetPlants {
         description = "The African Violet is a compact houseplant with fuzzy leaves and vibrant flowers in purple, pink, or white.",
         frequency = 7,
         water = "200ml",
-        image = "african_violet",
+        image = R.drawable.african_violet,
         watered = false
     )
 
@@ -105,6 +108,7 @@ object PresetPlants {
         aloeVera,
         africanViolet
     )
+    var selectedPlants = mutableListOf<PlantModel>()
 }
 @Composable
 fun getLocalizedPlantName(plantName: String): String {
