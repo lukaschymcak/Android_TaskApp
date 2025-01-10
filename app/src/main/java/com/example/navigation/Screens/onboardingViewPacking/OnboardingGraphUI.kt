@@ -1,4 +1,4 @@
-package com.example.navigation.onboardingView
+package com.example.navigation.Screens.onboardingViewPacking
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

@@ -1,4 +1,4 @@
-package com.example.navigation.onboardingView
+package com.example.navigation.Screens.onboardingViewPacking
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurBlueLight
 import com.example.navigation.ui.theme.OurPackingBlue
 

@@ -1,7 +1,6 @@
 package com.example.navigation
 
 import HomeScreen
-import android.net.Uri
 import android.widget.Toast
 import com.example.navigation.Screens.packing.PackingScreen
 import com.example.navigation.models.packing.TripModel
@@ -33,10 +32,10 @@ import com.example.navigation.Screens.watering.WateringScreen
 import com.example.navigation.Screens.WelcomeScreen
 import com.example.navigation.Screens.watering.PlantConfigurationScreen
 import com.example.navigation.models.watering.PlantModel
-import com.example.navigation.onboardingView.OnboardingScreen
+import com.example.navigation.Screens.onboardingViewPacking.OnboardingScreen
+import com.example.navigation.Screens.onboardingViewWatering.WateringOnboardingScreen
 import com.example.navigation.states.HomeScreenState
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 @Composable
@@ -111,18 +110,6 @@ fun Navigation(
             )
         }
 
-//        composable(Screen.PackingScreen.route) {
-//            PackingScreen(
-//                onGoToNextScreen = {
-//                    navController.navigate(Screen.TripScreen.route)
-//                },
-//                onGoBack = {
-//                    navController.popBackStack()
-//                },
-//                dataStoreManager = dataStoreManager,
-//                navController = navController
-//            )
-//        }
         composable(Screen.PackingScreen.route) {
             val context = LocalContext.current
             val scope = rememberCoroutineScope()
@@ -169,15 +156,32 @@ fun Navigation(
                 onGoBack = { navController.popBackStack() }
             )
         }
+
+
         composable(Screen.WateringScreen.route) {
-            WateringScreen(
-                onGoBack = { navController.navigate(Screen.HomeScreen.route) },
-                onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route)},
-                onGoToPlantConfiguration = { navController.navigate(Screen.PlantConfigurationScreen.route)},
-                //addedPlants = addedPlants.value,
-                dataStoreManager = dataStoreManager
-            )
+            val context = LocalContext.current
+            val scope = rememberCoroutineScope()
+            val isWateringOnboardingCompleted = HomeScreenState.isOnboardingWateringShown(context)
+
+            if (isWateringOnboardingCompleted) {
+                WateringScreen(
+                    onGoBack = { navController.navigate(Screen.HomeScreen.route) },
+                    onGoToAddPlant = { navController.navigate(Screen.PlantAddScreen.route) },
+                    onGoToPlantConfiguration = { navController.navigate(Screen.PlantConfigurationScreen.route) },
+                    dataStoreManager = dataStoreManager
+                )
+            } else {
+                WateringOnboardingScreen {
+                    scope.launch {
+                        HomeScreenState.setOnboardingWateringShown(context, true)
+                        navController.navigate(Screen.WateringScreen.route) {
+                            popUpTo(Screen.WateringOnboardingScreen.route) { inclusive = true }
+                        }
+                    }
+                }
+            }
         }
+
         composable(Screen.PlantAddScreen.route) {
             PlantAddScreen(
                 onGoToWatering = { navController.navigate(Screen.WateringScreen.route) },

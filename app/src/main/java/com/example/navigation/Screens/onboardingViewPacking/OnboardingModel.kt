@@ -1,4 +1,4 @@
-package com.example.navigation.onboardingView
+package com.example.navigation.Screens.onboardingViewPacking
 
 import androidx.annotation.DrawableRes
 import com.example.navigation.R

@@ -1,4 +1,4 @@
-package com.example.navigation.onboardingView
+package com.example.navigation.Screens.onboardingViewWatering
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -12,13 +12,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.OurBeige
-import com.example.navigation.ui.theme.OurPackingBlue
+import com.example.navigation.ui.theme.OurWateringGreen
 
 @Composable
-fun ButtonUI(
+fun WateringButtonUI(
     text: String = "Next",
     backgroundColor: Color = OurBeige,
-    textColor: Color = OurPackingBlue,
+    textColor: Color = OurWateringGreen,
     textStyle: TextStyle  = MaterialTheme.typography.titleMedium,
     fontSize : Int = 14,
     onClick: () -> Unit
@@ -42,17 +42,17 @@ fun ButtonUI(
 @Preview
 @Composable
 fun NextButton(){
-    ButtonUI (text = "Next"){  }
+    WateringButtonUI (text = "Next"){  }
 }
 
 @Preview
 @Composable
 fun BackButton(){
-    ButtonUI (
+    WateringButtonUI (
         text = "Back",
         backgroundColor = Color.Transparent,
         textColor = Color.Gray,
         textStyle = MaterialTheme.typography.bodySmall,
         fontSize = 13
-        ){  }
+    ){  }
 }

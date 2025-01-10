@@ -35,6 +35,9 @@ sealed interface Screen {
     @kotlinx.serialization.Serializable
     data object OnboardingScreen: Screen
 
+    @kotlinx.serialization.Serializable
+    data object WateringOnboardingScreen: Screen
+
 
 }
 val Screen.route: String
@@ -50,4 +53,5 @@ val Screen.route: String
         Screen.PlantAddScreen -> "plant_add_screen"
         Screen.PlantConfigurationScreen -> "plant_configuration_screen"
         Screen.OnboardingScreen -> "onboarding_screen"
+        Screen.WateringOnboardingScreen -> "watering_onboarding_screen"
     }
