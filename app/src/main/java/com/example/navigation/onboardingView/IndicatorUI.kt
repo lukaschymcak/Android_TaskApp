@@ -15,14 +15,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.navigation.ui.theme.OurBeige
+import com.example.navigation.ui.theme.OurBlueLight
+import com.example.navigation.ui.theme.OurPackingBlue
 
 
 @Composable
 fun IndicatorUI(
     pageSize: Int,
     currentPage: Int,
-    selectedColor: Color = OurBeige,
-    unselectedColor: Color = Color.LightGray
+    selectedColor: Color = OurPackingBlue,
+    unselectedColor: Color = OurBlueLight
 ){
     Row (
         horizontalArrangement = Arrangement.SpaceBetween

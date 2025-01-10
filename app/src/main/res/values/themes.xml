@@ -3,7 +3,7 @@
 
     <style name="Theme.Navigation" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowSplashScreenBackground" tools:ignore="NewApi">#ffffff</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">@drawable/logpng </item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">@drawable/splashlogo </item>
         <item name="android:windowSplashScreenAnimationDuration" tools:ignore="NewApi">3000</item>
     </style>
 </resources>

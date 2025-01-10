@@ -28,6 +28,17 @@ object HomeScreenState {
     fun setSelectedPlant(context: Context, plant: PlantModel) {
         selectedPlant = plant
     }
+    fun isOnboardingPackingShown(context: Context): Boolean {
+        if (!onboardingPackingShown) {
+            onboardingPackingShown = PreferencesHelper.isOnboardingPackingShown(context)
+        }
+        return onboardingPackingShown
+    }
+
+    fun setOnboardingPackingShown(context: Context, shown: Boolean) {
+        onboardingPackingShown = shown
+        PreferencesHelper.setOnboardingPackingShown(context, shown)
+    }
 }
 
 
@@ -62,25 +73,14 @@ object PreferencesHelper {
     fun isWelcomeScreenShown(context: Context): Boolean {
         return getPreferences(context).getBoolean(KEY_WELCOME_SCREEN_SHOWN, false)
     }
-
+    fun isOnboardingPackingShown(context: Context): Boolean {
+        return getPreferences(context).getBoolean(KEY_ONBOARDING_PACKING_SHOWN, false)
+    }
     fun setOnboardingPackingShown(context: Context, shown: Boolean) {
         val editor = getPreferences(context).edit()
         editor.putBoolean(KEY_ONBOARDING_PACKING_SHOWN, shown)
         editor.apply()
     }
 
-    fun isOnboardingPackingShown(context: Context): Boolean {
-        return getPreferences(context).getBoolean(KEY_ONBOARDING_PACKING_SHOWN, false)
-    }
-
-    fun setOnboardingWateringShown(context: Context, shown: Boolean) {
-        val editor = getPreferences(context).edit()
-        editor.putBoolean(KEY_ONBOARDING_WATERING_SHOWN, shown)
-        editor.apply()
-    }
-
-    fun isOnboardingWateringShown(context: Context): Boolean {
-        return getPreferences(context).getBoolean(KEY_ONBOARDING_WATERING_SHOWN, false)
-    }
 }
 

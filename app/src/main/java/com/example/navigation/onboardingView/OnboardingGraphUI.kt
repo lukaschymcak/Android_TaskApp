@@ -44,7 +44,8 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
                 fontSize = 35.sp,
                 textAlign = TextAlign.Center,
                 color = OurBeige,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                lineHeight = 40.sp
             )
             Spacer(modifier = Modifier.size(25.dp))
 

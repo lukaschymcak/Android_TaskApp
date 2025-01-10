@@ -60,16 +60,4 @@ class MainActivity : ComponentActivity() {
 
 
     }
-//    @Composable
-//    private fun ShowOnboardingScreen(){
-//        val context = LocalContext.current
-//
-//        Box(
-//            modifier = Modifier.background(Color.Red)){
-//            OnboardingScreen {
-//                Toast.makeText(context, "Onboarding finished", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//    }
 }

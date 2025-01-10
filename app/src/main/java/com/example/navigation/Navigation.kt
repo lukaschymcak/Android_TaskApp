@@ -34,7 +34,9 @@ import com.example.navigation.Screens.WelcomeScreen
 import com.example.navigation.Screens.watering.PlantConfigurationScreen
 import com.example.navigation.models.watering.PlantModel
 import com.example.navigation.onboardingView.OnboardingScreen
+import com.example.navigation.states.HomeScreenState
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 @Composable
@@ -109,17 +111,44 @@ fun Navigation(
             )
         }
 
+//        composable(Screen.PackingScreen.route) {
+//            PackingScreen(
+//                onGoToNextScreen = {
+//                    navController.navigate(Screen.TripScreen.route)
+//                },
+//                onGoBack = {
+//                    navController.popBackStack()
+//                },
+//                dataStoreManager = dataStoreManager,
+//                navController = navController
+//            )
+//        }
         composable(Screen.PackingScreen.route) {
-            PackingScreen(
-                onGoToNextScreen = {
-                    navController.navigate(Screen.TripScreen.route)
-                },
-                onGoBack = {
-                    navController.popBackStack()
-                },
-                dataStoreManager = dataStoreManager,
-                navController = navController
-            )
+            val context = LocalContext.current
+            val scope = rememberCoroutineScope()
+            val isOnboardingCompleted = HomeScreenState.isOnboardingPackingShown(context)
+
+            if (isOnboardingCompleted) {
+                PackingScreen(
+                    onGoToNextScreen = {
+                        navController.navigate(Screen.TripScreen.route)
+                    },
+                    onGoBack = {
+                        navController.popBackStack()
+                    },
+                    dataStoreManager = dataStoreManager,
+                    navController = navController
+                )
+            } else {
+                OnboardingScreen {
+                    scope.launch {
+                        HomeScreenState.setOnboardingPackingShown(context, true)
+                        navController.navigate(Screen.PackingScreen.route) {
+                            popUpTo(Screen.OnboardingScreen.route) { inclusive = true }
+                        }
+                    }
+                }
+            }
         }
 
         composable(
