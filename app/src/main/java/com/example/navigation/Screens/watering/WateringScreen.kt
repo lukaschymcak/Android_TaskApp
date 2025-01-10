@@ -197,29 +197,6 @@ fun WateringScreen(
                                     fontWeight = FontWeight.Bold
                                 )
                             }
-//                            val resourceId = remember(plant.image) {
-//                                context.resources.getIdentifier(
-//                                    plant.image,
-//                                    "drawable",
-//                                    context.packageName
-//                                )
-//                            }
-
-
-//                                Icon(
-//                                    imageVector = Icons.Default.Delete,
-//                                    contentDescription = "Delete plant",
-//                                    tint = Color.White,
-//                                    modifier = Modifier
-//                                        .padding(8.dp)
-//                                        .size(30.dp)
-//                                        .clickable {
-//                                            coroutineScope.launch {
-//                                                dataStoreManager.deletePlant(plant.plantName)
-//                                            }
-//                                        }
-//
-//                                )
                                 Image(
                                         painter = painterResource(id = plant.image),
                                 contentDescription = "Plant image",

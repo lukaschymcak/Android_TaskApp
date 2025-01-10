@@ -2,6 +2,7 @@ package com.example.navigation.Screens.packing
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,6 +27,7 @@ import com.example.navigation.DataStoreManager
 import com.example.navigation.R
 import com.example.navigation.Screen
 import com.example.navigation.models.packing.TripModel
+import com.example.navigation.onboardingView.OnboardingScreen
 import com.example.navigation.route
 import com.example.navigation.ui.theme.OurPackingBlue
 import kotlinx.coroutines.flow.firstOrNull
@@ -330,4 +332,6 @@ fun calculatePackingPercentage(trip: TripModel): Int {
 
     return if (totalItems == 0) 100 else (checkedItems * 100) / totalItems
 }
+
+
 

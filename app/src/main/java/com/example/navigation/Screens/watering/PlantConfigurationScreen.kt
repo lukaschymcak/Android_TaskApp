@@ -14,17 +14,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,18 +42,21 @@ import com.example.navigation.R
 import com.example.navigation.states.HomeScreenState
 import com.example.navigation.ui.theme.OurBeige
 import com.example.navigation.ui.theme.OurGreen
+import com.example.navigation.ui.theme.OurGreenLight
 import com.example.navigation.ui.theme.OurRed
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun PlantConfigurationScreen(onGoBack: () -> Unit,
-                             dataStoreManager: DataStoreManager) {
+fun PlantConfigurationScreen(
+    onGoBack: () -> Unit,
+    dataStoreManager: DataStoreManager
+) {
     val context = LocalContext.current
     val selectedPlant by remember { mutableStateOf(HomeScreenState.getSelectedPlant(context)) }
     val coroutineScope = rememberCoroutineScope()
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = Modifier
@@ -64,9 +65,7 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         item {
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -83,7 +82,7 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
 
             Image(
                 painter = painterResource(id = selectedPlant!!.image),
-                contentDescription = ("plantName"),
+                contentDescription = "plant image",
                 modifier = Modifier
                     .padding(8.dp)
                     .width(150.dp)
@@ -94,33 +93,34 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
             Card(
                 modifier = Modifier
                     .padding(0.dp)
-                    .fillMaxWidth()
-                    .padding(0.dp),
+                    .fillMaxWidth(),
                 shape = RoundedCornerShape(0.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.Transparent),
             ) {
                 Text(
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                    text = (selectedPlant!!.description),
+                    text = selectedPlant!!.description,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     color = OurGreen
                 )
-
                 Spacer(modifier = Modifier.height(24.dp))
                 Card(
-                    modifier = Modifier.fillMaxHeight().fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxSize(),
                     shape = RoundedCornerShape(8.dp),
                     colors = CardDefaults.cardColors(containerColor = OurGreen),
                 ) {
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 Card(
-                    modifier = Modifier.fillMaxHeight().fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxSize(),
                     shape = RoundedCornerShape(8.dp),
                     colors = CardDefaults.cardColors(containerColor = OurGreen),
-
-                    ) {
+                ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -140,13 +140,14 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
                             value = "",
                             onValueChange = { },
                             label = { Text(text = "${selectedPlant!!.frequency} days") },
-                            modifier = Modifier.padding(8.dp).width(100.dp)
-                                .background(OurBeige, shape = RoundedCornerShape(16.dp)),
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .width(100.dp)
+                                .background(OurGreenLight, shape = RoundedCornerShape(16.dp)),
                         )
-
                     }
-
                 }
+
                 Spacer(modifier = Modifier.height(24.dp))
                 Card(
                     modifier = Modifier.fillMaxHeight().fillMaxSize(),
@@ -172,22 +173,22 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
                             value = "",
                             onValueChange = { },
                             label = { Text(text = "set room") },
-                            modifier = Modifier.padding(8.dp).width(200.dp)
-                                .background(OurBeige, shape = RoundedCornerShape(16.dp)),
+                            modifier = Modifier.padding(8.dp).width(200.dp).height(50.dp)
+                                .background(OurGreenLight, shape = RoundedCornerShape(24.dp)),
                         )
                     }
                 }
+
+
                 Spacer(modifier = Modifier.height(24.dp))
-                Row (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
-                ){
+                ) {
                     OutlinedButton(
-                        //colors = ButtonDefaults.buttonColors(OurGreen),
                         onClick = { onGoBack() },
                         modifier = Modifier.padding(8.dp)
-
                     ) {
                         Text(
                             text = stringResource(id = R.string.cancel_button),
@@ -198,9 +199,8 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
                     }
                     Button(
                         colors = ButtonDefaults.buttonColors(OurGreen),
-                        onClick = { },
+                        onClick = { onGoBack() },
                         modifier = Modifier.padding(8.dp)
-
                     ) {
                         Text(
                             text = stringResource(id = R.string.save_button),
@@ -210,22 +210,15 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
                         )
                     }
                 }
-                Row (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
-
                     Button(
                         colors = ButtonDefaults.buttonColors(OurRed),
-                        onClick = {
-                            coroutineScope.launch {
-                                dataStoreManager.deletePlant(selectedPlant!!.plantName)
-                                onGoBack()
-                            }
-                        },
+                        onClick = { showDeleteDialog = true },
                         modifier = Modifier.padding(8.dp)
-
                     ) {
                         Text(
                             text = stringResource(id = R.string.delete_plant_button),
@@ -235,10 +228,42 @@ fun PlantConfigurationScreen(onGoBack: () -> Unit,
                         )
                     }
                 }
-
-
             }
         }
+    }
 
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = { showDeleteDialog = false },
+            title = { Text(text = stringResource(id = R.string.delete_bag_dialog_title)) },
+            text = { Text(text = stringResource(id = R.string.delete_bag_dialog_message)) },
+            confirmButton = {
+                Button(
+                    colors = ButtonDefaults.buttonColors(OurRed),
+                    onClick = {
+                        coroutineScope.launch {
+                            dataStoreManager.deletePlant(selectedPlant!!.plantName)
+                            showDeleteDialog = false
+                            onGoBack()
+                        }
+                    }
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.delete_button),
+                        color = OurBeige
+                    )
+                }
+            },
+            dismissButton = {
+                OutlinedButton(
+                    onClick = { showDeleteDialog = false }
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.cancel_button),
+                        color = OurGreen
+                    )
+                }
+            }
+        )
     }
 }

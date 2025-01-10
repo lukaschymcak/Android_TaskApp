@@ -73,15 +73,9 @@ fun TripScreen(
     var showDeleteDialog by remember { mutableStateOf(false) }
     var bagToDelete by remember { mutableStateOf<BagModel?>(null) }
 
-
-    val onDeleteBag: (BagModel) -> Unit = { bagToDelete ->
-        val updatedBags = bagList.value.filter { it != bagToDelete }
-        val updatedTrip = tripModel.copy(arrayBagModel = updatedBags)
-
-        coroutineScope.launch {
-            dataStoreManager.saveTrips(listOf(updatedTrip))
-            bagList.value = updatedBags
-        }
+    val onDeleteBag: (BagModel) -> Unit = { selectedBag ->
+        showDeleteDialog = true
+        bagToDelete = selectedBag
     }
 
     val onItemCheckedChange: (ItemModel) -> Unit = { updatedItem ->
@@ -107,6 +101,7 @@ fun TripScreen(
             bagList.value = currentTrip?.arrayBagModel ?: emptyList()
         }
     }
+
     fun deleteBag() {
         bagToDelete?.let { bag ->
             val updatedBags = bagList.value.filter { it != bag }
@@ -272,28 +267,29 @@ fun TripScreen(
             }
         }
     }
-if (showDeleteDialog && bagToDelete != null) {
-    AlertDialog(
-        onDismissRequest = {
-            showDeleteDialog = false
-            bagToDelete = null
-        },
-        title = { Text(text = stringResource(id = R.string.delete_bag_dialog_title)) },
-        text = { Text(text = stringResource(id = R.string.delete_bag_dialog_message) +{bagToDelete!!.bagName}+ "?")}, //${bagToDelete!!.bagName}'?") },
-        confirmButton = {
-            TextButton(onClick = { deleteBag() }) {
-                Text(stringResource(id = R.string.delete_button_bag))
-            }
-        },
-        dismissButton = {
-            TextButton(onClick = {
+
+    if (showDeleteDialog && bagToDelete != null) {
+        AlertDialog(
+            onDismissRequest = {
                 showDeleteDialog = false
                 bagToDelete = null
-            }) {
-                Text(stringResource(id = R.string.cancel_button_bag))
+            },
+            title = { Text(text = stringResource(id = R.string.delete_bag_dialog_title)) },
+            text = { Text("${stringResource(id = R.string.delete_bag_dialog_message)} ${bagToDelete!!.bagName}?") },
+            confirmButton = {
+                TextButton(onClick = { deleteBag() }) {
+                    Text(stringResource(id = R.string.delete_button_bag))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    showDeleteDialog = false
+                    bagToDelete = null
+                }) {
+                    Text(stringResource(id = R.string.cancel_button_bag))
+                }
             }
-        }
-    )
-}
+        )
+    }
 }
 

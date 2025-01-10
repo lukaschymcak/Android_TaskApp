@@ -2,10 +2,13 @@ package com.example.navigation
 
 import HomeScreen
 import android.net.Uri
+import android.widget.Toast
 import com.example.navigation.Screens.packing.PackingScreen
 import com.example.navigation.models.packing.TripModel
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,8 +33,21 @@ import com.example.navigation.Screens.watering.WateringScreen
 import com.example.navigation.Screens.WelcomeScreen
 import com.example.navigation.Screens.watering.PlantConfigurationScreen
 import com.example.navigation.models.watering.PlantModel
+import com.example.navigation.onboardingView.OnboardingScreen
 import kotlinx.coroutines.launch
 
+
+@Composable
+fun showOnboardingScreen() {
+    val context = LocalContext.current
+
+    Box(
+        modifier = Modifier.background(Color.Red)){
+        OnboardingScreen {
+            Toast.makeText(context, "Onboarding finished", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
 
 @Composable
 fun Navigation(
@@ -158,3 +176,4 @@ fun Navigation(
         }
     }
 }
+

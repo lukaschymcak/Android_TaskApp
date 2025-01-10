@@ -51,7 +51,7 @@
     <string name="delete_trip_message">Are you sure you want to delete the trip</string>
     <string name="delete_button">Delete</string>
     <string name="cancel_button">Cancel</string>
-    <string name="click_to_add_bag">Click to add a bag</string>
+    <string name="click_to_add_bag">Click to add a trip</string>
 
     <string name="add_trip_button">Add trip</string>
     <string name="add_trip_name_label">Name</string>
@@ -68,7 +68,7 @@
     <string name="bag_name_label">Bag name</string>
     <string name="add_bag_button">Add Bag</string>
     <string name="delete_bag_dialog_title">Delete Bag</string>
-    <string name="delete_bag_dialog_message">Are you sure you want to delete the bag </string>
+    <string name="delete_bag_dialog_message">Are you sure you want to delete this bag? </string>
     <string name="delete_button_bag">Delete</string>
     <string name="cancel_button_bag">Cancel</string>
 
@@ -92,6 +92,9 @@
     <string name="plant_room">Room</string>
     <string name="save_button">Save</string>
     <string name="delete_plant_button">DELETE PLANT</string>
+    <string name="delete_plant_dialog_title">Delete Plant</string>
+    <string name="delete_plant_dialog_message">Are you sure you want to delete this plant? </string>
+
 
 
 

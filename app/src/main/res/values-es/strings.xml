@@ -50,7 +50,7 @@
     <string name="delete_trip_message">¿Estás seguro de que quieres eliminar el viaje?</string>
     <string name="delete_button">Eliminar</string>
     <string name="cancel_button">Cancelar</string>
-    <string name="click_to_add_bag">Haz clic para agregar una bolsa</string>
+    <string name="click_to_add_bag">Haz clic para agregar un viaje</string>
 
     <string name="add_trip_button">Agregar viaje</string>
     <string name="add_trip_name_label">Nombre</string>
@@ -68,7 +68,7 @@
     <string name="bag_name_label">Nombre de la bolsa</string>
     <string name="add_bag_button">Agregar Bolsa</string>
     <string name="delete_bag_dialog_title">Eliminar bolsa</string>
-    <string name="delete_bag_dialog_message">¿Estás seguro de que quieres eliminar la bolsa </string>
+    <string name="delete_bag_dialog_message">¿Estás seguro de que quieres eliminar la bolsa?</string>
     <string name="delete_button_bag">Eliminar</string>
     <string name="cancel_button_bag">Cancelar</string>
 
@@ -85,6 +85,8 @@
     <string name="plant_room">Habitación</string>
     <string name="save_button">Guardar</string>
     <string name="delete_plant_button">ELIMINAR PLANTA</string>
+    <string name="delete_plant_dialog_title">Eliminar Planta</string>
+    <string name="delete_plant_dialog_message">¿Estás seguro de que quieres eliminar la planta?</string>
 
 
     <!-- Watering screen -->

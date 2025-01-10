@@ -8,6 +8,8 @@ object HomeScreenState {
     private var name: String? = null
     private var wasShown: Boolean = false
     private var selectedPlant: PlantModel? = null
+    private var onboardingPackingShown: Boolean = false
+    private var onboardingWateringShown: Boolean = false
 
     fun getName(context: Context): String {
         if (name == null) {
@@ -33,6 +35,9 @@ object PreferencesHelper {
     private const val PREFS_NAME = "my_prefs"
     private const val KEY_NAME = "name"
     private const val KEY_WELCOME_SCREEN_SHOWN = "welcome_screen_shown"
+    private const val KEY_ONBOARDING_PACKING_SHOWN = "onboarding_packing_shown"
+    private const val KEY_ONBOARDING_WATERING_SHOWN = "onboarding_packing_shown"
+
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -56,6 +61,26 @@ object PreferencesHelper {
 
     fun isWelcomeScreenShown(context: Context): Boolean {
         return getPreferences(context).getBoolean(KEY_WELCOME_SCREEN_SHOWN, false)
+    }
+
+    fun setOnboardingPackingShown(context: Context, shown: Boolean) {
+        val editor = getPreferences(context).edit()
+        editor.putBoolean(KEY_ONBOARDING_PACKING_SHOWN, shown)
+        editor.apply()
+    }
+
+    fun isOnboardingPackingShown(context: Context): Boolean {
+        return getPreferences(context).getBoolean(KEY_ONBOARDING_PACKING_SHOWN, false)
+    }
+
+    fun setOnboardingWateringShown(context: Context, shown: Boolean) {
+        val editor = getPreferences(context).edit()
+        editor.putBoolean(KEY_ONBOARDING_WATERING_SHOWN, shown)
+        editor.apply()
+    }
+
+    fun isOnboardingWateringShown(context: Context): Boolean {
+        return getPreferences(context).getBoolean(KEY_ONBOARDING_WATERING_SHOWN, false)
     }
 }
 
