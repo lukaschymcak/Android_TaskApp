@@ -56,7 +56,7 @@ jobs:
         releaseDirectory: app/build/outputs/bundle/release
         signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
         keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-        keyAlias: ${{ secrets.KEY_ALIAS }}
+        alias: ${{ secrets.KEY_ALIAS }}
         keyPassword: ${{ secrets.KEY_PASSWORD }}
 
     - name: Setup Auth witch Google
