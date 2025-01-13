@@ -67,7 +67,7 @@ jobs:
       with:
         serviceAccountJson: service_account.json
         packageName: com.raczova.navigation
-        bundleFile: app/release/taskapp.aab
+        releaseFiles: app/release/taskapp.aab
         track: internal
         status: completed
         whatsNewDirectory: whatsNew/
