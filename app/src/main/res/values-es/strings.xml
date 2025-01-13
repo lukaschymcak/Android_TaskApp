@@ -121,6 +121,16 @@
     <string name="african_violet_description">La violeta africana es una planta compacta de interior con hojas suaves y flores vibrantes en colores morado, rosa o blanco.</string>
 
 
+    <!-- Onboarding packing  -->
+    <string name="first_onboarding_title">¡BIENVENIDO AL MÓDULO DE EMPAQUE!</string>
+    <string name="first_onboarding_description">Déjame mostrarte cómo funciona :)</string>
+    <string name="second_onboarding_title">¿VIAJANDO?</string>
+    <string name="second_onboarding_description">Aquí puedes crear un viaje, establecer el destino y las fechas, ¡y empezar a empacar!</string>
+    <string name="third_onboarding_title">¡NO OLVIDES NADA!</string>
+    <string name="third_onboarding_description">Simplemente añade una bolsa con artículos, lleva un seguimiento de lo que has empacado ¡y estarás listo para irte!</string>
+    <string name="fourth_onboarding_title">¡DISFRUTA!</string>
+    <string name="fourth_onboarding_description">Recuerda, todo sigue en desarrollo, así que por favor háznos saber si tienes algún comentario. ¡Muchas gracias!</string>
+
 
 
 </resources>

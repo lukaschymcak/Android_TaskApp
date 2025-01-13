@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,21 +26,18 @@ import com.raczova.navigation.ui.theme.OurPackingBlue
 
 @Composable
 fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
-    Card (
+    Card(
         modifier = Modifier.fillMaxSize(),
         colors = CardDefaults.cardColors(containerColor = OurPackingBlue),
-
-        ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center
-
-            ) {
+        ) {
             Spacer(modifier = Modifier.size(50.dp))
 
-
             Text(
-                text = onboardingModel.title,
+                text = stringResource(id = onboardingModel.titleRes),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 35.sp,
                 textAlign = TextAlign.Center,
@@ -52,15 +50,19 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
             Image(
                 painter = painterResource(id = onboardingModel.image),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth().padding(50.dp, 0.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(50.dp, 0.dp)
                     .size(400.dp),
                 alignment = Alignment.Center
             )
             Spacer(modifier = Modifier.size(25.dp))
 
             Text(
-                text = onboardingModel.description,
-                modifier = Modifier.fillMaxWidth().padding(16.dp, 0.dp),
+                text = stringResource(id = onboardingModel.descriptionRes),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp, 0.dp),
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 color = OurBeige
@@ -68,8 +70,8 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
             Spacer(modifier = Modifier.fillMaxWidth().size(10.dp))
         }
     }
-
 }
+
 
 
 @Preview(showBackground = true)

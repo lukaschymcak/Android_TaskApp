@@ -123,4 +123,15 @@
     <string name="aloe_vera_description">Aloe Vera is a versatile succulent with thick, fleshy leaves filled with gel known for its medicinal and skincare benefits.</string>
     <string name="african_violet_description">The African Violet is a compact houseplant with fuzzy leaves and vibrant flowers in purple, pink, or white.</string>
 
+
+    <!-- Onboarding packing -->
+    <string name="first_onboarding_title">WELCOME TO THE PACKING MODULE!</string>
+    <string name="first_onboarding_description">Let me show you how it works :)</string>
+    <string name="second_onboarding_title">GOING ON A TRIP?</string>
+    <string name="second_onboarding_description">Here you can create a trip, set the destination and the dates and start packing!</string>
+    <string name="third_onboarding_title">DO NOT FORGET ANYTHING!</string>
+    <string name="third_onboarding_description">Just add a bag with items, keep track of what you have packed and you are ready to go!</string>
+    <string name="fourth_onboarding_title">ENJOY!</string>
+    <string name="fourth_onboarding_description">Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!</string>
+
 </resources>

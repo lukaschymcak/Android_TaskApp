@@ -122,4 +122,15 @@
     <string name="aloe_vera_description">Aloe Vera je všestranná sukulentná rastlina s hrubými, šťavnatými listami naplnenými gélom, ktorý je známy svojimi liečivými a kozmetickými účinkami.</string>
     <string name="african_violet_description">Africká fialka je kompaktná izbová rastlina s jemnými listami a živými kvetmi v odtieňoch fialovej, ružovej alebo bielej.</string>
 
+<!--     Onboarding packing-->
+    <string name="first_onboarding_title">VITAJTE!</string>
+    <string name="first_onboarding_description">Ukážem vám, ako to funguje :)</string>
+    <string name="second_onboarding_title">CHYSTÁTE SA NA CESTU?</string>
+    <string name="second_onboarding_description">Tu si môžete vytvoriť cestu, nastaviť cieľ a dátumy a začať baliť!</string>
+    <string name="third_onboarding_title">NIČ NEZABUDNITE!</string>
+    <string name="third_onboarding_description">Stačí pridať tašku s VECAMI, sledovať, čo ste už zbalili, a ste pripravení vyraziť!</string>
+    <string name="fourth_onboarding_title">UŽITE SI TO!</string>
+    <string name="fourth_onboarding_description">Pamätajte, všetko je stále vo vývoji, takže nám prosím dajte vedieť, ak máte nejaké pripomienky. Ďakujeme!</string>
+
+
 </resources>
