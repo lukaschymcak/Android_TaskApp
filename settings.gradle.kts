@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Navigation"
+rootProject.name = "Taskapp"
 include(":app")
  

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.navigation"
+    namespace = "com.raczova.navigation"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.navigation"
+        applicationId = "com.raczova.navigation"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.material3 )
     implementation(libs.transportation.consumer)
     implementation(libs.generativeai)
+    implementation(libs.androidx.datastore.preferences.core.jvm)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -82,6 +83,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     implementation(libs.androidx.core.splashscreen)
+
 
 
 }
