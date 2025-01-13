@@ -8,16 +8,16 @@
       <SelectionState runConfigName="NavigationTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="navigationToPackingScreen()">
+      <SelectionState runConfigName="welcomeScreenNameInput()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="navigationFromHomeToPackingScreen()">
+      <SelectionState runConfigName="navigationFromHomeToPackingScreenOnboarding()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="navigationFromHomeToSettingScreenAndBack()">
+      <SelectionState runConfigName="navigationFromHomeToWateringScreenOnboarding()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="navigationFromHomeToPackingScreenAndBack()">
+      <SelectionState runConfigName="addingTrip()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

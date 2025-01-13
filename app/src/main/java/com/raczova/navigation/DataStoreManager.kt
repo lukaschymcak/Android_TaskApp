@@ -97,6 +97,12 @@ class DataStoreManager(private val context: Context) {
         savePlants(updatedPlants)
     }
 
+    suspend fun clearData() {
+        context.preferenceDataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
+
 
 }
 

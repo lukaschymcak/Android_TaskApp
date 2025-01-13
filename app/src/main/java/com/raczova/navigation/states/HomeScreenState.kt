@@ -11,6 +11,7 @@ object HomeScreenState {
     private var onboardingPackingShown: Boolean = false
     private var onboardingWateringShown: Boolean = false
 
+
     fun getName(context: Context): String {
         if (name == null) {
             name = PreferencesHelper.getName(context) ?: ""
@@ -63,6 +64,13 @@ object PreferencesHelper {
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    }
+
+    fun clearOnboardingState(context: Context) {
+        val editor = getPreferences(context).edit()
+        editor.putBoolean(KEY_ONBOARDING_PACKING_SHOWN, false)
+        editor.putBoolean(KEY_ONBOARDING_WATERING_SHOWN, false)
+        editor.apply()
     }
 
     fun setName(context: Context, newName: String) {
