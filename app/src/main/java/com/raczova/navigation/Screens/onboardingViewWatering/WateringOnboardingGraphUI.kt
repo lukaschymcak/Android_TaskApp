@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,21 +26,18 @@ import com.raczova.navigation.ui.theme.OurWateringGreen
 
 @Composable
 fun OnboardingGraphUI(wateringOnboardingModel: WateringOnboardingModel) {
-    Card (
+    Card(
         modifier = Modifier.fillMaxSize(),
         colors = CardDefaults.cardColors(containerColor = OurWateringGreen),
-
-        ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center
-
         ) {
             Spacer(modifier = Modifier.size(50.dp))
 
-
             Text(
-                text = wateringOnboardingModel.title,
+                text = stringResource(id = wateringOnboardingModel.titleRes),
                 modifier = Modifier.fillMaxWidth(),
                 fontSize = 35.sp,
                 textAlign = TextAlign.Center,
@@ -52,15 +50,19 @@ fun OnboardingGraphUI(wateringOnboardingModel: WateringOnboardingModel) {
             Image(
                 painter = painterResource(id = wateringOnboardingModel.image),
                 contentDescription = null,
-                modifier = Modifier.fillMaxWidth().padding(50.dp, 0.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(50.dp, 0.dp)
                     .size(400.dp),
                 alignment = Alignment.Center
             )
             Spacer(modifier = Modifier.size(25.dp))
 
             Text(
-                text = wateringOnboardingModel.description,
-                modifier = Modifier.fillMaxWidth().padding(16.dp, 0.dp),
+                text = stringResource(id = wateringOnboardingModel.descriptionRes),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp, 0.dp),
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 color = OurBeige
@@ -68,7 +70,4 @@ fun OnboardingGraphUI(wateringOnboardingModel: WateringOnboardingModel) {
             Spacer(modifier = Modifier.fillMaxWidth().size(10.dp))
         }
     }
-
 }
-
-

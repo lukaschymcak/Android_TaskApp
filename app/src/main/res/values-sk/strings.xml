@@ -133,4 +133,15 @@
     <string name="fourth_onboarding_description">Pamätajte, všetko je stále vo vývoji, takže nám prosím dajte vedieť, ak máte nejaké pripomienky. Ďakujeme!</string>
 
 
+    <!-- Watering Module Onboarding Strings - Slovak -->
+    <string name="watering_first_title">VITAJTE!</string>
+    <string name="watering_first_description">Ukážem vám, ako to funguje :)</string>
+    <string name="watering_second_title">POTREBUJETE POMOC S RASTLINAMI?</string>
+    <string name="watering_second_description">Tu si môžete vytvoriť rastlinu, nastaviť frekvenciu zalievania a vidieť, kedy je čas ju zaliať!</string>
+    <string name="watering_third_title">NIKDY NEZABUDNITE ZALIAŤ SVOJE RASTLINY!</string>
+    <string name="watering_third_description">Starajte sa o svoje rastliny čo najlepšie a nikdy ich už nezabudnite poliať!</string>
+    <string name="watering_fourth_title">UŽITE SI TO!</string>
+    <string name="watering_fourth_description">Pamätajte, všetko je stále vo vývoji, takže nám prosím dajte vedieť, ak máte nejaké pripomienky. Ďakujeme veľmi pekne!</string>
+
+
 </resources>

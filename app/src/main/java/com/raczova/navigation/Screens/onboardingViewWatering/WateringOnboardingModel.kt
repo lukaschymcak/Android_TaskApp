@@ -2,32 +2,32 @@ package com.raczova.navigation.Screens.onboardingViewWatering
 
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.raczova.navigation.R
 
-sealed class WateringOnboardingModel (
+sealed class WateringOnboardingModel(
     @DrawableRes val image: Int,
-    val title: String,
-    val description: String){
-
+    @StringRes val titleRes: Int,
+    @StringRes val descriptionRes: Int
+) {
     data object FirstW : WateringOnboardingModel(
         image = R.drawable.orchid,
-        title = "WELCOME TO THE WATERING MODULE!",
-        description = "Let me show you how it works :)"
+        titleRes = R.string.watering_first_title,
+        descriptionRes = R.string.watering_first_description
     )
     data object SecondW : WateringOnboardingModel(
         image = R.drawable.monstera,
-        title = "NEED HELP CARING FOR YOUR PLANTS?",
-        description = "Here you can create a plant, set the watering frequency and see when it's time to water them!"
+        titleRes = R.string.watering_second_title,
+        descriptionRes = R.string.watering_second_description
     )
     data object ThirdW : WateringOnboardingModel(
         image = R.drawable.zz_plant,
-        title = "NEVER FORGET TO WATER YOUR PLANTS!",
-        description = "Just add a plant, set the watering frequency and you're ready to go!"
+        titleRes = R.string.watering_third_title,
+        descriptionRes = R.string.watering_third_description
     )
     data object FourthW : WateringOnboardingModel(
         image = R.drawable.spider_plant,
-        title = "ENJOY!",
-        description = "Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!"
+        titleRes = R.string.watering_fourth_title,
+        descriptionRes = R.string.watering_fourth_description
     )
-
 }

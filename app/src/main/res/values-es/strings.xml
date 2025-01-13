@@ -132,5 +132,16 @@
     <string name="fourth_onboarding_description">Recuerda, todo sigue en desarrollo, así que por favor háznos saber si tienes algún comentario. ¡Muchas gracias!</string>
 
 
+    <!-- Watering Module Onboarding Strings -->
+    <string name="watering_first_title">¡BIENVENIDO AL MÓDULO DE RIEGO!</string>
+    <string name="watering_first_description">Déjame mostrarte cómo funciona :)</string>
+    <string name="watering_second_title">¿NECESITAS AYUDA PARA CUIDAR TUS PLANTAS?</string>
+    <string name="watering_second_description">Aquí puedes crear una planta, establecer la frecuencia de riego y ver cuándo es momento de regarlas.</string>
+    <string name="watering_third_title">¡NUNCA OLVIDES REGAR TUS PLANTAS!</string>
+    <string name="watering_third_description">¡Cuida lo mejor posible tus plantas y nunca más olvides regarlas!</string>
+    <string name="watering_fourth_title">¡DISFRUTA!</string>
+    <string name="watering_fourth_description">Recuerda, todo sigue en desarrollo, así que por favor háznos saber si tienes algún comentario. ¡Muchas gracias!</string>
+
+
 
 </resources>

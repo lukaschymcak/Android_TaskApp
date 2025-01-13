@@ -134,4 +134,15 @@
     <string name="fourth_onboarding_title">ENJOY!</string>
     <string name="fourth_onboarding_description">Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!</string>
 
+    <!-- Watering Module Onboarding Strings -->
+    <string name="watering_first_title">WELCOME TO THE WATERING MODULE!</string>
+    <string name="watering_first_description">Let me show you how it works :)</string>
+    <string name="watering_second_title">NEED HELP CARING FOR YOUR PLANTS?</string>
+    <string name="watering_second_description">Here you can create a plant, set the watering frequency and see when it is time to water them!</string>
+    <string name="watering_third_title">NEVER FORGET TO WATER YOUR PLANTS!</string>
+    <string name="watering_third_description">Take the best care of your plants and never forget to water them again!</string>
+    <string name="watering_fourth_title">ENJOY!</string>
+    <string name="watering_fourth_description">Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!</string>
+
+
 </resources>
