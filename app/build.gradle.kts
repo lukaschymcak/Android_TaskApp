@@ -83,6 +83,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     implementation(libs.androidx.core.splashscreen)
+    testImplementation (libs.mockito.core)
+    testImplementation (libs.mockito.core.v4110)
+    testImplementation (libs.mockito.kotlin)
+    testImplementation(libs.mockk)
 
 
 

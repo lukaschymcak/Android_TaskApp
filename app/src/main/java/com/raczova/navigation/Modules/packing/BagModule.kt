@@ -47,7 +47,6 @@ fun BagModule(
     val newItemName = remember { mutableStateOf("") }
     val checkedCount = bagModel.itemModels.count { it.getIsChecked() }
     val totalCount = bagModel.itemModels.size
-    //val percentage = if (totalCount > 0) (checkedCount * 100) / totalCount else 0
 
     Card(
         shape = RoundedCornerShape(12.dp),
