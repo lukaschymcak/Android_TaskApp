@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrainsKotlinSerialization)
     id("kotlin-kapt")
+
+
 }
 
 android {
@@ -84,6 +86,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     implementation(libs.androidx.core.splashscreen)
+
     testImplementation (libs.mockito.core)
     testImplementation (libs.mockito.core.v4110)
     testImplementation (libs.mockito.kotlin)

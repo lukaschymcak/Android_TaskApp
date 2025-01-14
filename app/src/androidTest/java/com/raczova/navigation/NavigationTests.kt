@@ -105,18 +105,6 @@ class NavigationTest {
         composeTestRule.onNodeWithText(createdText).assertExists()
 
         composeTestRule.onNodeWithContentDescription("Suitcase").performClick()
-//        composeTestRule.onNodeWithText(onboardingTitle).assertExists()
-//
-//        composeTestRule.onNodeWithText("Next").performClick()
-//        composeTestRule.onNodeWithText(secondOnboardingTitle).assertExists()
-//
-//        composeTestRule.onNodeWithText("Next").performClick()
-//        composeTestRule.onNodeWithText(thirdOnboardingTitle).assertExists()
-//
-//        composeTestRule.onNodeWithText("Next").performClick()
-//        composeTestRule.onNodeWithText(fourthOnboardingTitle).assertExists()
-//
-//        composeTestRule.onNodeWithText("Start").performClick()
         composeTestRule.onNodeWithText(packingTitle).assertExists()
     }
 
