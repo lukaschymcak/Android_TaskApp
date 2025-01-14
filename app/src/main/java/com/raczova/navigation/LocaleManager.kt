@@ -14,7 +14,8 @@ fun updateLanguage(context: Context, languageCode: String) {
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
 
-        context.resources.updateConfiguration(config, context.resources.displayMetrics)
+//        context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        //test
 
 
 }
