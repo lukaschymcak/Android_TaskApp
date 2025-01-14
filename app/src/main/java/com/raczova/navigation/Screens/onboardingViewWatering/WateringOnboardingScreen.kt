@@ -1,8 +1,5 @@
 package com.raczova.navigation.Screens.onboardingViewWatering
 
-import com.raczova.navigation.Screens.onboardingViewPacking.ButtonUI
-import com.raczova.navigation.Screens.onboardingViewPacking.IndicatorUI
-
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.raczova.navigation.Screens.onboardingViewPacking.ButtonUI
+import com.raczova.navigation.Screens.onboardingViewPacking.IndicatorUI
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurWateringGreen
 import kotlinx.coroutines.launch

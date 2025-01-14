@@ -1,7 +1,6 @@
 <resources>
     <!-- HomePage -->
     <string name="app_name">TaskApp</string>
-    <string name="welcome_message">Welcome to TaskApp</string>
     <string name="hello_name">Hello, </string>
     <string name="tap_module">Tap any module for details</string>
     <string name="created_by">Created by Lukas Chymcak and Zuzana Raczova</string>
@@ -19,27 +18,22 @@
     <string name="no_trips_message">you have no trips, click to add a trip :)</string>
     <string name="next_trip">next trip: </string>
     <string name="packed_percentage">packed: </string>
-    <string name="suitcase_description">Suitcase</string>
     <string name="add_item">Add item</string>
 
     <!-- Watering module -->
     <string name="watering_title">WATERING</string>
-    <string name="no_plants_message">you have no plants, click to add a plant :)</string>
     <string name="next_watering">next watering: </string>
     <string name="water_today">watering today: </string>
 
 
     <!-- Shopping module -->
     <string name="shopping_title">SHOPPING LIST</string>
-    <string name="no_items_message">your cart is empty, click to add an item :)</string>
     <string name="in_shopping_list">shopping list: </string>
     <string name="items_to_buy">items left to buy: </string>
 
     <!-- Recipe module -->
     <string name="recipe_title">RECIPES</string>
-    <string name="no_recipes_message">you have no recipes yet, click to add a recipe :)</string>
     <string name="recipes_saved">you have 6 recipes saved </string>
-    <string name="last_recipe">last recipe added: </string>
 
     <!-- Packing screen -->
     <string name="packing_screen_title">PACKING</string>
@@ -60,9 +54,6 @@
     <string name="add_trip_action">Add Trip</string>
 
     <!-- Trip screen -->
-    <string name="trip_screen_title">TRIP DETAILS</string>
-    <string name="back_button_description">Arrow back</string>
-    <string name="trip_name">Trip Name</string>
     <string name="bags_section_title">BAGS</string>
     <string name="no_bags_message">No bags yet, add a bag :)</string>
     <string name="bag_name_label">Bag name</string>
@@ -77,35 +68,25 @@
     <string name="add_plant">ADD PLANT</string>
     <string name="select_from_preset_or_add_custom">Select from preset plants or add a custom one!</string>
     <string name="custom">Custom</string>
-    <string name="plant_image">Plant image</string>
 
     <!-- Watering screen -->
     <string name="back_to_home">Back home</string>
-    <string name="watering">WATERING</string>
     <string name="added_plants">MY PLANTS</string>
     <string name="no_plants_added">No plants added.</string>
     <string name="add_plant_title">Add plant</string>
 
     <!-- Plant configuration screen -->
-    <string name="first_day">First day</string>
     <string name="watering_frequency">Frequency</string>
     <string name="plant_room">Room</string>
     <string name="save_button">Save</string>
     <string name="delete_plant_button">DELETE PLANT</string>
-    <string name="delete_plant_dialog_title">Delete Plant</string>
-    <string name="delete_plant_dialog_message">Are you sure you want to delete this plant? </string>
-
-
-
 
 
     <!-- Welcome screen -->
     <string name="welcome_screen_title">Welcome!</string>
     <string name="enter">Enter</string>
-    <string name="logo_description">Logo</string>
 
     <!-- Plant model -->
-    <string name="custom_plant">Custom</string>
     <string name="monstera">Monstera</string>
     <string name="orchid">Orchid</string>
     <string name="zz_plant">ZZ Plant</string>

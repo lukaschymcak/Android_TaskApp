@@ -5,7 +5,11 @@ import android.content.SharedPreferences
 import com.raczova.navigation.R
 import com.raczova.navigation.models.watering.HouseLocation
 import com.raczova.navigation.models.watering.PlantModel
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
