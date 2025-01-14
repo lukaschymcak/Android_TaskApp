@@ -1,11 +1,13 @@
 [versions]
 agp = "8.6.1"
+core = "1.6.1"
 coreSplashscreen = "1.0.1"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+kotlinxSerializationJsonVersion = "1.5.1"
 lifecycleRuntimeCompose = "2.8.7"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.3"
@@ -17,12 +19,16 @@ mockk = "1.12.0"
 navigationCompose = "2.8.3"
 kotlinxSerializationJson = "1.6.3"
 datastore = "1.0.0"
+robolectric = "4.10.3"
 transportationConsumer = "2.3.0"
 generativeai = "0.9.0"
 datastorePreferencesCoreJvm = "1.1.1"
 coreKtxVersion = "1.6.1"
+uiTestJunit4 = "1.7.6"
+uiTestJunit4Android = "1.7.4"
 
 [libraries]
+androidx-core = { module = "androidx.test:core", version.ref = "core" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
@@ -44,14 +50,18 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 androidx-datastore-core = { module = "androidx.datastore:datastore", version.ref = "datastore" }
+kotlinx-serialization-json-v151 = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJsonVersion" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-core-v4110 = { module = "org.mockito:mockito-core", version.ref = "mockitoMockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 transportation-consumer = { group = "com.google.android.libraries.mapsplatform.transportation", name = "transportation-consumer", version.ref = "transportationConsumer" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
 androidx-datastore-preferences-core-jvm = { group = "androidx.datastore", name = "datastore-preferences-core-jvm", version.ref = "datastorePreferencesCoreJvm" }
 core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxVersion" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiTestJunit4" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

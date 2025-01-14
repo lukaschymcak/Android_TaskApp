@@ -15,7 +15,7 @@ android {
         applicationId = "com.raczova.navigation"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
+        versionCode = 3
         versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -70,7 +70,8 @@ dependencies {
     implementation(libs.generativeai)
     implementation(libs.androidx.datastore.preferences.core.jvm)
     implementation(libs.core.ktx)
-    testImplementation(libs.junit)
+    testImplementation(libs.androidx.ui.test.junit4.android)
+    testImplementation(libs.androidx.ui.test.junit4.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -91,6 +92,13 @@ dependencies {
     testImplementation (libs.mockito.core.v4110)
     testImplementation (libs.mockito.kotlin)
     testImplementation(libs.mockk)
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.serialization.json.v151)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.core)
+
+
+
 
 
 

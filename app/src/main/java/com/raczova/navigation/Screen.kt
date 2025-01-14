@@ -1,41 +1,44 @@
 package com.raczova.navigation
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 sealed interface Screen {
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object HomeScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object PackingScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object WelcomeScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object TripScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object SettingsScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object WateringScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object ShoppingScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object RecipeScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object PlantAddScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object PlantConfigurationScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object OnboardingScreen: Screen
 
-    @kotlinx.serialization.Serializable
+    @Serializable
     data object WateringOnboardingScreen: Screen
 
 
@@ -55,3 +58,12 @@ val Screen.route: String
         Screen.OnboardingScreen -> "onboarding_screen"
         Screen.WateringOnboardingScreen -> "watering_onboarding_screen"
     }
+
+
+fun getStartDestination(welcomeScreenShown: Boolean): String {
+    return if (welcomeScreenShown) {
+        Screen.HomeScreen.route
+    } else {
+        Screen.WelcomeScreen.route
+    }
+}
