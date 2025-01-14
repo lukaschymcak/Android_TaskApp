@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -44,14 +45,17 @@ fun WateringModuleExample(onClick: () -> Unit,
                           dataStoreManager: DataStoreManager
 ) {
     val coroutineScope = rememberCoroutineScope()
-    var plantCount by remember { mutableStateOf(0) }
+    var plantCount by remember { mutableIntStateOf(0) }
+    var needWateringCount by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
             val plants = dataStoreManager.getPlants().first()
             plantCount = plants.size
+            needWateringCount = plants.count { !it.getWatered() } 
         }
     }
+
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -89,10 +93,17 @@ fun WateringModuleExample(onClick: () -> Unit,
                 Spacer(modifier = Modifier.height(8.dp))
 
                 val stringPlants = if (plantCount == 0) "No plants added"
-                else if (plantCount == 1) "$plantCount added plant"
-                else "$plantCount added plants"
+                else if (plantCount == 1) "one added plant"
+                else "added plants: $plantCount"
                 Text(
                     text = stringPlants,
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Left,
+                    color = OurBeige
+                )
+                val howManyNeedWatering = 0
+                Text(
+                    text = "$howManyNeedWatering plants need watering!",
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige
