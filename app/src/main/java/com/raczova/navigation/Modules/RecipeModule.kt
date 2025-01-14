@@ -47,7 +47,8 @@ fun RecipeModuleExample(
             .padding(0.dp)
             .fillMaxWidth()
             .height(150.dp)
-            .clickable { onClick()
+            .clickable {
+                //onClick()
             }
     ) {
         Row(
