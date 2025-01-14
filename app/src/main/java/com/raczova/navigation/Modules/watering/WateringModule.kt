@@ -17,6 +17,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -25,14 +31,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.raczova.navigation.DataStoreManager
 import com.raczova.navigation.R
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurGreen
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 
 @Composable
-fun WateringModuleExample(onClick: () -> Unit
+fun WateringModuleExample(onClick: () -> Unit,
+                          dataStoreManager: DataStoreManager
 ) {
+    val coroutineScope = rememberCoroutineScope()
+    var plantCount by remember { mutableStateOf(0) }
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            val plants = dataStoreManager.getPlants().first()
+            plantCount = plants.size
+        }
+    }
     ElevatedCard(
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -68,14 +87,12 @@ fun WateringModuleExample(onClick: () -> Unit
                     color = OurBeige
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+
+                val stringPlants = if (plantCount == 0) "No plants added"
+                else if (plantCount == 1) "$plantCount added plant"
+                else "$plantCount added plants"
                 Text(
-                    text = stringResource(id = R.string.next_watering) + " today",
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Left,
-                    color = OurBeige
-                )
-                Text(
-                    text = stringResource(id = R.string.water_today)+ " 3 ",
+                    text = stringPlants,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige

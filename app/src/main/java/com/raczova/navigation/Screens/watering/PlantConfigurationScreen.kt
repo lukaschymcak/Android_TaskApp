@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -19,6 +20,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -39,11 +42,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raczova.navigation.DataStoreManager
 import com.raczova.navigation.R
+import com.raczova.navigation.models.watering.HouseLocation
 import com.raczova.navigation.states.HomeScreenState
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurGreen
 import com.raczova.navigation.ui.theme.OurGreenLight
 import com.raczova.navigation.ui.theme.OurRed
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -57,6 +62,9 @@ fun PlantConfigurationScreen(
     val selectedPlant by remember { mutableStateOf(HomeScreenState.getSelectedPlant(context)) }
     val coroutineScope = rememberCoroutineScope()
     var showDeleteDialog by remember { mutableStateOf(false) }
+    var updatedFrequency by remember { mutableStateOf(selectedPlant?.frequency.toString()) }
+    var expanded by remember { mutableStateOf(false) }
+    var updatedLocation by remember { mutableStateOf(selectedPlant?.location ?: HouseLocation.ROOM) }
 
     LazyColumn(
         modifier = Modifier
@@ -90,143 +98,164 @@ fun PlantConfigurationScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
 
+            // Watering Frequency
             Card(
                 modifier = Modifier
-                    .padding(0.dp)
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(0.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.Transparent),
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = CardDefaults.cardColors(containerColor = OurGreen),
             ) {
-                Text(
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                    text = selectedPlant!!.description,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = OurGreen
-                )
-                Spacer(modifier = Modifier.height(24.dp))
-                Card(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxSize(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = OurGreen),
-                ) {
-                }
-                Spacer(modifier = Modifier.height(24.dp))
-                Card(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxSize(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = OurGreen),
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            modifier = Modifier.padding(8.dp),
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                            text = stringResource(id = R.string.watering_frequency),
-                            fontSize = 40.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = OurBeige
-                        )
-                        TextField(
-                            value = "",
-                            onValueChange = { },
-                            label = { Text(text = "${selectedPlant!!.frequency} days") },
-                            modifier = Modifier
-                                .padding(8.dp)
-                                .width(100.dp)
-                                .background(OurGreenLight, shape = RoundedCornerShape(16.dp)),
-                        )
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(24.dp))
-                Card(
-                    modifier = Modifier.fillMaxHeight().fillMaxSize(),
-                    shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(containerColor = OurGreen),
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            modifier = Modifier.padding(8.dp),
-                            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-                            text = stringResource(id = R.string.plant_room),
-                            fontSize = 40.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = OurBeige
-                        )
-                        TextField(
-                            value = "",
-                            onValueChange = { },
-                            label = { Text(text = "set room") },
-                            modifier = Modifier.padding(8.dp).width(200.dp).height(50.dp)
-                                .background(OurGreenLight, shape = RoundedCornerShape(24.dp)),
-                        )
-                    }
-                }
-
-
-                Spacer(modifier = Modifier.height(24.dp))
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    OutlinedButton(
-                        onClick = { onGoBack() },
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.cancel_button),
-                            fontSize = 20.sp,
-                            color = OurGreen,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    Button(
-                        colors = ButtonDefaults.buttonColors(OurGreen),
-                        onClick = { onGoBack() },
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.save_button),
-                            fontSize = 20.sp,
-                            color = OurBeige,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = stringResource(id = R.string.watering_frequency),
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OurBeige
+                    )
+                    TextField(
+                        value = updatedFrequency,
+                        onValueChange = { updatedFrequency = it },
+                        label = { Text(text = "Frequency (days)") },
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .width(100.dp)
+                            .background(OurGreenLight, shape = RoundedCornerShape(16.dp))
+                    )
                 }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Room Location Dropdown
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = CardDefaults.cardColors(containerColor = OurGreen),
+            ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Button(
-                        colors = ButtonDefaults.buttonColors(OurRed),
-                        onClick = { showDeleteDialog = true },
-                        modifier = Modifier.padding(8.dp)
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.delete_plant_button),
-                            fontSize = 20.sp,
-                            color = OurBeige,
-                            fontWeight = FontWeight.Bold
-                        )
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = stringResource(id = R.string.plant_room),
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OurBeige
+                    )
+                    Box(modifier = Modifier.padding(8.dp)) {
+                        Button(
+                            onClick = { expanded = true },
+                            colors = ButtonDefaults.buttonColors(OurGreenLight),
+                            shape = RoundedCornerShape(16.dp)
+                        ) {
+                            Text(
+                                text = updatedLocation.name.replace("_", " ").lowercase()
+                                    .replaceFirstChar { it.uppercase() },
+                                color = OurBeige
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false },
+                        ) {
+                            HouseLocation.entries.forEach { location ->
+                                DropdownMenuItem(
+                                    onClick = {
+                                        updatedLocation = location
+                                        expanded = false
+                                    },
+                                    text = {
+                                        Text(
+                                            text = location.name.replace("_", " ").lowercase()
+                                                .replaceFirstChar { it.uppercase() },
+                                            color = OurGreen
+                                        )
+                                    }
+                                )
+                            }
+                        }
                     }
+
+
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                OutlinedButton(
+                    onClick = { onGoBack() },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.cancel_button),
+                        fontSize = 20.sp,
+                        color = OurGreen,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                Button(
+                    colors = ButtonDefaults.buttonColors(OurGreen),
+                    onClick = {
+                        coroutineScope.launch {
+                            selectedPlant?.let {
+                                val updatedPlant = it.copy(
+                                    frequency = updatedFrequency.toIntOrNull() ?: it.frequency,
+                                    location = updatedLocation
+                                )
+                                dataStoreManager.savePlants(
+                                    dataStoreManager.getPlants().first().map { plant ->
+                                        if (plant.plantName == updatedPlant.plantName) updatedPlant else plant
+                                    }
+                                )
+                                onGoBack()
+                            }
+                        }
+                    },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.save_button),
+                        fontSize = 20.sp,
+                        color = OurBeige,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(OurRed),
+                    onClick = { showDeleteDialog = true },
+                    modifier = Modifier.padding(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.delete_plant_button),
+                        fontSize = 20.sp,
+                        color = OurBeige,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }

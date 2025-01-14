@@ -71,17 +71,12 @@ fun RecipeModuleExample(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(id = R.string.recipes_saved),
+                    text = stringResource(id = R.string.wip),
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige
                 )
-                Text(
-                    text = stringResource(id = R.string.recipes_saved),
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Left,
-                    color = OurBeige
-                )
+
             }
             Image(
                 painter = painterResource(id = R.drawable.recipe_book),

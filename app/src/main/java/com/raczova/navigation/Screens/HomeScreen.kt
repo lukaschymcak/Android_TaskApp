@@ -107,7 +107,7 @@ fun HomeScreen(
             packingPercentage = packingPercentage
         )
         Spacer(modifier = Modifier.height(8.dp))
-        WateringModuleExample(onClick = onGoToWatering)
+        WateringModuleExample(onClick = onGoToWatering, dataStoreManager = dataStoreManager)
         Spacer(modifier = Modifier.height(8.dp))
         ShoppingModuleExample(onClick = onGoToShopping)
         Spacer(modifier = Modifier.height(8.dp))

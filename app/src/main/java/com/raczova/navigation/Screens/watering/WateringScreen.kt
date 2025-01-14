@@ -44,27 +44,31 @@ import com.raczova.navigation.models.watering.HouseLocation
 import com.raczova.navigation.states.HomeScreenState
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurGreen
+import kotlinx.coroutines.launch
 
-@SuppressLint("DiscouragedApi")
 @Composable
 fun WateringScreen(
     onGoBack: () -> Unit,
     onGoToAddPlant: () -> Unit,
-    onGoToPlantConfiguration : () -> Unit,
+    onGoToPlantConfiguration: () -> Unit,
     dataStoreManager: DataStoreManager
 ) {
     val context = LocalContext.current
-    val selectedFlower by remember { mutableStateOf(HomeScreenState.getSelectedPlant(context)) }
     val coroutineScope = rememberCoroutineScope()
     val plantsFlow = remember { dataStoreManager.getPlants() }
     val plantsState = plantsFlow.collectAsState(initial = emptyList())
 
-    val filterLabels = remember {
-        listOf("Any", "Bedroom", "Bathroom", "Kids room", "Outdoors", "Living room") }
+    var selectedIndex by remember { mutableIntStateOf(0) }
 
-    var selectedIndex by remember {
-        mutableIntStateOf(-1)
-    }
+    // Count plants per room
+    val plantCounts = plantsState.value.groupingBy { it.location }.eachCount()
+
+    // Create sorted tabs with counts
+    val sortedLocations = plantCounts.keys.sortedByDescending { plantCounts[it] }
+    val tabs = listOf("Any (${plantsState.value.size})") +
+            sortedLocations.map { location ->
+                "${location.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }} (${plantCounts[location] ?: 0})"
+            }
 
     Column(
         modifier = Modifier
@@ -90,7 +94,7 @@ fun WateringScreen(
             )
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                contentDescription = "Nothing",
+                contentDescription = null,
                 tint = Color.Transparent
             )
         }
@@ -99,26 +103,12 @@ fun WateringScreen(
         Row(
             modifier = Modifier.horizontalScroll(rememberScrollState())
         ) {
-            filterLabels.forEachIndexed { thisIndex, filterLabel ->
+            tabs.forEachIndexed { index, label ->
                 FilterChip(
-                    modifier = Modifier.padding(8.dp)
-                        .height(40.dp)
-
-                    ,
-                    onClick = {
-                        selectedIndex = if (selectedIndex == thisIndex) {
-                            -1
-                        } else {
-                            thisIndex
-                        }
-                    },
-                    colors = androidx.compose.material3.FilterChipDefaults.filterChipColors(
-                        Color.Transparent,
-                    ),
-                    label = {
-                        Text(filterLabel)
-                    },
-                    selected = selectedIndex == thisIndex
+                    modifier = Modifier.padding(8.dp).height(40.dp),
+                    onClick = { selectedIndex = index },
+                    label = { Text(label) },
+                    selected = selectedIndex == index
                 )
             }
         }
@@ -131,30 +121,25 @@ fun WateringScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             val filteredPlants = when (selectedIndex) {
-                0 -> plantsState.value.filter { it.location == HouseLocation.ANY_ROOM }
-                1 -> plantsState.value.filter { it.location == HouseLocation.BEDROOM }
-                2 -> plantsState.value.filter { it.location == HouseLocation.BATHROOM }
-                3 -> plantsState.value.filter { it.location == HouseLocation.KIDS_ROOM }
-                4 -> plantsState.value.filter { it.location == HouseLocation.LIVING_ROOM }
-                5 -> plantsState.value.filter { it.location == HouseLocation.OUTDOORS }
-
-                else -> plantsState.value
+                0 -> plantsState.value // "Any" tab: show all plants
+                else -> {
+                    val location = sortedLocations[selectedIndex - 1]
+                    plantsState.value.filter { it.location == location }
+                }
             }
 
             if (filteredPlants.isNotEmpty()) {
                 items(filteredPlants) { plant ->
-                    Card(
+                    var isWatered by remember { mutableStateOf(plant.getWatered()) }
 
+                    Card(
                         modifier = Modifier
                             .padding(6.dp)
                             .fillMaxWidth()
                             .clickable {
                                 HomeScreenState.setSelectedPlant(context, plant)
                                 onGoToPlantConfiguration()
-
-                            }
-                            //.align(Alignment.CenterHorizontally),
-,
+                            },
                         shape = RoundedCornerShape(16.dp),
                         colors = CardDefaults.cardColors(containerColor = OurGreen)
                     ) {
@@ -163,24 +148,34 @@ fun WateringScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.waterdrop),
-                                contentDescription = "Watered or not",
+                                painter = painterResource(
+                                    id = if (isWatered) R.drawable.watered else R.drawable.waterdrop
+                                ),
+                                contentDescription = "Watering Status",
                                 modifier = Modifier
                                     .width(70.dp)
                                     .height(70.dp)
                                     .padding(8.dp)
+                                    .clickable {
+                                        isWatered = !isWatered
+                                        plant.setWatered(isWatered)
+                                        plant.lastWatered = if (isWatered) System.currentTimeMillis() else 0L
+                                        coroutineScope.launch {
+                                            dataStoreManager.savePlants(plantsState.value)
+                                        }
+                                    }
                                     .border(
                                         width = 2.dp,
-                                        color = if (plant.getWatered()) OurGreen else OurBeige,
+                                        color = if (isWatered) OurBeige else OurGreen,
                                         shape = RoundedCornerShape(50.dp)
                                     )
                                     .padding(8.dp)
                             )
-
                             Column {
-                                val location =
-                                    plant.location.toString().replace("_", " ").lowercase()
-                                        .replaceFirstChar { it.uppercase() }
+                                val location = plant.location.toString()
+                                    .replace("_", " ").lowercase()
+                                    .replaceFirstChar { it.uppercase() }
+
                                 Text(
                                     text = location,
                                     fontSize = 20.sp,
@@ -195,16 +190,24 @@ fun WateringScreen(
                                     modifier = Modifier.padding(8.dp),
                                     fontWeight = FontWeight.Bold
                                 )
+                                val needsWater = if (isWatered) "(water every ${plant.frequency} days)" else "Needs watering!"
+                                Text(
+                                    text = needsWater,
+                                    fontSize = 16.sp,
+                                    color = OurBeige,
+                                    modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 12.dp),
+                                    fontWeight = FontWeight.Bold
+                                )
                             }
-                                Image(
-                                        painter = painterResource(id = plant.image),
+
+                            Image(
+                                painter = painterResource(id = plant.image),
                                 contentDescription = "Plant image",
                                 modifier = Modifier
                                     .size(90.dp)
                                     .padding(16.dp)
-                                )
-                            }
-
+                            )
+                        }
                     }
                 }
             } else {

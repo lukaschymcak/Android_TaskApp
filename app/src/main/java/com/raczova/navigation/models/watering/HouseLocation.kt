@@ -11,5 +11,5 @@ enum class HouseLocation {
     DINING_ROOM,
     KITCHEN,
     OUTDOORS,
-    ANY_ROOM
+    ROOM
 }

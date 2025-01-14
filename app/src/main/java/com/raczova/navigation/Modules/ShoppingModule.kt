@@ -70,13 +70,7 @@ fun ShoppingModuleExample(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = stringResource(id = R.string.in_shopping_list),
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Left,
-                    color = OurBeige
-                )
-                Text(
-                    text = stringResource(id = R.string.items_to_buy),
+                    text = stringResource(id = R.string.wip),
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige

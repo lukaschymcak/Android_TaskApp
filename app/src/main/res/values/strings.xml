@@ -145,4 +145,8 @@
     <string name="watering_fourth_description">Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!</string>
 
 
+    <!-- Shopping Module Onboarding Strings -->
+    <string name="wip">WORK IN PROGRESS</string>
+
+
 </resources>

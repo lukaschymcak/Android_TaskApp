@@ -7,17 +7,21 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-
 data class PlantModel(
     val plantName: String,
     val description: String = "",
-    val location: HouseLocation = HouseLocation.ANY_ROOM,
+    val location: HouseLocation = HouseLocation.ROOM,
     val frequency: Int = 7,
     val water: String = "200ml",
     val image: Int,
-    private var watered: Boolean
+    private var watered: Boolean,
+    var lastWatered: Long = 0L
 ) {
     fun getWatered(): Boolean {
+        val currentTime = System.currentTimeMillis()
+        if (watered && currentTime - lastWatered >= frequency * 24 * 60 * 60 * 1000) {
+            watered = false
+        }
         return watered
     }
 
@@ -28,11 +32,6 @@ data class PlantModel(
 
 
 object PresetPlants {
-    private var custom = PlantModel(
-        plantName = "Custom",
-        image = R.drawable.edit_pencil,
-        watered = false
-    )
 
     private var monstera = PlantModel(
         plantName = "Monstera",
@@ -98,7 +97,6 @@ object PresetPlants {
     )
 
     val presetPlants = listOf(
-        custom,
         monstera,
         orchid,
         zzPlant,
@@ -112,7 +110,6 @@ object PresetPlants {
 @Composable
 fun getLocalizedPlantName(plantName: String): String {
     return when (plantName) {
-        "Custom" -> stringResource(id = R.string.custom)
         "Monstera" -> stringResource(id = R.string.monstera)
         "Orchid" -> stringResource(id = R.string.orchid)
         "ZZ Plant" -> stringResource(id = R.string.zz_plant)
@@ -127,7 +124,6 @@ fun getLocalizedPlantName(plantName: String): String {
 @Composable
 fun getLocalizedPlantDescription(plantName: String): String {
     return when (plantName) {
-        "Custom" -> stringResource(id = R.string.custom_description)
         "Monstera" -> stringResource(id = R.string.monstera_description)
         "Orchid" -> stringResource(id = R.string.orchid_description)
         "ZZ Plant" -> stringResource(id = R.string.zz_plant_description)
