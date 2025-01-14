@@ -60,10 +60,8 @@ fun WateringScreen(
 
     var selectedIndex by remember { mutableIntStateOf(0) }
 
-    // Count plants per room
     val plantCounts = plantsState.value.groupingBy { it.location }.eachCount()
 
-    // Create sorted tabs with counts
     val sortedLocations = plantCounts.keys.sortedByDescending { plantCounts[it] }
     val tabs = listOf("Any (${plantsState.value.size})") +
             sortedLocations.map { location ->
@@ -121,7 +119,7 @@ fun WateringScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             val filteredPlants = when (selectedIndex) {
-                0 -> plantsState.value // "Any" tab: show all plants
+                0 -> plantsState.value
                 else -> {
                     val location = sortedLocations[selectedIndex - 1]
                     plantsState.value.filter { it.location == location }

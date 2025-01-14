@@ -98,7 +98,6 @@ fun PlantConfigurationScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Watering Frequency
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,7 +133,6 @@ fun PlantConfigurationScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Room Location Dropdown
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
