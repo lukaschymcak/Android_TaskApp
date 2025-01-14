@@ -24,19 +24,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.raczova.navigation.states.HomeScreenState
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import com.raczova.navigation.DataStoreManager
-import com.raczova.navigation.Modules.packing.PackingModule
 import com.raczova.navigation.Modules.ShoppingModuleExample
+import com.raczova.navigation.Modules.packing.PackingModule
 import com.raczova.navigation.Modules.watering.WateringModuleExample
 import com.raczova.navigation.R
 import com.raczova.navigation.models.packing.TripModel
 import com.raczova.navigation.modules.RecipeModuleExample
+import com.raczova.navigation.states.HomeScreenState
 import kotlinx.coroutines.flow.firstOrNull
 
 

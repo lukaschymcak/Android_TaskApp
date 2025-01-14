@@ -1,9 +1,9 @@
 package com.raczova.navigation
 
 import com.raczova.navigation.Screens.packing.calculatePackingPercentage
-import com.raczova.navigation.models.packing.TripModel
 import com.raczova.navigation.models.packing.BagModel
 import com.raczova.navigation.models.packing.ItemModel
+import com.raczova.navigation.models.packing.TripModel
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
