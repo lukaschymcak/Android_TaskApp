@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -39,6 +40,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raczova.navigation.DataStoreManager
@@ -112,26 +114,35 @@ fun PlantConfigurationScreen(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .height(75.dp),
                 shape = RoundedCornerShape(8.dp),
                 colors = CardDefaults.cardColors(containerColor = OurGreen),
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
+                        .padding(8.dp, 16.dp, 16.dp, 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         modifier = Modifier.padding(8.dp),
-                        text = "recommended watering amount = "+selectedPlant!!.water,
+                        text = "water (ml)",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OurBeige
+                    )
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = selectedPlant!!.water,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurBeige
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(8.dp))
 
             Card(
                 modifier = Modifier
@@ -157,6 +168,7 @@ fun PlantConfigurationScreen(
                     TextField(
                         value = updatedFrequency,
                         onValueChange = { updatedFrequency = it },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         label = { Text(text = "edit") },
                         modifier = Modifier
                             .padding(8.dp)
@@ -164,14 +176,7 @@ fun PlantConfigurationScreen(
                             .height(40.dp)
                             .background(OurGreenLight, shape = RoundedCornerShape(16.dp))
                     )
-//                    NumberPicker(
-//                        value = updatedFrequency.toInt(),
-//                        range = 1..30,
-//                        onValueChange = { updatedFrequency = it.toString() },
-//                        modifier = Modifier
-//                            .padding(8.dp)
-//                            .background(OurGreenLight, shape = RoundedCornerShape(16.dp))
-//                    )
+
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
