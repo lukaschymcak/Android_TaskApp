@@ -33,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raczova.navigation.DataStoreManager
 import com.raczova.navigation.R
+import com.raczova.navigation.ui.theme.OurGreen
 import com.raczova.navigation.models.watering.PresetPlants.presetPlants
 import com.raczova.navigation.ui.theme.OurBeige
-import com.raczova.navigation.ui.theme.OurGreen
 import com.raczova.navigation.ui.theme.OurGreenLight
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch

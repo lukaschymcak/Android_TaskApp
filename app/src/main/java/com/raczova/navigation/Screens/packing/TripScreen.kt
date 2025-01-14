@@ -1,5 +1,6 @@
 package com.raczova.navigation.Screens.packing
 
+import com.raczova.navigation.models.packing.TripModel
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -50,7 +51,6 @@ import com.raczova.navigation.Modules.packing.BagModule
 import com.raczova.navigation.R
 import com.raczova.navigation.models.packing.BagModel
 import com.raczova.navigation.models.packing.ItemModel
-import com.raczova.navigation.models.packing.TripModel
 import com.raczova.navigation.ui.theme.OurPackingBlue
 import kotlinx.coroutines.launch
 
