@@ -48,6 +48,7 @@ class HomeScreenStateTest {
     @Test
     fun getSelectedPlant_returnsSelectedPlant() {
         val plant = PlantModel(
+            id = "",
             "Rose",
             description = "",
             location = HouseLocation.BEDROOM,
