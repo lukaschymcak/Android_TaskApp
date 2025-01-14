@@ -82,9 +82,10 @@
     <!-- Watering screen -->
     <string name="back_to_home">Back home</string>
     <string name="watering">WATERING</string>
-    <string name="added_plants">MY PLANTS</string>
+    <string name="added_plants">MY PLANTS: </string>
     <string name="no_plants_added">No plants added.</string>
     <string name="add_plant_title">Add plant</string>
+
 
     <!-- Plant configuration screen -->
     <string name="first_day">First day</string>
@@ -143,7 +144,12 @@
     <string name="watering_third_description">Take the best care of your plants and never forget to water them again!</string>
     <string name="watering_fourth_title">ENJOY!</string>
     <string name="watering_fourth_description">Remember, everything is still work in progress, so please let us know if you have any feedback. Thanks a lot!</string>
-
+    <string name="one_plant_added">One added plant</string>
+    <string name="all_plants_watered">All of your plants are watered!</string>
+    <string name="one_plant_needs_watering">One plant needs watering!</string>
+    <string name="multiple_plants_need_watering"> plants need watering!</string>
+    <string name="plant_image_description">Plant</string>
+    <string name="added_plant_count">Added plants: </string>
 
     <!-- Shopping Module Onboarding Strings -->
     <string name="wip">WORK IN PROGRESS</string>

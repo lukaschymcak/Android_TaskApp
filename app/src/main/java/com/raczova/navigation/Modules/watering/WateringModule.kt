@@ -41,8 +41,9 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun WateringModuleExample(onClick: () -> Unit,
-                          dataStoreManager: DataStoreManager
+fun WateringModuleExample(
+    onClick: () -> Unit,
+    dataStoreManager: DataStoreManager
 ) {
     val coroutineScope = rememberCoroutineScope()
     var plantCount by remember { mutableIntStateOf(0) }
@@ -52,7 +53,7 @@ fun WateringModuleExample(onClick: () -> Unit,
         coroutineScope.launch {
             val plants = dataStoreManager.getPlants().first()
             plantCount = plants.size
-            needWateringCount = plants.count { !it.getWatered() } 
+            needWateringCount = plants.count { !it.getWatered() }
         }
     }
 
@@ -61,7 +62,6 @@ fun WateringModuleExample(onClick: () -> Unit,
             defaultElevation = 5.dp
         ),
         shape = RoundedCornerShape(16.dp),
-
         colors = CardDefaults.cardColors(
             containerColor = OurGreen,
         ),
@@ -69,8 +69,7 @@ fun WateringModuleExample(onClick: () -> Unit,
             .padding(0.dp)
             .fillMaxWidth()
             .height(150.dp)
-            .clickable { onClick()
-            }
+            .clickable { onClick() }
     ) {
         Row(
             modifier = Modifier
@@ -92,18 +91,25 @@ fun WateringModuleExample(onClick: () -> Unit,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
-                val stringPlants = if (plantCount == 0) "No plants added"
-                else if (plantCount == 1) "one added plant"
-                else "added plants: $plantCount"
+                val stringPlants = when (plantCount) {
+                    0 -> stringResource(id = R.string.no_plants_added)
+                    1 -> stringResource(id = R.string.one_plant_added)
+                    else -> stringResource(id = R.string.added_plant_count)+ " "+plantCount
+                }
                 Text(
                     text = stringPlants,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige
                 )
-                val howManyNeedWatering = 0
+
+                val stringNeedWatering = when (needWateringCount) {
+                    0 -> stringResource(id = R.string.all_plants_watered)
+                    1 -> stringResource(id = R.string.one_plant_needs_watering)
+                    else -> ""+needWateringCount  + " "+stringResource(id = R.string.multiple_plants_need_watering)
+                }
                 Text(
-                    text = "$howManyNeedWatering plants need watering!",
+                    text = stringNeedWatering,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left,
                     color = OurBeige

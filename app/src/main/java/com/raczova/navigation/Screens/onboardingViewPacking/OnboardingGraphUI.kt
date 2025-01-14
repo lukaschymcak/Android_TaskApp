@@ -62,7 +62,7 @@ fun OnboardingGraphUI(onboardingModel: OnboardingModel) {
                 text = stringResource(id = onboardingModel.descriptionRes),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp, 0.dp),
+                    .padding(24.dp),
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 color = OurBeige

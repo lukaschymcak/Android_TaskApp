@@ -98,6 +98,7 @@
     <string name="no_plants_added">Žiadne rastliny neboli pridané.</string>
     <string name="add_plant_title">Pridať rastlinu</string>
 
+
     <!-- Welcome screen -->
     <string name="welcome_screen_title">Vitajte!</string>
     <string name="enter">Vstúpiť</string>
@@ -142,6 +143,14 @@
     <string name="watering_third_description">Starajte sa o svoje rastliny čo najlepšie a nikdy ich už nezabudnite poliať!</string>
     <string name="watering_fourth_title">UŽITE SI TO!</string>
     <string name="watering_fourth_description">Pamätajte, všetko je stále vo vývoji, takže nám prosím dajte vedieť, ak máte nejaké pripomienky. Ďakujeme veľmi pekne!</string>
+    <string name="one_plant_added">Jedna pridaná rastlina</string>
+    <string name="all_plants_watered">Všetky rastliny sú poliate!</string>
+    <string name="one_plant_needs_watering">Jedna rastlina potrebuje poliať!</string>
+    <string name="multiple_plants_need_watering"> rastlín potrebuje poliať!</string>
+    <string name="plant_image_description">Rastlina</string>
+    <string name="added_plant_count">Pridané rastliny: </string>
+
+
 
     <string name="wip">PRACUJEME NA TOM :)</string>
 

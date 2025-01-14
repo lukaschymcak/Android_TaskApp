@@ -41,10 +41,6 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    fun addition(a: Int, b: Int): Int {
-        return a + b
-    }
-
     @SuppressLint("NewApi")
     fun getTrips() = context.preferenceDataStore.data.map { preferences ->
         val jsonString = preferences[TRIPS_KEY] ?: "[]"
@@ -93,11 +89,9 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
-    suspend fun deletePlant(plantName: String) {
+    suspend fun deletePlant(plantId: String) {
         val currentPlants = getPlants().first()
-
-        val updatedPlants = currentPlants.filter { it.plantName != plantName }
-
+        val updatedPlants = currentPlants.filter { it.id != plantId }
         savePlants(updatedPlants)
     }
 

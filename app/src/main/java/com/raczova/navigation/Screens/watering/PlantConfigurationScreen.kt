@@ -1,6 +1,7 @@
 package com.raczova.navigation.Screens.watering
 
 import android.annotation.SuppressLint
+import android.widget.NumberPicker
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -86,6 +87,8 @@ fun PlantConfigurationScreen(
                     color = OurGreen
                 )
             }
+
+
             Spacer(modifier = Modifier.height(24.dp))
 
             Image(
@@ -97,6 +100,38 @@ fun PlantConfigurationScreen(
                     .height(150.dp)
             )
             Spacer(modifier = Modifier.height(24.dp))
+            Text(
+                text = selectedPlant!!.description,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = OurGreen,
+                modifier = Modifier.padding(16.dp)
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = CardDefaults.cardColors(containerColor = OurGreen),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        modifier = Modifier.padding(8.dp),
+                        text = "recommended watering amount = "+selectedPlant!!.water,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OurBeige
+                    )
+                }
+            }
 
             Card(
                 modifier = Modifier
@@ -114,7 +149,7 @@ fun PlantConfigurationScreen(
                 ) {
                     Text(
                         modifier = Modifier.padding(8.dp),
-                        text = stringResource(id = R.string.watering_frequency),
+                        text = stringResource(id = R.string.watering_frequency)+" (days)",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurBeige
@@ -122,17 +157,24 @@ fun PlantConfigurationScreen(
                     TextField(
                         value = updatedFrequency,
                         onValueChange = { updatedFrequency = it },
-                        label = { Text(text = "Frequency (days)") },
+                        label = { Text(text = "edit") },
                         modifier = Modifier
                             .padding(8.dp)
                             .width(100.dp)
+                            .height(40.dp)
                             .background(OurGreenLight, shape = RoundedCornerShape(16.dp))
                     )
+//                    NumberPicker(
+//                        value = updatedFrequency.toInt(),
+//                        range = 1..30,
+//                        onValueChange = { updatedFrequency = it.toString() },
+//                        modifier = Modifier
+//                            .padding(8.dp)
+//                            .background(OurGreenLight, shape = RoundedCornerShape(16.dp))
+//                    )
                 }
             }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
+            Spacer(modifier = Modifier.height(8.dp))
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -143,6 +185,7 @@ fun PlantConfigurationScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .height(75.dp)
                         .padding(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -262,14 +305,14 @@ fun PlantConfigurationScreen(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text(text = stringResource(id = R.string.delete_bag_dialog_title)) },
-            text = { Text(text = stringResource(id = R.string.delete_bag_dialog_message)) },
+            title = { Text(text = stringResource(id = R.string.delete_plant_dialog_title)) },
+            text = { Text(text = stringResource(id = R.string.delete_plant_dialog_message)) },
             confirmButton = {
                 Button(
                     colors = ButtonDefaults.buttonColors(OurRed),
                     onClick = {
                         coroutineScope.launch {
-                            dataStoreManager.deletePlant(selectedPlant!!.plantName)
+                            dataStoreManager.deletePlant(selectedPlant!!.id)
                             showDeleteDialog = false
                             onGoBack()
                         }

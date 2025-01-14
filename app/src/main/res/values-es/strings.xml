@@ -96,6 +96,7 @@
     <string name="no_plants_added">No se han añadido plantas.</string>
     <string name="add_plant_title">Añadir planta</string>
 
+
     <!-- Welcome screen -->
     <string name="welcome_screen_title">¡Bienvenido!</string>
     <string name="enter">Entrar</string>
@@ -141,6 +142,15 @@
     <string name="watering_third_description">¡Cuida lo mejor posible tus plantas y nunca más olvides regarlas!</string>
     <string name="watering_fourth_title">¡DISFRUTA!</string>
     <string name="watering_fourth_description">Recuerda, todo sigue en desarrollo, así que por favor háznos saber si tienes algún comentario. ¡Muchas gracias!</string>
+    <string name="one_plant_added">Una planta añadida</string>
+    <string name="all_plants_watered">¡Todas tus plantas están regadas!</string>
+    <string name="one_plant_needs_watering">¡Una planta necesita riego!</string>
+    <string name="multiple_plants_need_watering"> plantas necesitan riego</string>
+    <string name="plant_image_description">Planta</string>
+    <string name="added_plant_count">Plantas añadidas: </string>
+
+
+
 
 
     <!-- Shopping Module Onboarding Strings -->

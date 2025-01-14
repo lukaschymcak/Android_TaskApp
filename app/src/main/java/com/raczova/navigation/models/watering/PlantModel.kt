@@ -4,10 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.raczova.navigation.R
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 
 @Serializable
 data class PlantModel(
+    val id: String = UUID.randomUUID().toString(),
     val plantName: String,
     val description: String = "",
     val location: HouseLocation = HouseLocation.ROOM,
