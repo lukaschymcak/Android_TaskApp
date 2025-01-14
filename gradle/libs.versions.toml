@@ -19,7 +19,6 @@ mockk = "1.12.0"
 navigationCompose = "2.8.3"
 kotlinxSerializationJson = "1.6.3"
 datastore = "1.0.0"
-robolectric = "4.10.3"
 transportationConsumer = "2.3.0"
 generativeai = "0.9.0"
 datastorePreferencesCoreJvm = "1.1.1"
@@ -55,7 +54,6 @@ mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore
 mockito-core-v4110 = { module = "org.mockito:mockito-core", version.ref = "mockitoMockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 transportation-consumer = { group = "com.google.android.libraries.mapsplatform.transportation", name = "transportation-consumer", version.ref = "transportationConsumer" }
 generativeai = { group = "com.google.ai.client.generativeai", name = "generativeai", version.ref = "generativeai" }
 androidx-datastore-preferences-core-jvm = { group = "androidx.datastore", name = "datastore-preferences-core-jvm", version.ref = "datastorePreferencesCoreJvm" }

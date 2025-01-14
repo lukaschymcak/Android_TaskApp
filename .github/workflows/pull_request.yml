@@ -69,5 +69,5 @@ jobs:
         packageName: com.raczova.navigation
         releaseFiles: app/release/taskapp.aab
         track: internal
-        status: completed
+        status: draft
         whatsNewDirectory: whatsNew/

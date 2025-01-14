@@ -165,6 +165,7 @@ fun PlantConfigurationScreen(
                         fontWeight = FontWeight.Bold,
                         color = OurBeige
                     )
+
                     TextField(
                         value = updatedFrequency,
                         onValueChange = { updatedFrequency = it },

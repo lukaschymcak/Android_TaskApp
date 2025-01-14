@@ -94,7 +94,6 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.serialization.json.v151)
-    testImplementation(libs.robolectric)
     testImplementation(libs.androidx.core)
 
 
