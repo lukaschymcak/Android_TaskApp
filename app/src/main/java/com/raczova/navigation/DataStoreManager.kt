@@ -41,6 +41,10 @@ class DataStoreManager(private val context: Context) {
         }
     }
 
+    fun addition(a: Int, b: Int): Int {
+        return a + b
+    }
+
     @SuppressLint("NewApi")
     fun getTrips() = context.preferenceDataStore.data.map { preferences ->
         val jsonString = preferences[TRIPS_KEY] ?: "[]"

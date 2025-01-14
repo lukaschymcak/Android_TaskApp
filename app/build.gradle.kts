@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.transportation.consumer)
     implementation(libs.generativeai)
     implementation(libs.androidx.datastore.preferences.core.jvm)
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
