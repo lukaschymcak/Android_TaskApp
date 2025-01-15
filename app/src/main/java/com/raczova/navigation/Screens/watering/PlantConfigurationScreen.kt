@@ -1,14 +1,12 @@
 package com.raczova.navigation.Screens.watering
 
 import android.annotation.SuppressLint
-import android.widget.NumberPicker
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,7 +33,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,6 +43,9 @@ import androidx.compose.ui.unit.sp
 import com.raczova.navigation.DataStoreManager
 import com.raczova.navigation.R
 import com.raczova.navigation.models.watering.HouseLocation
+import com.raczova.navigation.models.watering.getLocalizedPlantDescription
+import com.raczova.navigation.models.watering.getLocalizedPlantName
+import com.raczova.navigation.models.watering.getLocalizedPlantRoom
 import com.raczova.navigation.states.HomeScreenState
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurGreen
@@ -53,7 +53,6 @@ import com.raczova.navigation.ui.theme.OurGreenLight
 import com.raczova.navigation.ui.theme.OurRed
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
@@ -68,6 +67,8 @@ fun PlantConfigurationScreen(
     var updatedFrequency by remember { mutableStateOf(selectedPlant?.frequency.toString()) }
     var expanded by remember { mutableStateOf(false) }
     var updatedLocation by remember { mutableStateOf(selectedPlant?.location ?: HouseLocation.ROOM) }
+    val name = selectedPlant!!.plantName
+
 
     LazyColumn(
         modifier = Modifier
@@ -83,7 +84,7 @@ fun PlantConfigurationScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = selectedPlant!!.plantName.uppercase(Locale.getDefault()),
+                    text = getLocalizedPlantName(name),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     color = OurGreen
@@ -103,7 +104,7 @@ fun PlantConfigurationScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text(
-                text = selectedPlant!!.description,
+                text = getLocalizedPlantDescription(name),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = OurGreen,
@@ -128,7 +129,7 @@ fun PlantConfigurationScreen(
                 ) {
                     Text(
                         modifier = Modifier.padding(8.dp),
-                        text = "water (ml)",
+                        text = stringResource(R.string.waterml),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurBeige
@@ -160,7 +161,7 @@ fun PlantConfigurationScreen(
                 ) {
                     Text(
                         modifier = Modifier.padding(8.dp),
-                        text = stringResource(id = R.string.watering_frequency)+" (days)",
+                        text = stringResource(id = R.string.watering_frequency)+ stringResource(id = R.string.days),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = OurBeige
@@ -170,7 +171,7 @@ fun PlantConfigurationScreen(
                         value = updatedFrequency,
                         onValueChange = { updatedFrequency = it },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        label = { Text(text = "edit") },
+                        label = { Text(text = stringResource(id = R.string.edit)) },
                         modifier = Modifier
                             .padding(8.dp)
                             .width(100.dp)
@@ -210,8 +211,7 @@ fun PlantConfigurationScreen(
                             shape = RoundedCornerShape(16.dp)
                         ) {
                             Text(
-                                text = updatedLocation.name.replace("_", " ").lowercase()
-                                    .replaceFirstChar { it.uppercase() },
+                                text = getLocalizedPlantRoom(updatedLocation.name),
                                 color = OurBeige
                             )
                         }
@@ -227,8 +227,7 @@ fun PlantConfigurationScreen(
                                     },
                                     text = {
                                         Text(
-                                            text = location.name.replace("_", " ").lowercase()
-                                                .replaceFirstChar { it.uppercase() },
+                                            text = getLocalizedPlantRoom(location.name),
                                             color = OurGreen
                                         )
                                     }

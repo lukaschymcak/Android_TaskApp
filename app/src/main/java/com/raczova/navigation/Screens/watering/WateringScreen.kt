@@ -1,7 +1,6 @@
 
 package com.raczova.navigation.Screens.watering
 
-import android.annotation.SuppressLint
 import com.raczova.navigation.R
 
 import androidx.compose.foundation.Image
@@ -40,7 +39,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raczova.navigation.DataStoreManager
-import com.raczova.navigation.models.watering.HouseLocation
+import com.raczova.navigation.models.watering.getLocalizedPlantName
+import com.raczova.navigation.models.watering.getLocalizedPlantRoom
 import com.raczova.navigation.states.HomeScreenState
 import com.raczova.navigation.ui.theme.OurBeige
 import com.raczova.navigation.ui.theme.OurGreen
@@ -63,9 +63,9 @@ fun WateringScreen(
     val plantCounts = plantsState.value.groupingBy { it.location }.eachCount()
 
     val sortedLocations = plantCounts.keys.sortedByDescending { plantCounts[it] }
-    val tabs = listOf("Any (${plantsState.value.size})") +
+    val tabs = listOf("${getLocalizedPlantRoom("ALL")} (${plantsState.value.size})") +
             sortedLocations.map { location ->
-                "${location.name.replace("_", " ").lowercase().replaceFirstChar { it.uppercase() }} (${plantCounts[location] ?: 0})"
+                "${getLocalizedPlantRoom(location.name)} (${plantCounts[location]})"
             }
 
     Column(
@@ -182,7 +182,7 @@ fun WateringScreen(
                                     fontWeight = FontWeight.Bold
                                 )
                                 Text(
-                                    text = plant.plantName,
+                                    text = getLocalizedPlantName(plant.plantName),
                                     fontSize = 30.sp,
                                     color = OurBeige,
                                     modifier = Modifier.padding(8.dp),

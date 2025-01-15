@@ -87,6 +87,24 @@
     <string name="delete_plant_button">ELIMINAR PLANTA</string>
     <string name="delete_plant_dialog_title">Eliminar Planta</string>
     <string name="delete_plant_dialog_message">¿Estás seguro de que quieres eliminar la planta?</string>
+    <string name="waterml">Agua (ml)</string>
+    <string name="days">(días)</string>
+    <string name="edit"> editar</string>
+    <string name="needs_watering">¡Necesita riego!</string>
+    <string name="water_every">(regar cada </string>
+    <string name="water_every_days"> días)</string>
+
+
+    <!-- Room -->
+    <string name="room">HABITACIÓN</string>
+    <string name="living_room">SALA DE ESTAR</string>
+    <string name="bedroom">DORMITORIO</string>
+    <string name="bathroom">BAÑO</string>
+    <string name="dining_room">COMEDOR</string>
+    <string name="kitchen">COCINA</string>
+    <string name="outdoors">EXTERIOR</string>
+    <string name="kids_room">HABITACIÓN DE NIÑOS</string>
+    <string name="allroom">TODOS</string>
 
 
     <!-- Watering screen -->

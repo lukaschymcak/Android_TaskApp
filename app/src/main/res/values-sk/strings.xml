@@ -88,8 +88,24 @@
     <string name="delete_plant_button">VYMAZAŤ RASTLINU</string>
     <string name="delete_plant_dialog_title">Zmazať rastlinu</string>
     <string name="delete_plant_dialog_message">Chcete zmazať túto rastlinu?</string>
+    <string name="waterml">Voda (ml)</string>
+    <string name="days">(dni)</string>
+    <string name="edit"> upraviť</string>
+    <string name="needs_watering">Potrebuje poliať!</string>
+    <string name="water_every">(zalievajte každých </string>
+    <string name="water_every_days"> dní)</string>
 
 
+    <!-- Room -->
+    <string name="room">IZBA</string>
+    <string name="living_room">OBÝVAČKA</string>
+    <string name="bedroom">SPÁLŇA</string>
+    <string name="bathroom">KÚPEĽŇA</string>
+    <string name="dining_room">JEDÁLEŇ</string>
+    <string name="kitchen">KUCHAŇA</string>
+    <string name="outdoors">VONKU</string>
+    <string name="kids_room">DETSKÁ IZBA</string>
+    <string name="allroom">VŠETKY</string>
 
     <!-- Watering screen -->
     <string name="back_to_home">Späť</string>

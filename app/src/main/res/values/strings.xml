@@ -95,8 +95,27 @@
     <string name="delete_plant_button">DELETE PLANT</string>
     <string name="delete_plant_dialog_title">Delete Plant</string>
     <string name="delete_plant_dialog_message">Are you sure you want to delete this plant? </string>
+    <string name="waterml">Water (ml)</string>
+    <string name="days">(days)</string>
+    <string name="edit"> edit</string>
+    <string name="needs_watering">Needs watering!</string>
+    <string name="water_every">(water every </string>
+    <string name="water_every_days"> days)</string>
 
 
+
+
+
+    <!-- Rooms -->
+    <string name="room">ROOM</string>
+    <string name="living_room">LIVING ROOM</string>
+    <string name="bedroom">BEDROOM</string>
+    <string name="bathroom">BATHROOM</string>
+    <string name="dining_room">DINING ROOM</string>
+    <string name="kitchen">KITCHEN</string>
+    <string name="outdoors">OUTDOORS</string>
+    <string name="kids_room">KIDS ROOM</string>
+    <string name="allroom">ALL</string>
 
 
 
