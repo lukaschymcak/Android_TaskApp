@@ -2,7 +2,7 @@ name: Deploy to GPlay
 
 on:
   push:
-    branches: [main]
+    branches: [deployTest]
 
 jobs:
   test:
@@ -45,7 +45,7 @@ jobs:
       uses: chkfung/android-version-actions@v1.2.3
       with:
         gradlePath: app/build.gradle.kts
-        versionCode: ${{ github.run_number }}
+        versionCode: ${{github.run_number}}
 
     - name: Assemble
       run: ./gradlew bundleRelease
@@ -67,7 +67,7 @@ jobs:
       with:
         serviceAccountJson: service_account.json
         packageName: com.raczova.navigation
-        releaseFiles: app/release/taskapp.aab
+        releaseFiles: app/build/outputs/bundle/release/app-release.aab
         track: internal
         status: draft
         whatsNewDirectory: whatsNew/
