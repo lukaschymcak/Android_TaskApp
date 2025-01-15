@@ -64,7 +64,7 @@
     <string name="trip_screen_title">DETAIL VÝLETU</string>
     <string name="back_button_description">Späť</string>
     <string name="trip_name">Názov cesty</string>
-    <string name="bags_section_title">BATŕE</string>
+    <string name="bags_section_title">Tašky</string>
     <string name="no_bags_message">Zatiaľ žiadne tašky, pridajte tašku :)</string>
     <string name="bag_name_label">Názov tašky</string>
     <string name="add_bag_button">Pridať tašku</string>
@@ -102,7 +102,7 @@
     <string name="bedroom">SPÁLŇA</string>
     <string name="bathroom">KÚPEĽŇA</string>
     <string name="dining_room">JEDÁLEŇ</string>
-    <string name="kitchen">KUCHAŇA</string>
+    <string name="kitchen">KUCHYŇA</string>
     <string name="outdoors">VONKU</string>
     <string name="kids_room">DETSKÁ IZBA</string>
     <string name="allroom">VŠETKY</string>
