@@ -6,7 +6,7 @@ import com.raczova.navigation.models.watering.PlantModel
 
 object HomeScreenState {
     private var name: String? = null
-    private var wasShown: Boolean = false
+    //private var wasShown: Boolean = false
     private var selectedPlant: PlantModel? = null
     private var onboardingPackingShown: Boolean = false
     private var onboardingWateringShown: Boolean = false

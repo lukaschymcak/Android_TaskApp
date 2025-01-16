@@ -1,13 +1,10 @@
 package com.raczova.navigation
 
 import HomeScreen
-import android.widget.Toast
 import com.raczova.navigation.Screens.packing.PackingScreen
 import com.raczova.navigation.models.packing.TripModel
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -16,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -31,24 +27,12 @@ import com.raczova.navigation.Screens.packing.TripScreen
 import com.raczova.navigation.Screens.watering.WateringScreen
 import com.raczova.navigation.Screens.WelcomeScreen
 import com.raczova.navigation.Screens.watering.PlantConfigurationScreen
-import com.raczova.navigation.models.watering.PlantModel
 import com.raczova.navigation.Screens.onboardingViewPacking.OnboardingScreen
 import com.raczova.navigation.Screens.onboardingViewWatering.WateringOnboardingScreen
 import com.raczova.navigation.states.HomeScreenState
 import kotlinx.coroutines.launch
 
 
-@Composable
-fun showOnboardingScreen() {
-    val context = LocalContext.current
-
-    Box(
-        modifier = Modifier.background(Color.Red)){
-        OnboardingScreen {
-            Toast.makeText(context, "Onboarding finished", Toast.LENGTH_SHORT).show()
-        }
-    }
-}
 
 @Composable
 fun Navigation(
@@ -59,7 +43,6 @@ fun Navigation(
     val navController = rememberNavController()
     var tripList by remember { mutableStateOf<List<TripModel>>(emptyList()) }
     val coroutineScope = rememberCoroutineScope()
-    val addedPlants = remember { mutableStateOf<List<PlantModel>>(emptyList()) }
 
 
     LaunchedEffect(Unit) {

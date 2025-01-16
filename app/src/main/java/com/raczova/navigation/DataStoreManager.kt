@@ -85,7 +85,7 @@ class DataStoreManager(private val context: Context) {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            emptyList<PlantModel>()
+            emptyList()
         }
     }
 
